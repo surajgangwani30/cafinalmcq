@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CA Final Audit — Professional Ethics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EDF1;--surface:#FFFFFF;--surface-2:#F4F6F9;
+  --ink:#141A22;--ink-2:#3D4B5C;--muted:#6B7B8C;--line:#D2DAE2;
+  --accent:#1F4B73;--accent-ink:#FFFFFF;
+  --flag:#B56B12;--flag-bg:#FBEEDC;
+  --right:#1B6E52;--right-bg:#E1F2EB;
+  --wrong:#A83535;--wrong-bg:#F8E6E6;
+  --mark:#FBE7A8;--mark-ink:#3A2E10;
+  --radius:10px;
+  --sans:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F141A;--surface:#1A212A;--surface-2:#212A34;--ink:#E7ECF2;--ink-2:#B9C4D0;
+    --muted:#8494A4;--line:#2E3946;--accent:#6FA3CE;--accent-ink:#0F141A;
+    --flag:#E0A65A;--flag-bg:#33281A;--right:#5FC49C;--right-bg:#12291F;
+    --wrong:#E08585;--wrong-bg:#2E1A1A;--mark:#6A5520;--mark-ink:#FFF3CF;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F141A;--surface:#1A212A;--surface-2:#212A34;--ink:#E7ECF2;--ink-2:#B9C4D0;
+  --muted:#8494A4;--line:#2E3946;--accent:#6FA3CE;--accent-ink:#0F141A;
+  --flag:#E0A65A;--flag-bg:#33281A;--right:#5FC49C;--right-bg:#12291F;
+  --wrong:#E08585;--wrong-bg:#2E1A1A;--mark:#6A5520;--mark-ink:#FFF3CF;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5;
+  padding:0 0 env(safe-area-inset-bottom)}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px 72px}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.hide{display:none !important}
+
+.mast{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:22px}
+.mast h1{font-size:15px;font-weight:600;margin:0}
+.mast .sub{font-size:12px;color:var(--muted)}
+.theme-btn{font-size:12px;color:var(--muted);padding:4px 8px;border:1px solid var(--line);border-radius:20px}
+.back{font-size:13px;color:var(--muted);padding:6px 10px;margin-left:-10px}
+
+.hero{margin-bottom:24px}
+.hero .ch{font-size:11px;letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
+.hero h2{font-family:var(--serif);font-size:26px;line-height:1.2;font-weight:700;margin:0 0 4px}
+.hero .meta{font-size:13px;color:var(--ink-2);margin-bottom:16px}
+.strip{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px}
+.tick{width:7px;height:18px;border-radius:2px;background:var(--line)}
+.tick.r{background:var(--right)}
+.tick.w{background:var(--wrong)}
+.tick.f{background:var(--flag)}
+.legend{display:flex;gap:14px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+
+.primary{display:block;width:100%;background:var(--accent);color:var(--accent-ink);
+  padding:15px 18px;border-radius:var(--radius);font-weight:600;font-size:16px;text-align:left;margin-bottom:10px}
+.primary span{display:block;font-weight:400;font-size:12.5px;opacity:.82;margin-top:2px}
+h3.sec{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;margin:26px 0 9px}
+.rows{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  padding:13px 15px;text-align:left;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row:disabled{opacity:.45;cursor:default}
+.row .t{font-size:14.5px;font-weight:500}
+.row .d{font-size:12px;color:var(--muted);margin-top:1px}
+.row .n{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.utility{display:flex;gap:8px;margin-top:14px}
+.utility button{flex:1;border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+  font-size:13px;color:var(--ink-2);background:var(--surface)}
+
+.qbar{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.navb{font-size:13px;color:var(--muted);padding:6px 9px;border:1px solid var(--line);border-radius:8px}
+.navb:disabled{opacity:.3}
+.count{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;margin-left:auto}
+.clock{font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;padding:4px 9px;
+  border-radius:20px;background:var(--surface-2);border:1px solid var(--line);min-width:58px;text-align:center}
+.clock.low{color:var(--wrong);border-color:var(--wrong)}
+.prog{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:18px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .25s ease}
+.srcline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+.src{font-size:11px;color:var(--muted)}
+.badge{font-size:10px;padding:2px 7px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.badge.drill{border-color:var(--accent);color:var(--accent)}
+.badge.warn{border-color:var(--flag);color:var(--flag)}
+.qtext{font-family:var(--serif);font-size:17px;line-height:1.5;margin:0 0 18px;font-weight:400}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.opt{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 13px}
+.opt .k{font-size:12.5px;font-weight:700;color:var(--muted);flex:0 0 auto;
+  width:21px;height:21px;border-radius:5px;background:var(--surface-2);display:grid;place-items:center;margin-top:1px}
+.opt .v{font-family:var(--serif);font-size:14.5px;line-height:1.45}
+.opt:not(:disabled):hover{border-color:var(--accent)}
+.opt.correct{border-color:var(--right);background:var(--right-bg)}
+.opt.correct .k{background:var(--right);color:#fff}
+.opt.picked-wrong{border-color:var(--wrong);background:var(--wrong-bg)}
+.opt.picked-wrong .k{background:var(--wrong);color:#fff}
+.opt.dim{opacity:.5}
+.verdict{font-size:13.5px;font-weight:600;margin-bottom:7px}
+.verdict.ok{color:var(--right)}
+.verdict.no{color:var(--wrong)}
+.expl{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:var(--radius);padding:13px 14px;margin-bottom:16px}
+.expl p{font-family:var(--serif);font-size:14.5px;line-height:1.55;margin:0;color:var(--ink-2)}
+@media (prefers-reduced-motion: no-preference){
+  .reveal{animation:fade .22s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+.qfoot{display:flex;gap:9px;align-items:center}
+.flagbtn{border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px;font-size:13px;
+  color:var(--ink-2);background:var(--surface);white-space:nowrap}
+.flagbtn.on{background:var(--flag-bg);border-color:var(--flag);color:var(--flag);font-weight:600}
+.next{flex:1;background:var(--accent);color:var(--accent-ink);border-radius:var(--radius);padding:13px;font-weight:600}
+
+.score{font-family:var(--serif);font-size:44px;font-weight:700;line-height:1;margin:6px 0 4px}
+.score small{font-size:20px;color:var(--muted);font-weight:400}
+.rmeta{font-size:13.5px;color:var(--ink-2);margin-bottom:20px}
+.rlist{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;margin-bottom:16px}
+.ritem{padding:12px 14px;border-bottom:1px solid var(--line)}
+.ritem:last-child{border-bottom:none}
+.ritem .rq{font-family:var(--serif);font-size:14px;line-height:1.45;margin-bottom:5px}
+.ritem .ra{font-size:12.5px;color:var(--muted)}
+.ritem .ra b{color:var(--right);font-weight:600}
+
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);
+  padding:24px 18px;text-align:center;color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:9px}
+.card .cq{font-family:var(--serif);font-size:14.5px;line-height:1.45;margin-bottom:8px}
+.card .cans{font-size:13px;color:var(--right);font-weight:600;margin-bottom:6px}
+.card .cex{font-family:var(--serif);font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.card .cbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;font-size:12px;color:var(--muted)}
+.card .cbar button{color:var(--flag);font-size:12px;font-weight:600}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:13px}
+.stat .sv{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.1}
+.stat .sl{font-size:12px;color:var(--muted);margin-top:2px}
+table.hist{width:100%;border-collapse:collapse;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:13px}
+table.hist th{text-align:left;font-weight:600;color:var(--muted);font-size:11.5px;padding:9px 12px;border-bottom:1px solid var(--line)}
+table.hist td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink-2);font-variant-numeric:tabular-nums}
+table.hist tr:last-child td{border-bottom:none}
+
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;margin-bottom:9px}
+.setrow .sd{font-size:12px;color:var(--muted);margin-top:2px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex:0 0 auto}
+.seg button{padding:7px 11px;font-size:12.5px;color:var(--ink-2);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:none}
+.seg button.on{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.danger{color:var(--wrong);font-size:13px;border:1px solid var(--line);border-radius:var(--radius);
+  padding:11px;width:100%;background:var(--surface);margin-top:6px}
+.note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:16px}
+
+/* summary + highlights */
+.sumsec{margin-bottom:26px}
+.sumsec h4{font-family:var(--serif);font-size:17px;font-weight:700;margin:0 0 10px;line-height:1.3}
+.pts{list-style:none;margin:0;padding:0;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.pt{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink-2);
+  padding:12px 14px;border-bottom:1px solid var(--line)}
+.pt:last-child{border-bottom:none}
+mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1px 2px;cursor:pointer}
+#hlBtn{position:absolute;z-index:50;background:var(--ink);color:var(--paper);
+  font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.28);transform:translate(-50%,-100%)}
+.hcard{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--flag);
+  border-radius:var(--radius);padding:12px 14px;margin-bottom:9px}
+.hcard .ht{font-family:var(--serif);font-size:14.5px;line-height:1.5}
+.hcard .hb{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:11.5px;color:var(--muted)}
+.hcard .hb button{color:var(--wrong);font-size:12px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.toc button{font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:20px;
+  color:var(--ink-2);background:var(--surface)}
+</style>
+</head>
+<body>
+<button id="hlBtn" class="hide">Highlight</button>
+<div class="wrap">
+
+  <div class="mast">
+    <div><h1>CA Final · Advanced Auditing</h1><div class="sub">Chapter 19 · Nov 2026 attempt</div></div>
+    <button class="theme-btn" id="themeBtn">Theme</button>
+  </div>
+
+  <section id="home">
+    <div class="hero">
+      <div class="ch">Chapter 19</div>
+      <h2>Professional Ethics &amp; Liabilities of Auditors</h2>
+      <div class="meta" id="heroMeta"></div>
+      <div class="strip" id="strip"></div>
+      <div class="legend">
+        <span><i style="background:var(--right)"></i>Correct</span>
+        <span><i style="background:var(--wrong)"></i>Wrong</span>
+        <span><i style="background:var(--flag)"></i>Flagged</span>
+        <span><i style="background:var(--line)"></i>Not attempted</span>
+      </div>
+    </div>
+    <button class="primary" id="btnFull">Practice the full chapter<span id="fullSub"></span></button>
+    <div class="rows">
+      <button class="row" id="btnDaily"><span><span class="t">Today's 10</span><span class="d" id="dailySub"></span></span><span class="n" id="dailyN"></span></button>
+      <button class="row" id="btnWrong"><span><span class="t">Redo mistakes</span><span class="d">Questions you got wrong last time</span></span><span class="n" id="wrongN"></span></button>
+      <button class="row" id="btnFlag"><span><span class="t">Flagged for revision</span><span class="d">Everything you marked to come back to</span></span><span class="n" id="flagN"></span></button>
+      <button class="row" id="btnUnseen"><span><span class="t">Fresh questions only</span><span class="d">Skip whatever you've already attempted</span></span><span class="n" id="unseenN"></span></button>
+      <button class="row" id="btnExam"><span><span class="t">Exam booklet questions only</span><span class="d">ICAI case scenarios, RTPs and MTPs</span></span><span class="n" id="examN"></span></button>
+      <button class="row" id="btnDrill"><span><span class="t">Concept drills only</span><span class="d">Built from the illustration pointers</span></span><span class="n" id="drillN"></span></button>
+    </div>
+    <h3 class="sec">READ</h3>
+    <div class="rows">
+      <button class="row" id="btnSummary"><span><span class="t">Clause-wise summary</span><span class="d">Select any line to highlight it</span></span><span class="n" id="sumN"></span></button>
+      <button class="row" id="btnHl"><span><span class="t">My highlights</span><span class="d">Everything you've marked while reading</span></span><span class="n" id="hlN"></span></button>
+    </div>
+    <div class="utility">
+      <button id="btnStats">Progress</button>
+      <button id="btnSettings">Settings</button>
+    </div>
+    <p class="note" id="footNote"></p>
+  </section>
+
+  <section id="quiz" class="hide">
+    <div class="qbar">
+      <button class="navb" id="prevBtn">←</button>
+      <button class="navb" id="quitBtn">End</button>
+      <span class="count" id="qCount"></span>
+      <span class="clock" id="clock"></span>
+    </div>
+    <div class="prog"><i id="progBar"></i></div>
+    <div class="srcline"><span class="src" id="qSrc"></span><span class="badge hide" id="qBadge"></span></div>
+    <p class="qtext" id="qText"></p>
+    <div class="opts" id="opts"></div>
+    <div id="feedback" class="hide">
+      <div class="verdict" id="verdict"></div>
+      <div class="expl"><p id="explText"></p></div>
+    </div>
+    <div class="qfoot">
+      <button class="flagbtn" id="flagBtn">Flag</button>
+      <button class="next" id="nextBtn">Skip</button>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <button class="back" id="resHome">← Home</button>
+    <div class="score" id="scoreVal"></div>
+    <div class="rmeta" id="scoreMeta"></div>
+    <div class="strip" id="resStrip" style="margin-bottom:22px"></div>
+    <div id="wrongWrap"></div>
+    <button class="primary" id="retryWrong">Practice the ones you missed<span id="retrySub"></span></button>
+    <div class="rows">
+      <button class="row" id="againBtn"><span><span class="t">Run the same set again</span></span></button>
+      <button class="row" id="homeBtn"><span><span class="t">Back to home</span></span></button>
+    </div>
+  </section>
+
+  <section id="browse" class="hide">
+    <button class="back" id="browseHome">← Home</button>
+    <h3 class="sec" id="browseTitle"></h3>
+    <div id="browseBody"></div>
+  </section>
+
+  <section id="summary" class="hide">
+    <button class="back" id="sumHome">← Home</button>
+    <h3 class="sec">CLAUSE-WISE SUMMARY</h3>
+    <div class="toc" id="toc"></div>
+    <div id="sumBody"></div>
+  </section>
+
+  <section id="highlights" class="hide">
+    <button class="back" id="hlHome">← Home</button>
+    <h3 class="sec" id="hlTitle">MY HIGHLIGHTS</h3>
+    <div id="hlBody"></div>
+  </section>
+
+  <section id="stats" class="hide">
+    <button class="back" id="statsHome">← Home</button>
+    <h3 class="sec">WHERE YOU STAND</h3>
+    <div class="statgrid">
+      <div class="stat"><div class="sv" id="stAcc"></div><div class="sl">Accuracy overall</div></div>
+      <div class="stat"><div class="sv" id="stSeen"></div><div class="sl">Questions attempted</div></div>
+      <div class="stat"><div class="sv" id="stMastered"></div><div class="sl">Right on last attempt</div></div>
+      <div class="stat"><div class="sv" id="stStreak"></div><div class="sl">Days practised</div></div>
+    </div>
+    <h3 class="sec">RECENT SESSIONS</h3>
+    <div id="histWrap"></div>
+  </section>
+
+  <section id="settings" class="hide">
+    <button class="back" id="setHome">← Home</button>
+    <h3 class="sec">TIMER</h3>
+    <div class="setrow">
+      <div><div>Seconds per question</div><div class="sd">Exam pace is roughly 1.8 minutes</div></div>
+      <div class="seg" id="timerSeg"><button data-t="108">1:48</button><button data-t="120">2:00</button><button data-t="0">Off</button></div>
+    </div>
+    <h3 class="sec">QUESTION ORDER</h3>
+    <div class="setrow">
+      <div><div>Shuffle</div><div class="sd">Mix the order so you don't memorise positions</div></div>
+      <div class="seg" id="shufSeg"><button data-s="1">On</button><button data-s="0">Off</button></div>
+    </div>
+    <h3 class="sec">DATA</h3>
+    <button class="danger" id="resetHl">Clear all highlights</button>
+    <button class="danger" id="resetBtn">Clear all progress on this device</button>
+    <p class="note">Clearing cannot be undone. Everything is stored in this browser only, so it does not sync between devices.</p>
+  </section>
+
+</div>
+<script>
+const QA = [
+{s:"ICAI Case Scenarios · MTP 4",q:"CA Love and CA Kush, practising as sole proprietors, conducted a joint GST training session for clients and decided to share the fees collected. Is this professional misconduct under the Chartered Accountants Act, 1949?",o:["Yes — Clause 2, Part I, First Schedule; sharing fees from joint training is not allowed, hence guilty.","Yes — guilty under Part IV (other misconduct) of the First Schedule.","Yes — treated as solicitation of clients under Clause 6, Part I, First Schedule.","No — the Ethical Standards Board allows joint training sessions and sharing of fees."],a:3,e:"The Ethical Standards Board has clarified that two or more CAs in practice may jointly conduct training sessions for clients and share the fees between them. This is not misconduct."},
+{s:"ICAI Case Scenarios · MTP 4",q:"By accepting the offer to become a member of the Board of Management of Metro Urban Cooperative Bank, would CA Aryan be held guilty of professional misconduct?",o:["Yes — Clause 11, Part I, First Schedule bars engaging in another profession or occupation without ICAI permission.","Permissible for CAs to join the board of primary (rural) co-operative banks; guilty otherwise.","Permissible for CAs to join the board of primary (urban) co-operative banks; not guilty.","Yes — guilty under Part III, Second Schedule if the appointment is reciprocal for helping SB & Associates."],a:2,e:"Per ESB decisions, a CA holding a Certificate of Practice may serve on the Board of Management of a Primary (Urban) Co-operative Bank without attracting misconduct."},
+{s:"ICAI Case Scenarios · MTP 4",q:"CA Aryan is a practising CA and also works as an Equity Research Advisor. Will he be guilty of professional misconduct under the Chartered Accountants Act, 1949?",o:["No — he may act as an advisor but cannot publish retail reports; if he does not publish, he is not guilty.","Yes — Clause 11 prohibits engaging in another profession without ICAI permission.","No — a CA cannot act as advisor for any client, hence guilty.","Yes — Clause 11 and Part III, Second Schedule prohibit engaging in another profession."],a:0,e:"ESB permits a practising CA to act as an equity research adviser. The line is drawn at publishing retail research reports, which would amount to another occupation. No publishing, no misconduct."},
+{s:"ICAI Case Scenarios",q:"After auditing a start-up in Noida, JKL & Associates plan to provide: (i) setting up executive and wage incentive plans, (ii) price-fixation and other management decisions, (iii) periodical audit and tax advisory. Which service(s) can be provided without violating the Chartered Accountants Act, 1949?",o:["(i) & (ii)","(i) & (iii)","(iii) only","(ii) & (iii)"],a:0,e:"Section 2(2)(iv) lets a practising CA render the full range of Management Consultancy and Other Services, which covers (i) and (ii). Audit and tax advisory fall outside that category and cannot be offered to the same client."},
+{s:"ICAI Case Scenarios · RTP Nov '24",q:"Can the statutory auditor accept a system audit assignment offered by ComTeK Ltd?",o:["Yes, provided it does not involve scrutiny or review of financial data","Yes, provided it involves scrutiny or review of financial data","Yes, provided the fee is not more than the audit fee","No, the statutory auditor cannot accept since it did not involve scrutiny of financial data"],a:0,e:"A statutory auditor may take up a system audit only where it stays clear of reviewing financial data. Touching financial information would compromise independence."},
+{s:"ICAI Case Scenarios · RTP Nov '22",q:"Govil, a practising CA, handles 19 tax audits and accepts 2 more in the same financial year. Has he breached the maximum limit of clients?",o:["Yes — ceiling is 20, he has 21, guilty of professional misconduct","Yes — ceiling is 20, he has 21, not guilty of professional misconduct","No — ceiling is 25, he is within the limit","No — ceiling is 60, he is within the limit"],a:3,e:"The Council General Guidelines fix the tax audit ceiling at 60 per CA in practice. At 21 assignments, Govil is comfortably inside the limit."},
+{s:"ICAI Case Scenarios · RTP Nov '22",q:"Govil & Chandan printed visiting cards mentioning \"CPA Ireland\" and \"Insolvency Professional\" respectively. Does this lead to professional misconduct?",o:["Yes, both are guilty under Clause 7 of Part I of the First Schedule.","No, the details on the cards do not violate any provisions.","Yes, only Govil is guilty under Clauses 6 & 7 of Part I of the First Schedule.","Yes, only Chandan is guilty under Clause 7 of Part I of the First Schedule."],a:1,e:"Both a recognised foreign qualification and the Insolvency Professional designation are permitted on a visiting card, so nothing here breaches the Act."},
+{s:"ICAI Case Scenarios · RTP Nov '22",q:"A firm received these assignments: (1) concurrent audit of TT Bank Ltd, (2) statutory audit of HBT Bank Ltd (not sponsored by TT Bank), (3) settler of JJ Charitable Trust, (4) internal audit of the PF Trust of Government Company Ltd, (5) statutory audit of Government Company Ltd. Which can the firm accept?",o:["Either (1) or (2), 3 & either (4) or (5)","1, 2, 3 & either (4) or (5)","Either (1) or (2) & either (4) or (5)","2 only"],a:1,e:"The only real conflict is being both internal auditor of the PF Trust and statutory auditor of the company that sponsors it — so (4) and (5) are mutually exclusive. The rest can all be accepted."},
+{s:"ICAI Case Scenarios · MTP Mar '24",q:"CA Taran posted a framed photograph on his website showing him receiving the \"Best Speaker of the Year\" award from the Institute. Under which clause of the CA Act, 1949 is this regulated?",o:["Clause (6), Part I, First Schedule","Clause (7), Part I, First Schedule","Clause (8), Part I, Second Schedule","Clause (9), Part I, Second Schedule"],a:0,e:"Clause (6), Part I, First Schedule governs solicitation and advertisement. Photographs may be displayed on a website, but nothing on it may amount to soliciting work directly or indirectly."},
+{s:"ICAI Case Scenarios · MTP Mar '24",q:"XYZ Cooperative Society approached MSK & Partners to be their statutory auditor. Which fee option is permitted — (i) ₹501 fixed, or (ii) a percentage of net profits?",o:["(i) only — ₹501","(ii) only — percentage of net profits","Neither (i) nor (ii)","Either (i) or (ii)"],a:3,e:"Regulation 192 carves out an exception for co-operative societies: their auditors may charge a fixed fee or a percentage of paid-up capital, working capital or net profits. Both options are open."},
+{s:"ICAI Case Scenarios · MTP Mar '24",q:"CA Manik accepted a tax audit under section 44AB without first communicating with the previous auditor, but sent a registered post before signing the report. Is he guilty of professional misconduct?",o:["Guilty under Clause (8), Part I, First Schedule — accepted without prior communication.","Not guilty — he communicated with the previous auditor before signing the report.","Not guilty — the communication requirement applies only to statutory audits.","Guilty under Clause (8), Part I, Second Schedule — accepted without prior communication."],a:0,e:"Clause (8), Part I, First Schedule requires communication in writing *before accepting*. Fixing it later, even before signing, does not cure the breach."},
+{s:"ICAI Case Scenarios · PY Nov 2024 · MTP 6",q:"CA M, a visiting faculty at HT Institute, is offered the statutory audit assignment of the institute. Should he accept it?",o:["He can accept — his teaching role does not interfere with audit functions.","He cannot accept — it violates Clause (4), Part I, Second Schedule.","He can accept — he has no substantial interest in the institute.","He cannot accept — it violates Clause (11), Part I, First Schedule."],a:1,e:"Clause (4), Part I, Second Schedule bars accepting an audit of an entity to which the member has rendered management or professional services, because independence is compromised."},
+{s:"ICAI Case Scenarios · MTP Mar '23",q:"Mr. P, a partner in PK & Associates, acts as a Surveyor and Loss Assessor under the Insurance Act, 1938 without intimation to ICAI. Is this a violation of Clause 11, Part I, First Schedule?",o:["Yes — specific permission required","No — general permission is granted","No — permission can be obtained later","Yes — general permission is not granted"],a:1,e:"Acting as a Surveyor and Loss Assessor under the Insurance Act, 1938 falls under general permission, so no separate intimation to ICAI is needed."},
+{s:"ICAI Case Scenarios · MTP Apr '24 · MTP 2",q:"Shubh and Laabh LLP accepted the audit of Arpan Films Ltd after informing the previous auditor only by telephone, and sent an email five months later. Are they guilty of professional misconduct?",o:["Yes — the email response did not include reasons for resignation","Yes — intimation should have been by registered post","Yes — they should not have intimated by telephone","Yes — they should have communicated with the predecessor in writing before accepting the appointment"],a:3,e:"Clause (8), Part I, First Schedule requires communication in writing with the predecessor before accepting. A phone call is not written communication, and an email five months later is far too late."},
+{s:"ICAI Case Scenarios · MTP Nov '21",q:"Mr. Chitragupta Bakutra, a CA in practice, is a director of Kalavitur Ltd, which acquired 55% of Kraftic Ltd, whose auditor he is. After his term ended he accepted appointment of Bakutra & Co. as auditor of Kalavitur Ltd. Is there any violation of the Code of Ethics?",o:["Yes — he cannot be a director of the holding company of a client, and cannot accept the audit without a cooling period.","No bar on being a director, but accepting the audit without a cooling period violates ethics.","Yes — cannot be a director; no bar on becoming auditor of a company previously served as director.","No bar and no cooling period required."],a:0,e:"An auditor of a subsidiary cannot sit on the board of its holding company — independence goes. And a cooling-off period must be observed before auditing a company where he was a director."},
+{s:"ICAI Case Scenarios · MTP Mar '23",q:"AJ & Co. LLP has 10 partners and already handles many statutory audits. Existing clients now ask the firm to conduct their tax audits for FY 2021-22. One partner says the firm can take tax audits up to the statutory audit limit; others say limits apply only to statutory audits. What is correct?",o:["No limit on tax audits in the case of an LLP.","Partners can collectively sign 450 tax audits.","Partners can collectively sign 600 tax audits.","Partners can collectively sign 450, but one partner can individually sign only 60."],a:2,e:"The 60-audit ceiling per partner applies to tax audits under section 44AB as well. With 10 partners, the firm's combined capacity is 600."},
+{s:"ICAI Case Scenarios",q:"Gama Ltd is appointed statutory auditor of Beeta Ltd, a listed company, for the year ended 31 March 2021. Alfa Ltd, Chartered Accountants, were the retiring auditors. Which procedure should Gama Ltd carry out before starting the audit?",o:["Obtain a no objection certificate from Alfa Ltd before the start of the audit.","Start the audit and then obtain the no objection certificate.","A no objection certificate is not required.","The no objection certificate has to be obtained from Beeta Ltd."],a:0,e:"Clause 8, Part I, First Schedule requires the incoming auditor to communicate with the outgoing auditor before accepting. Obtaining the NOC first keeps the appointment clean."},
+{s:"ICAI Case Scenarios",q:"CA D, a practising CA, issued two cheques for repayment of his personal loan, and both were returned for insufficient funds. Which provision is attracted?",o:["Clause (6), Part I, First Schedule","Clause (4), Part I, Second Schedule","Clause (12), Part I, First Schedule","Clause (2), Part IV, First Schedule"],a:3,e:"Bouncing cheques is a personal act, not a professional one, so it falls under \"other misconduct\" — Clause (2), Part IV of the First Schedule."},
+{s:"ICAI Case Scenarios · MTP 3",q:"Mr. Witty, a practising CA, offered Mr. Hopeful an articleship stipend of ₹2,000/month but payable every six months with 10% p.a. interest, citing client receipt cycles. Other employees were paid on time. Which provision applies?",o:["Clause (1), Part II, Second Schedule","Clause (4), Part I, Second Schedule","Not misconduct, as interest is paid","Clause (10), Part I, Second Schedule"],a:0,e:"Regulation 48 requires the stipend to be paid monthly. Breaching a regulation of the Act is misconduct under Clause (1), Part II, Second Schedule — paying interest does not save it."},
+{s:"ICAI Case Scenarios",q:"CA Ram, a practising CA, provides private tutorship to students 3 days a week for 2 hours a day without taking specific permission. What is the permitted teaching limit?",o:["Not exceeding 25 hours a week","Not exceeding 21 hours a week","Not exceeding 25 hours a month","Not exceeding 21 hours a month"],a:0,e:"Regulation 190A grants general permission for private or part-time tutorship so long as direct teaching hours stay within 25 hours a week. Beyond that, attest functions are affected."},
+{s:"ICAI Case Scenarios · MTP 3 · MTP 5",q:"M/s IM & Co. were statutory auditors of a company. For FY 2020-21 the company first considered appointing the previous auditor as tax auditor, but due to disagreements over the last audit report it appointed M/s IM & Co. as tax auditors as well. Which provision applies?",o:["Clause 1 of Part I of the Second Schedule","Clause 8 of Part I of the First Schedule","Clause 2 of Part II of the Second Schedule","No violation — not guilty of professional misconduct"],a:1,e:"Before accepting the tax audit previously held by another CA, IM & Co. had to communicate with the predecessor. Not doing so breaches Clause 8, Part I, First Schedule."},
+{s:"ICAI Case Scenarios · MTP 5",q:"Mr. M, a Chartered Accountant, was working as a Registration Authority for obtaining digital signatures for his clients. Another CA complained that this amounts to professional misconduct. Is Mr. M guilty?",o:["No — Mr. M is not guilty of professional misconduct.","Yes — under Clause (11) of Part I of the First Schedule.","Yes — under Part III of the Second Schedule.","Yes — under Clause (1) of Part II of the Second Schedule."],a:0,e:"Acting as a Registration Authority for digital signatures is permitted for Chartered Accountants and does not amount to another occupation."},
+{s:"ICAI Case Scenarios",q:"CA Dev, in practice with a COP, agreed to help start-ups raise funds through Mintcoin Ltd, charging 2% of funds raised as consultancy fees while continuing practice. Is this misconduct?",o:["No — not misconduct if ICAI grants permission under Reg. 190A.","No — Reg. 192 allows percentage fees for fund raising.","Yes — misconduct under Clause 10, Part I, First Schedule.","Yes — misconduct under Clause 3, Part I, First Schedule."],a:2,e:"Clause 10, Part I, First Schedule prohibits charging fees on a percentage or contingent basis except in the specific cases carved out. Fund-raising consultancy is not one of them."},
+{s:"ICAI Case Scenarios",q:"Mr. D, partner of AB & Co., promised articled assistant Mr. Z 0.5% of the total profits of the firm for his good audit work. Is Mr. D guilty of misconduct?",o:["No — it was just a token of appreciation.","Yes — under Clause (2), Part I, First Schedule.","Yes — under Clause (2), Part I, Second Schedule.","Yes — under Clause (1), Part II, Second Schedule."],a:1,e:"Clause (2), Part I, First Schedule bars sharing the firm's profits with anyone who is not a member of the Institute. An articled assistant is not a member."},
+{s:"ICAI Case Scenarios",q:"M/s PAZH & Co. completed the statutory audit of a company and then received an offer to act as financial advisor to M/s NBE Mutual Fund Ltd for an annual fee of ₹1 lakh. Would this attract professional misconduct?",o:["No — misconduct arises only if they act as equity research advisor.","Yes — a firm cannot act as financial advisor to a mutual fund and charge fees.","No — misconduct arises only if they act for an NBFC or insurance company.","No — misconduct arises only if fees are received as commission."],a:1,e:"The Ethical Standards Board prohibits a CA firm from acting as financial advisor to a mutual fund and collecting fees for it."},
+{s:"ICAI Case Scenarios",q:"M/s PAZH & Co. received these offers after a statutory audit: (i) internal auditor of HH Ltd, (ii) statutory auditor of HH Employees Provident Fund, (iii) statutory auditor of YY Bank while also doing stock audit of its branch. Which would result in professional misconduct?",o:["(ii) only","Both (i) & (ii)","(iii) only","(i) only"],a:2,e:"A bank's statutory auditor cannot simultaneously carry out the stock audit of its branch — the conflict of interest makes it misconduct."},
+{s:"ICAI Case Scenarios · MTP Nov '21",q:"Mr. Sunil Verma, engagement partner for the statutory audit of Upshaant Ltd, wants to hold a licence as a life insurance agent. Is he permitted to do so?",o:["Yes — general permission has been granted by the ICAI Council.","Yes — if specific permission is obtained.","No — not permitted as per the Ethical Standards Board.","Yes — but only if not for renewal commission or activities degrading the profession."],a:0,e:"Holding a life insurance agent licence falls within the general permission granted by the Council, so no separate approval is needed."},
+{s:"ICAI Case Scenarios · MTP Nov '21",q:"Mr. Tushar Jalani, a CA and CMA working as internal auditor in Gomez Realty Ltd, mentions both designations on his visiting card. Can he be held guilty under Part I of the First Schedule?",o:["No — he is not a member in practice","Yes — as per Clause (7) of Part I","No — members are permitted to mention such designations","No — provided he has permission"],a:1,e:"Clause 7, Part I bars a member from using any designation other than Chartered Accountant on professional documents."},
+{s:"ICAI Case Scenarios · MTP Oct '21 · MTP Nov '21",q:"On auditor rotation, Vedya & Co. (outgoing auditor) communicates with authorities before resignation. What was the obligation of Kesar & Associates before accepting the appointment?",o:["Communication to ICAI and management; not obligatory to obtain a copy","Communication to ICAI only; obligatory to obtain a copy","Communication to the Board and ICAI; obligatory to obtain a copy","Communication to ICAI only; obligatory to obtain a copy before consulting the outgoing auditor"],a:2,e:"Per ESB decisions, the incoming auditor must obtain a copy of the outgoing auditor's communication to the Board and to ICAI before accepting the appointment."},
+{s:"ICAI Case Scenarios",q:"Namo & Co. sent a registered post to the previous auditor, Manohar & Co., before accepting the appointment. The post came back marked \"Office Found Locked\". Did Namo & Co. satisfy the requirement of communicating with the previous auditor?",o:["No — they should try an alternative method.","Yes — deemed delivered.","No — they should inform ICAI about non-delivery.","No — they can start the audit but must satisfy the requirement before signing the report."],a:1,e:"Where reasonable efforts have been made to communicate and delivery fails despite them, the requirement under Clause 8, Part I, First Schedule is treated as satisfied."},
+{s:"MTP Jul '25",q:"Despite unresolved issues in IRPL's audit — undisclosed sales of ₹8 crore and a missing robotic arm worth ₹2.5 crore — CA Gaurav issues an unmodified opinion under management pressure. Under which clauses of Part I, Second Schedule would this amount to professional misconduct?",o:["Clause 5 and 9","Clause 6 and 4","Clause 5 and 8","Clause 5, 6 and 7"],a:3,e:"Three clauses are attracted at once: Clause 5 (failure to disclose material facts), Clause 6 (failure to report material misstatements) and Clause 7 (gross negligence)."},
+{s:"MTP Jul '25",q:"SCL offered its section 44AB tax audit to Mehta & Shah Associates, a two-partner firm. CA Mehta had signed 55 tax audits and CA Arjun 60. Can the firm accept this new tax audit for AY 2025-26?",o:["No — CA Arjun is close to the 60 limit.","Yes — but only CA Mehta can sign the report.","No — 60 is a firm-wise limit.","Yes — 60 is per partner, so the firm can still take more audits."],a:3,e:"The ceiling of 60 is per partner, not per firm. Two partners give a combined capacity of 120, and there is no prescribed pattern for which partner signs which report."},
+{s:"MTP Aug '25",q:"Supriya plans to use a messaging application to inform business groups about her firm's services and highlight its expertise. Is this permissible?",o:["Yes, if recipients are known contacts.","Yes, with a disclaimer.","No — it is solicitation and not permitted.","Yes, if only educational content is shared."],a:2,e:"Pushing firm services out over messaging apps is solicitation, which the Code of Ethics prohibits."},
+{s:"MTP Jul '25",q:"CA Harman, while filling the MEF, reflected income from currency and commodity derivatives as \"Business Income\" in her tax return. Will she be held guilty of professional misconduct?",o:["Yes — under Clause (11) of Part I of the First Schedule","Yes — under Clause (6) of Part I of the First Schedule","No — she will not be held guilty","Yes — under Clause (2) of Part I of the Second Schedule"],a:0,e:"Declaring derivatives income as business income indicates she is engaged in another business or occupation, which Clause 11, Part I, First Schedule prohibits without Council permission."},
+{s:"MTP Mar '25",q:"CA Harman digitally signed a resignation letter on the ROC portal without verifying its authenticity. Is this misconduct, and under which clause?",o:["Clause (2) of Part I of the Second Schedule","Clause (7) of Part I of the Second Schedule","Clause (5) of Part I of the First Schedule","Clause (7) of Part I of the First Schedule"],a:1,e:"Signing without verifying authenticity is gross negligence in the conduct of professional duties — Clause 7, Part I, Second Schedule."},
+{s:"MTP Mar '25",q:"Before which authority is CA Harman's misconduct case (signing the ROC resignation letter without verification) placed for disciplinary proceedings?",o:["High Court","Board of Discipline","Disciplinary Committee","Appellate Authority"],a:2,e:"Matters falling under Part I of the Second Schedule go to the Disciplinary Committee. The Board of Discipline handles First Schedule cases."},
+{s:"MTP Mar '25",q:"CA Harman digitally signed a resignation letter on the ROC portal without verifying its authenticity, leading to misconduct proceedings. What is the minimum punishment that could be imposed?",o:["Reprimand the member","Removal of name permanently or temporarily with fine up to ₹5,00,000","Suspension of practice up to 3 months","Warning and fine up to ₹50,000"],a:0,e:"The lightest disciplinary action available under the Act is a reprimand. The actual punishment scales with the severity of the misconduct."},
+{s:"ICAI MTP 4",q:"DFL Ltd invited tenders for the appointment of statutory auditors after the previous auditor retired. M/s SDS & Co. submitted a tender quoting fees based on the size and nature of the business and were appointed for 3 years from FY 2023-24. Will they be guilty of professional misconduct?",o:["Yes — under Clause (6) of Part I of the First Schedule","No — under Clause (6) of Part I of the First Schedule","Yes — under Clause (7) of Part I of the First Schedule","No — under Clause (7) of Part I of the First Schedule"],a:1,e:"Responding to a tender and quoting fees in line with professional norms is not solicitation under Clause (6), Part I, First Schedule."},
+{s:"RTP Sep '25",q:"BNM & Associates applied for a municipal tender requiring an earnest deposit of ₹85,000. One partner pushed for it; another raised concerns about professional misconduct. Is there misconduct in submitting the tender application?",o:["Yes — under Clause 6, Part I, First Schedule, responding to any tender is misconduct.","No — members may respond to tenders in areas not exclusive to CAs, including making earnest deposits.","Yes — depositing money violates ICAI guidelines.","No — members can respond to tenders requested by government authorities."],a:1,e:"ICAI permits members to participate in tenders for work that is not exclusive to Chartered Accountants, and earnest money deposits in such cases are allowed."},
+{s:"MTP Apr '24 · MTP Sep '23 · ICAI MTP 2",q:"Four CAs form a network firm \"M/s LM & Co.\" under ICAI rules. Which name is acceptable?",o:["LM and Co.","LM & Associates.","LM & Affiliates.","LM and Networks"],a:2,e:"Under the ICAI Networking Guidelines, the word \"Affiliates\" is permitted in the name of a network."},
+{s:"MTP Oct '22",q:"Ananya & Company contended that CA Kush's appointment was inappropriate as there were outstanding (disputed) audit fees of ₹55,000, so he should not have accepted. Should CA Kush have declined the audit?",o:["Per Sec. 141, a new auditor cannot accept until the previous auditor's fees are fully paid.","Per Sec. 139 r/w Rule 3, a new auditor cannot accept if previous fees are outstanding 180+ days.","CA Kush can accept without communicating with the previous auditor.","The pending fees are disputed, so this is not a valid professional reason to decline."],a:3,e:"Only *undisputed* outstanding audit fees bar acceptance. Since the ₹55,000 is disputed, CA Kush was free to accept the appointment."},
+{s:"MTP Mar '25",q:"Ananya & Company (retiring auditor) contended that no special notice was given for removal of the retiring auditor, so CA Kush's appointment is invalid. What should CA Kush have done?",o:["Under Clause (9), Part I, First Schedule — verify compliance with Sections 139 & 140 before accepting; hence guilty.","Under Clause (8), Part I, First Schedule — verify compliance with Sections 139 & 140 before accepting; hence guilty.","Per Sec. 140(4), once the resolution is passed at the AGM the company can notify the appointment; hence valid.","Communication with the previous auditor equals special notice; hence the contention is incorrect."],a:0,e:"Clause (9), Part I, First Schedule puts the burden on the incoming auditor to check that Sections 139 and 140 have been complied with. The missing special notice breaches Section 140(4), which protects the retiring auditor's right to represent."},
+{s:"MTP Mar '22",q:"Mr. C inducted Mr. J, a newly qualified CA, as a partner. After Mr. C's death, his legal representative (Mrs. C) claimed her right to share profits from the firm as per the partnership agreement. Mr. J denied it, saying the CA Act has no such provision. Is Mr. J correct?",o:["Mr. J cannot deny — the partnership agreement grants the share. Clause 2, Part I, First Schedule.","Mr. J can deny — sharing would be misconduct. Clause 2, Part I, First Schedule.","Mr. J cannot deny — the agreement grants the share. Clause 4, Part I, First Schedule.","Mr. J can deny — the agreement is against the CA Act. Clause 1, Part II, Second Schedule."],a:0,e:"Sharing profits with the legal representative of a deceased partner is a recognised exception. If the partnership agreement provides for it, the widow is entitled to her share."},
+{s:"MTP Mar '22",q:"From a professional ethics perspective: (i) M/s Audit & Co. advertised a partnership change with a bare statement in a magazine; (ii) CA New advertised in the Institute newsletter with name, phone and social media addresses. Which is correct?",o:["Incident (ii) makes CA New guilty of professional misconduct.","Neither incident violates any provision; no professional misconduct.","Incident (i) makes M/s Audit & Co. guilty of misconduct.","Incident (ii) makes CA New guilty due to the social media addresses."],a:1,e:"Announcements limited to bare facts through appropriate channels are allowed, and giving contact details in the ICAI journal for legitimate professional purposes is not misconduct."},
+{s:"MTP Mar '22",q:"M/s Audit & Co., appointed as internal auditors, were offered the tax audit assignment by M/s Manufacturing Limited. CA New, a newly inducted partner, opposed it citing professional misconduct. Which is correct?",o:["No — accepting the offer is not misconduct.","Yes — misconduct under Clause 4, Part I, Second Schedule read with Council Guidelines.","Yes — under Clause 12, Part I, First Schedule.","Yes — under Clause 2, Part I, Second Schedule read with Council Guidelines."],a:1,e:"An internal auditor cannot take up the tax audit of the same entity. The conflict of interest makes it misconduct under Clause 4, Part I, Second Schedule read with the Council Guidelines."},
+{s:"MTP Mar '22",q:"During the statutory audit of ABC Ltd, Mr. A noticed trade payables in the balance sheet differed from the ageing schedule. Management said the difference was due to intercompany payables eliminated on consolidation. Mr. A accepted this without further validation. Is he guilty of professional misconduct?",o:["Yes — under Clause 7 of Part I of the First Schedule","Yes — under Clauses 7 & 8 of Part I of the First Schedule","Yes — under Clauses 7 & 8 of Part I of the Second Schedule","No — he performed all procedures appropriately"],a:2,e:"Taking management's word without corroborating evidence is gross negligence and failure to obtain sufficient appropriate information — Clauses 7 & 8 of Part I, Second Schedule."},
+{s:"MTP Apr '22",q:"In the scenario relating to Mr. U, which act could constitute professional misconduct?",o:["Obtaining registration as a Category IV merchant banker.","Allowing the caption 'Advisor to the Issue' in the offer document and advertisement.","Accepting an HF Limited assignment for a capital issue without informing the auditors.","Allowing his name and address to be prominently displayed in the offer document and advertisement."],a:3,e:"Prominent display of a member's name and address in an offer document or advertisement is self-promotion that could mislead the public, which professional ethics prohibit."},
+{s:"MTP Apr '22",q:"CA M, a partner at BNM & Associates, engaged in: (1) part-time employment with a Non-Profit Organisation, (2) agricultural activities on personally owned land, (3) tutorship as part-time faculty at a private institute, (4) holding an honorary office in a charitable educational organisation. Which activities are generally permitted by ICAI?",o:["(1) & (3)","(3) only","(2) & (4)","(1), (2) & (3)"],a:2,e:"Agriculture on one's own land and honorary positions in charitable bodies fall under general permission. Employment with an NPO and paid tutorship at a private institute need specific permission."},
+{s:"RTP Nov '24",q:"CA Vijay qualified in November 2022 and started practice in Delhi. He is considering: (A) part-time tutorship under the coaching organisation of the Institute, (B) editorship of journals other than professional journals, (C) acting as recovery consultant in the banking sector, (D) owning agricultural land and carrying out agriculture. For which does he need specific and prior permission from the Council?",o:["B only","A and C","C and D","B and D"],a:0,e:"Editorship of journals other than professional journals is the one activity here that needs specific permission. The other three are covered by general permission."},
+{s:"RTP Nov '24",q:"A difference of opinion arose between Mr. J (auditor) and management. The company did not send the AGM notice to Mr. J, claiming it was his responsibility to track the AGM. In retaliation Mr. J took lien over some company documents. Will his retaliatory act make him guilty of professional misconduct?",o:["No — but under Section 147 of the Companies Act, 2013 he may be punishable for exercising lien.","No — the CA Act, 1949 is silent on this, hence not misconduct.","Yes — per a recent Ethical Standards Board decision, a CA cannot exercise lien over client documents for non-payment of fees.","Yes — per Clause 7 of Part I of the Second Schedule, the act is professional misconduct."],a:2,e:"A CA cannot withhold client records as leverage. Exercising lien over client documents in retaliation breaches ethical standards."},
+{s:"RTP Nov '22",q:"Mr. B of BMY LLP sent a communication to the outgoing auditor, Mr. Dalal, by certificate of posting. The auditor acknowledged via his official email, which is not registered with ICAI. Mr. B feels this is not positive evidence of delivery. Is he correct?",o:["Mr. B is correct — it is not positive evidence of delivery.","Mr. B is not correct — an acknowledgment from the outgoing auditor's official email is positive evidence of delivery.","Mr. B is not correct — statutory auditors need not communicate with outgoing auditors here.","Mr. B is correct — the email address is not registered with ICAI."],a:1,e:"An acknowledgment received from the outgoing auditor's official email is sufficient evidence of delivery under the Code of Ethics. Registration with ICAI is not the test."},
+{s:"RTP May '22 · ICAI MTP 3",q:"Mr. J paid stipend to two articled clerks annually instead of monthly, violating Regulation 48, and was found guilty of professional misconduct. What punishment may be imposed?",o:["Penalty up to ₹1 lakh","Removal of name from the Members' Register permanently","Penalty up to ₹3 lakh","Penalty of ₹6 lakh"],a:1,e:"A Regulation 48 breach is misconduct under Clause 1, Part II, Second Schedule. Under Section 21B(3) the Council may remove the member's name permanently or for a specified period."},
+{s:"RTP May '22 · ICAI MTP 3",q:"CA P is appointed statutory auditor of SEA Ltd for FY 2024-25. The company is nearing sickness but its accumulated losses are less than its net worth, and all undisputed audit fees of prior auditors were paid in FY 2023-24. As per Council General Guidelines, 2008 (Chapter 7), which statement is correct?",o:["Guilty — accepted the audit though earlier undisputed fees were unpaid for FY 2021-22 and 2022-23","Not guilty — nearly sick but losses do not equal or exceed net worth as per the last accounts","Not guilty — the company is not sick and no prior audit fees are unpaid; the appointment is valid","Guilty — accepted the audit of a nearly sick unit though prior dues were cleared only later"],a:2,e:"A company is \"sick\" only when accumulated losses equal or exceed net worth. Here they do not, and the prior fees were already settled — so the appointment is clean."},
+{s:"RTP Nov '24",q:"M/s DG & Co., with branches in Delhi, Gurgaon and Shimla (hill area), received ICAI permission to run a temporary office in Chandigarh during winters. The firm displayed its name board year round and used that address on stationery. Under Section 27, which conditions are correct? (i) temporary office allowed max 3 months a year (ii) Shimla office to stay closed in winter with all work from Chandigarh (iii) name board not to be displayed outside the permitted period (iv) Chandigarh office not to appear on stationery or letterheads (v) firm to intimate ICAI before opening and after closing",o:["(i), (ii), (iii), (iv)","(i), (iii), (iv), (v)","(i), (ii), (iv)","(ii), (iii), (iv), (v)"],a:1,e:"The conditions for a temporary winter office are (i), (iii), (iv) and (v). Condition (ii) is wrong — the regular Shimla office is not required to shut down."},
+{s:"ICAI MTP 5 · ICAI Case Scenarios",q:"Mr. Shyam resigned as partner of AIM & Co. and joined a company through a recruitment agency. The agency invoiced 0.2% of CTC, but Mr. Shyam received a full discount because his friend was a manager there. Is he guilty of professional misconduct, and under which clause?",o:["Clause 1 of Part I of the First Schedule","Clause 2 of Part II of the Second Schedule","No — Mr. Shyam is not guilty of professional misconduct","Clause 1 of Part II of the First Schedule"],a:3,e:"Clause 1, Part II of the First Schedule covers misconduct by a member in service in situations of this kind."},
+{s:"Additional Question",q:"TP Limited, a listed entity, was audited by CA R, who noticed (i) multiple income-tax and GST notices and (ii) use of child labour during the plant visit. CA R applied SA 250 and assumed SA 250 and NOCLAR are the same. Why is that assumption incorrect?",o:["SA 250 applies to all professional accountants, whereas NOCLAR applies only to statutory and tax auditors.","SA 250 covers non-compliance causing serious non-financial harm to public interest, while NOCLAR is restricted to financial statement misstatements.","SA 250 is limited to audit engagements and focuses on compliance affecting financial statements, while NOCLAR covers broader stakeholder impact and substantial harm (financial or non-financial), applies beyond audits, and allows disclosure to authorities in exceptional situations.","Both require immediate reporting of all non-compliances to regulators, but only NOCLAR requires informing shareholders directly."],a:2,e:"Scope: SA 250 applies to statutory audits; NOCLAR applies to all professional accountants, in practice and in service. Focus: SA 250 is about laws affecting the financial statements; NOCLAR goes beyond reporting to serious harm to the public interest, financial or otherwise."},
+{s:"Additional Question",q:"Mr. Dice, a Chartered Accountant, was suspended for one year and asked to surrender his CoP. During suspension he filed GST returns and appeared before authorities as a GST consultant. He claims this does not violate the suspension. Which statement is correct?",o:["Guilty — a suspended member cannot engage in any work related to taxation or representation before authorities.","Not guilty — GST representation and return filing can be done by any authorised representative, and he is not acting as a practising CA.","Guilty — once suspended, a member cannot take up any engagement involving professional expertise acquired as a CA.","Guilty unless he takes prior ICAI permission to work as a GST consultant during suspension."],a:1,e:"Acting as a GST consultant or authorised representative is not \"practice as a Chartered Accountant\" under Section 6. Since he did not hold himself out as a practising CA, there is no misconduct."},
+{s:"Additional Question",q:"M & Co., a sole proprietorship CA firm, opened another office 26 km away from its main office and managed both itself. No intimation was given to ICAI about the new office. Is this professional misconduct?",o:["Yes — multiple offices are not allowed for sole proprietors","Yes — ICAI was not informed about opening the new office","No — both offices were managed by the same proprietor","No — the second office was within 50 km and hence exempt"],a:1,e:"Opening a second office within 50 km managed by the same member is allowed. But Regulation 189 requires informing ICAI within one month of opening or closing a branch, and that was missed."},
+{s:"Additional Question",q:"CA Gyan, a practising Chartered Accountant and also an engineer, wants to pursue a Registered Valuer course and work as a valuer for plant and machinery under the Companies Act, 2013. Which is correct?",o:["He can work as a valuer for plant and machinery since he is an engineer","He can pursue the course and appear in exams, but cannot work as a valuer for plant and machinery","He cannot pursue the course without prior ICAI permission","He can work as a valuer for plant and machinery without any restrictions"],a:1,e:"Pursuing the course needs no permission. But ICAI permits members to value only securities and financial assets — plant and machinery valuation is outside that."},
+{s:"Additional Question",q:"CA Ravi, a practising CA, passed away on 15 September 2022. His wife Roohi sold the practice along with the right to use the firm name M/s Ravi & Associates to CA Balwan on 30 September 2023. Which is correct?",o:["Roohi can sell the practice even after one year of CA Ravi's death.","CA Balwan can continue to practise under the name M/s Ravi & Associates.","Roohi cannot sell after one year, and CA Balwan cannot practise under the firm name.","The sale is valid, but CA Balwan must seek ICAI permission to use the firm name."],a:2,e:"Under Clause 2, Part I, First Schedule the sale or transfer of goodwill of a proprietary firm must happen within one year of the proprietor's death. The sale here was more than a year later, so it fails."},
+{s:"Additional Question",q:"CA A, proprietor of A & Colleagues, secured an audit of B State Cooperative Society for ₹1 crore. He agreed to pay Mr. X, an MBA from a local university, a 2.5% referral fee (₹2.5 lakh). Separately, per the State Cooperative Registrar's circular, 5% of the audit fee (₹5 lakh) is deposited into the State Treasury. Which is correct?",o:["Paying the referral fee is permissible; depositing 5% to the State Treasury is misconduct.","Paying the referral fee is misconduct; depositing 5% to the State Treasury is permissible.","Both are professional misconduct.","Both are permissible."],a:1,e:"Clause (2), Part I, First Schedule bars paying fees or brokerage to non-members. The Regulation 53A(3) exception covers MBAs only from universities established by law or AICTE-recognised institutions, which Mr. X is not. The 5% Treasury deposit is a statutory administrative fee and is fine."},
+{s:"Additional Question",q:"Mr. P, a CA in practice, entered into a partnership with Mr. L, an advocate, to share fees for work referred by one to the other. The partnership was dissolved after one month without any fees having been received. Which is correct?",o:["Mr. P is guilty of misconduct for entering into a partnership with an advocate.","Mr. P is not guilty — partnership with an advocate is permitted.","Mr. P is guilty since no fees were actually received.","Mr. P is guilty unless he obtains prior written approval from ICAI."],a:1,e:"Clause 4, Part I, First Schedule only bites where the partner is someone not permitted under the Act. CAs may partner with members of other prescribed professional bodies, including advocates enrolled with the Bar Council of India."},
+{s:"Additional Question",q:"CA S and CA M are partners in \"SM & Co.\". CA S organised a religious ceremony at his home and had his printing agent include the designation \"Chartered Accountant\" on the invitation cards, which went to relatives, close friends, and clients of both partners. Which is correct?",o:["CA S is guilty of misconduct for using the designation on invitations sent to both partners' clients.","CA S is not guilty since the invitations were for a personal religious ceremony.","CA S is guilty only if the invitations were sent to unknown persons.","CA S is not guilty as sending such invitations to relatives and close friends is permitted."],a:0,e:"Under Clause 6, Part I, First Schedule the designation may be used on personal invitations only for the member's own relatives, close friends and clients — not for the clients of partners. Distributing to both partners' clients crosses the line."},
+{s:"Additional Question",q:"At the 3rd AGM of LED Ltd a special notice proposed that CA Anoop not be reappointed as auditor. CA Anoop submitted a written representation highlighting his contributions in strengthening the company's control procedures and expressing willingness to continue. Which is correct?",o:["Not guilty — he has the right to submit a representation to the company.","Guilty — including details of his contributions amounts to soliciting professional work.","Guilty only if the representation is circulated outside the company.","Not guilty since he only expressed willingness to continue as auditor."],a:1,e:"Section 140(4) gives an auditor the right to represent, but the representation must not be used to publicise his contributions or canvass for reappointment. That tips into solicitation under Clause 6, Part I, First Schedule."},
+{s:"Additional Question",q:"During the opening of his new branch, CA Young was introduced by CA Old to Mr. Rich, an Export House owner whose accounts CA Old had audited for over 15 years. Later Mr. Rich offered CA Young certification work previously done by CA Old, and CA Young accepted it for a fee not less than CA Old's. Which is correct?",o:["Not guilty — the client approached him voluntarily","Not guilty — as long as he did not advertise for the client","Guilty only if he charged a higher fee than CA Old","Guilty of professional misconduct for accepting work originally handled by another member"],a:3,e:"Under Clause 6, Part I, First Schedule, accepting original professional work from a client who was introduced by another member is not permitted, even if the client comes forward on his own."},
+{s:"Additional Question",q:"Mr. Vineet, a practising CA, created an attractive website displaying the nature of assignments handled along with client names, circulated this by email to the public, and did not intimate his website address to the Institute. Which is correct?",o:["Guilty — for circulating website information by email and displaying client names without regulatory requirement.","Not guilty — he only displayed assignments handled.","Guilty only if he charged higher fees than usual.","Not guilty as long as the website design complies with ICAI standards."],a:0,e:"ICAI's website guidelines allow a site with no design or colour restriction, but information must be on a \"pull\" basis only — never emailed out. Client names and fees cannot be displayed without a regulatory requirement, and the website address must be intimated to the Institute annually."},
+{s:"Additional Question",q:"Under Clause 7 of Part I of the First Schedule (prohibition on using a designation other than \"Chartered Accountant\"), in which scenarios would a CA be guilty? (1) Mr. SP registered as a Category IV Merchant Banker and designated himself \"Merchant Banker\" in offer documents and \"Advisor to Issue\" on his letterheads and visiting cards. (2) A practising CA designates himself Chartered Accountant and Tax Consultant on a visiting card. (3) A CA who is a partner in 3 firms prints the names of all firms on his personal letterhead. (4) Mr. D did not complete his audit work in time, causing the company to miss statutory compliance.",o:["1, 3 and 4 are guilty; 2 is not.","1 and 2 are guilty; 3 and 4 are not.","1, 2 and 4 are guilty; 3 is not.","All 4 are guilty."],a:2,e:"Using \"Merchant Banker\"/\"Advisor to Issue\" (1) and \"Tax Consultant\" (2) are prohibited designations. Printing the names of all firms in which the member is a partner (3) is permitted. Mr. D's delay (4) is gross negligence under Clause 7, Part I, Second Schedule."},
+{s:"Additional Question",q:"Vineet & Associates were offered the statutory audit of TLP Ltd. Under Clause 8, Part I, First Schedule, in which situation(s) would accepting the audit amount to professional misconduct? (1) Non-compliance with Sections 139 and 140 by the client. (2) Non-payment of undisputed audit fees by the client (except a sick unit). (3) The previous auditor issued a qualified audit report for valid reasons.",o:["1 and 2 only","1 and 3 only","2 and 3 only","1, 2 and 3"],a:0,e:"Situations 1 and 2 make acceptance misconduct. For situation 3, declining would be healthy practice, but accepting after a valid qualified report does not automatically become misconduct."},
+{s:"Additional Question",q:"Which of these would amount to permitted fees under Clause 10 of Part I of the First Schedule read with Regulation 192, and not misconduct? (1) 2% of debt recovered for debt recovery services. (2) A liquidator charging a percentage of assets realised. (3) 5% of benefits derived from cost-optimisation suggestions. (4) 10% of tax demand reduced for non-assurance tax advisory. (5) Auditor of a co-operative society charging 7% of profits. (6) A valuer under direct taxes charging a percentage of the property valued.",o:["1, 2, 3, 4, 5, 6","1, 2, 3 only","2, 3, 5, 6 only","3, 4, 5 only"],a:0,e:"Regulation 192 carves out every one of these situations — debt recovery, liquidation, cost optimisation, non-assurance tax advisory, co-operative society audits and valuation under direct taxes — as permitted exceptions to the ban on percentage-based fees."},
+{s:"Additional Question",q:"CA Z, a practising CA and leading tax consultant, spends nearly 50% of his time trading in commodity derivatives. He lives in Mumbai near the ABC Commodity Stock Exchange. Comment on professional misconduct.",o:["Not guilty — trading in commodities is part of his professional expertise.","Guilty unless he has obtained specific permission from the Council of ICAI.","Guilty in all circumstances, even with Council permission.","Not guilty as long as he spends more than 50% of his time on CA practice."],a:1,e:"Trading in commodity derivatives is not covered by general permission. Under Clause 11, Part I, First Schedule, CA Z needs specific ICAI permission to avoid misconduct."},
+{s:"Additional Question",q:"M/s SS Ltd, a partly owned subsidiary of M/s HH Ltd, appointed M/s DD & Co. as statutory auditors. Mr. D, a partner of DD & Co., was offered: (1) a position of Director (not MD/whole-time) in HH Ltd, and (2) an assignment as Recovery Consultant for a bank. Comment as per the CA Act.",o:["Mr. D can accept both.","Mr. D can accept the Director position but cannot act as Recovery Consultant.","Mr. D should not accept the Director position in HH Ltd, but can accept the Recovery Consultant assignment.","Mr. D cannot accept either."],a:2,e:"The auditor of a subsidiary cannot be a director of the holding company — independence is compromised. Acting as a Recovery Consultant in banking is covered by general permission and is allowed."},
+{s:"Additional Question",q:"CA Sambhav, auditor of Mahvir Pvt. Ltd., delegated tasks to staff. Which of these, if delegated, would amount to misconduct under Clause 12 of Part I of the First Schedule? Tasks include: 2. issuance of a production certificate under GST laws, 4. issuance of a Net Worth Certificate for bank purposes, 8. signing financial statements of the company, 13. allowing an assistant who is a member but not a partner to sign a stock certificate.",o:["2, 4, 8, 13","1, 3, 5, 6","7, 9, 10, 11","1, 2, 3, 4"],a:0,e:"Clause 12 bars a CA from allowing a non-partner or non-member to sign balance sheets, P&L accounts, reports or certificates on his behalf. Routine administrative and audit tasks can be delegated freely."},
+{s:"Additional Question",q:"Mr. R, a CA in practice, was elected treasurer of a Regional Council of the Institute. During the audit of the Regional Council it emerged that Mr. R had received a personal benefit of ₹50,000 from a tour operator while organising an international tour for members. Which is correct?",o:["Guilty under Clause 1, Part I of the First Schedule.","Guilty under Clause 2, Part I of the First Schedule.","Guilty of other misconduct under Clause 4, Part I of the First Schedule.","Not guilty of any misconduct."],a:2,e:"Taking a personal benefit from a tour operator while holding office as treasurer is not a professional act but it damages the reputation of the profession — it falls under other misconduct."},
+{s:"Additional Question",q:"SR & Associates, statutory auditors of ABC Ltd, had pending audits for FY 2021-22 and 2022-23 due to a dispute over proposed remarks. On 02.05.2023 the company removed them after completing legal formalities. After learning of their removal, SR & Associates wrote to the Registrar of Companies highlighting disputes, including non-existence of fixed assets and bogus creditors. Which is correct?",o:["Guilty under Clause 1, Part I of the First Schedule.","Guilty under Clause 1, Part I of the Second Schedule.","Guilty under Clause 4, Part I of the First Schedule.","Not guilty of any misconduct."],a:1,e:"Clause 1, Part I of the Second Schedule protects client confidentiality. Once removed, disclosing the company's information to the ROC without legal necessity or client consent is misconduct."},
+{s:"Additional Question",q:"CA D, a practising CA, served as a simplicitor Director of a private limited company from 01.01.2021 and resigned after 18 months. He accepted appointment as statutory auditor of the same company effective 01.10.2022. Which is correct?",o:["Not guilty as he resigned from the directorship before the audit appointment.","Guilty under Clause 4, Part I of the Second Schedule.","Guilty under Clause 11, Part I of the First Schedule.","He can accept the audit immediately after resignation without restrictions."],a:1,e:"Clause 4, Part I, Second Schedule bars auditing a company in which the member has a substantial interest, including a directorship. Council clarifications require a two-year gap from the date of resignation as director."},
+{s:"Additional Question",q:"During his audit of M/s Bailey Ltd, CA J found the company had taken a loan of ₹50 lakh from the Employees' Gratuity Fund which was not recorded in the books. The auditor ignored this in his report. Which is correct?",o:["Not guilty as the transaction is outside his scope.","Guilty under Clause 1, Part I of the First Schedule.","He can ignore it if the company is in financial difficulty.","Guilty of professional misconduct under Clause 5, Part I of the Second Schedule."],a:3,e:"Clause 5, Part I, Second Schedule requires a member to disclose material facts known to him that are not shown in the financial statements but are necessary to prevent them from being misleading."},
+{s:"Additional Question",q:"Which situations would amount to misconduct under Clause 10, Part I of the Second Schedule regarding client money? (1) A CA uses client funds deposited for GST payments to pay his own advance income tax. (2) A firm receives client money for temporary safekeeping and deposits it in its own bank account without keeping it separate. (3) A CA receives advance fees for audit visits and uses it for those visit expenses. (4) A firm receives money from a charitable institution to invest in a profitable portfolio but keeps it in its savings account for three months without investing.",o:["1, 2 and 4","2 and 3","1 and 3","3 and 4"],a:0,e:"Clause 10 requires client money — other than fees or advances for services — to be kept in a separate bank account and used for its intended purpose within a reasonable time. Situation 3 is an advance for services, so it is fine."},
+{s:"Additional Question",q:"Mr. R, statutory auditor of Famous Ltd (a listed company), agreed audit fees of ₹12 lakh payable in four quarterly instalments of ₹3 lakh each, payable after a quarterly limited review and audit committee meeting. The first two instalments came on time; the third and fourth were paid late together on 25 March 2023 (year ended 31.3.2023). Which statements are correct? (1) The progressive payment structure is valid under ICAI guidance. (2) A delay in instalments does not by itself make the auditor guilty or \"indebted\". (3) Any delay automatically disqualifies the auditor under Section 141(3). (4) The auditor must immediately resign if any instalment is delayed.",o:["1 and 2 only","1 and 3 only","2 and 4 only","3 and 4 only"],a:0,e:"Section 141(3) disqualifies only where indebtedness crosses the prescribed limit. A delayed instalment under a bona fide fee arrangement is neither indebtedness nor misconduct as long as the fees are recoverable on the agreed terms."},
+{s:"Additional Question",q:"CA Vaayu is statutory auditor of Viva Ltd, a listed company with turnover above ₹200 crore. His statutory audit fees are ₹80 lakh. During the year the company offers him representation before the Income Tax Appellate Tribunal for a fee of ₹1.75 crore, and he accepts. Which is correct?",o:["Guilty — the additional remuneration exceeds the statutory audit fees.","Guilty only if total fees from all non-audit services exceed ₹1 crore.","Not guilty — representation before an authority is excluded from the restriction on other services."],a:2,e:"Chapter IX of the Council General Guidelines, 2008 restricts other services exceeding the statutory audit fee, but it expressly excludes representation before authorities such as the ITAT, audits under other statutes, and certifications the statutory auditor must do."},
+{s:"Additional Question",q:"Which combination correctly identifies acts of professional misconduct? Case I — CA Sahil, statutory auditor of Greenway Ltd (listed), accepts (a) preparation of the BRSR study and (b) assurance on BRSR Core. Case II — CA Rohan agrees to file trademark/patent applications and represent the client as a Trademark Attorney. Case III — CA Ramesh modifies the CA India logo on visiting cards by changing background colour, reducing size, replacing the word \"India\" and adding a gradient.",o:["Misconduct in Case I and II only","Misconduct in Case II and III only","Misconduct in Case I and III only","Misconduct in Case I, II and III"],a:3,e:"Case I: preparing the BRSR study for an audit client is not permissible (assurance on BRSR Core is). Case II: acting as Trademark/Patent Attorney is not allowed — only IPR advisory is. Case III: ICAI strictly prohibits altering the size, colour, background, wording or design of the CA emblem."},
+{s:"Additional Question",q:"CA Raj, a practising CA, accepts an appointment as \"Secretary\" in his professional capacity from the Central Government for a Metro Project for 2 years, not on a salary-cum-full-time basis. Which is correct as per the CA Act, 1949?",o:["Guilty under Clause (11), Part I, First Schedule for engaging in another occupation without permission.","Not guilty — Regulation 191 permits such government appointments in a professional capacity without full-time employment.","Guilty unless the Council gives prior written approval under Section 2(2)(iv).","He must surrender his Certificate of Practice before accepting."],a:1,e:"Regulation 191 lets a practising CA accept appointments by the Central or State Government, courts or legal authorities and act as Secretary in a professional capacity, so long as it is not salary-cum-full-time employment."},
+{s:"Additional Question",q:"Mr. D, a practising CA from Mangalore, runs a sole proprietorship. His daughter Ms. S, a newly qualified CA, started her own practice and printed her visiting card describing herself as a fellow of the Institute. Will Ms. S be guilty of professional misconduct, and under which clause?",o:["No — CAs may include any details on visiting cards except the firm vision.","Yes — guilty under Clause 7, Part I, First Schedule.","Yes — guilty under Part III, Second Schedule.","Yes — guilty under Clause 1, Part III, First Schedule."],a:3,e:"A member who is not a fellow but holds himself or herself out as a fellow of the Institute is deemed guilty of other misconduct under Part III of the First Schedule."}
+];
+const QB = [
+{s:"Clause (1), Part I, First Schedule",n:1,q:"Sant, a newly qualified CA with a COP, asked CA Pant to let him gain experience in his firm. Pant gave him a chamber for 6 months. Sant independently gave tax consultancy to the firm's clients, filed IT and GST returns and appeared before tax authorities on behalf of the firm, though he signed no documents. He drew no salary or profit share, only reimbursement of expenses, and was given ₹3,00,000 at the end out of gratitude. Is CA Pant guilty?",o:["No — Sant signed no documents, so nothing was done in Pant's name.","No — Sant was not paid a salary or profit share, so no relationship existed.","Yes — Pant allowed a person who is neither his partner nor his employee to practise in his name.","Yes — but only because of the ₹3,00,000 lump sum payment."],a:2,e:"Clause (1) exists to stop unqualified or unsupervised persons practising under the cover of a qualified CA. The work must be done by the CA himself, his partner or his employee, under his control. Sant was none of these, so Pant is guilty."},
+{s:"Clause (2), Part I, First Schedule",n:1,q:"Mr. Avin, a practising CA, gave 50% of the audit fees received by him to Mr. Lucky, a non-Chartered Accountant, describing the payment as \"office allowance\". The arrangement ran for several years. Is Avin guilty?",o:["No — it was an office allowance, not a share of fees.","Yes — what matters is the substance of the transaction, not the label put on it.","No — the payment can be justified as reimbursement of office expenses.","Yes — but only if the amount exceeded 50% of the fees."],a:1,e:"Clause (2) bars paying any share, commission or brokerage out of professional fees to a non-member. Calling it an \"office allowance\" changes nothing — the substance of the transaction is what is examined."},
+{s:"Clause (3), Part I, First Schedule",n:1,q:"CA Rishi entered into an agreement with Mr. Krish, a qualified and experienced registered valuer, to receive 18% of the professional fees on all valuation cases Rishi referred to him. Rishi received ₹1,15,000 during 2023-24. Is he guilty?",o:["No — Rishi only received fees, he did not pay any.","No — a registered valuer is a recognised professional, so sharing is permitted.","Yes — a member may not receive a share of the fees of a non-member, and registered valuers are not within Regulation 53A.","Yes — because the percentage exceeded 15%."],a:2,e:"Clause (3) works in the opposite direction to Clause (2): a member may not *receive* a share of the profits of a non-member either. Sharing is permitted only with members of professional bodies prescribed under Regulation 53A, and a registered valuer is not on that list."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"Mr. S, a CA, published a book and gave his personal details as the author. The details also mentioned his professional experience. Is this professional misconduct?",o:["No — author details in a book are outside the Code of Ethics.","No — mentioning experience is a bare statement of fact and is allowed.","Yes — mentioning his professional experience amounts to indirect solicitation.","Yes — a CA in practice cannot publish a book at all."],a:2,e:"A member may be named as author, but setting out his professional experience alongside turns the entry into publicity for his practice. That is indirect solicitation under Clause (6)."},
+{s:"Clauses (5) & (6), Part I, First Schedule",n:1,q:"A CA wrote letters to officers of various Army Canteens giving details about himself and his experience, about his partner and office, and the norms on which he charges audit fees. Which is correct?",o:["Not guilty — supplying fee norms on request is permitted.","Guilty — he secured work through means not open to a CA and solicited clients.","Not guilty — Army Canteens are government bodies, so approaching them is allowed.","Guilty — but only under Clause (7) for using an improper designation."],a:1,e:"Writing unsolicited to prospective clients with credentials and fee norms is both securing work by means not open to a member (Clause 5) and solicitation (Clause 6)."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"ABZ & Co. developed a website \"abz.com\". The colour chosen was a very bright green, the site ran on \"push\" technology, and the names of the partners and of the major clients were displayed with no disclosure obligation from any regulator. Which is correct?",o:["Guilty on all three counts — colour, push technology and client names.","Guilty on two counts — push technology and client names; there is no restriction on colour.","Not guilty — a firm may design its website as it wishes.","Guilty only for the bright colour, which is not a dignified presentation."],a:1,e:"ICAI's website guidelines put no restriction on colours or design. They do require the site to be pull-based, not push, and they forbid displaying client names or fees unless a regulator requires it. Two of the three are breached."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"Mr. Avi, a newly qualified CA, sought clients through telephone calls to family and friends who ran retail businesses, started a colourful website, shared its address across his social media posts and stories tagging 40 local traders with the caption \"Simple Online Stock Certification Services\", and agreed to pay a Digital Marketer 8% commission on each service procured through him. Which is correct?",o:["Not guilty — approaching family and friends is personal, not professional, solicitation.","Not guilty — creating a website is expressly permitted by the guidelines.","Guilty — soliciting through family and friends, and pushing the website across social media with client names, contravene the guidelines.","Guilty only for the 8% commission to the Digital Marketer."],a:2,e:"Seeking clients through family and friends is solicitation. A website is fine if it follows the guidelines, but it must not be in push mode and must not name clients. Tagging traders on social media is push. Note also that the 8% commission to a non-member separately attracts Clause (2)."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"OPAQ & Associates responded to a tender issued exclusively for Chartered Accountants by an organisation, in the area of tax audit. No minimum fee was prescribed in the tender document. Is the firm guilty?",o:["Not guilty — responding to any tender is permitted.","Not guilty — tax audit tenders are always open to members.","Guilty — the tender was in an area exclusively reserved for CAs and prescribed no minimum fee.","Guilty — a member can never respond to a tender in an exclusive area, even with a minimum fee."],a:2,e:"Members may respond to tenders in areas open to other professionals as well. Where the area is exclusive to CAs, a tender may be answered only if a minimum fee is prescribed. Here neither condition is met."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"M/s SR & Associates was one of three firms shortlisted by ARG Cooperative Bank for statutory audit. The bank mailed the list of branches along with the *maximum* fee per branch and asked the firms to submit quotations. SR & Associates submitted its quotation. Which is correct?",o:["Not guilty — the bank prescribed a fee, so the restriction does not apply.","Guilty — the relaxation applies only where a *minimum* fee is prescribed, and here only a maximum was given.","Not guilty — statutory audit of a co-operative bank is not an exclusive area.","Guilty — quoting for a statutory audit is solicitation in every case."],a:1,e:"The exemption is available where a minimum fee for the assignment is prescribed. A ceiling on fees invites undercutting, which is exactly what the restriction guards against, so the firm is guilty."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"CA Praful has recently obtained his COP and is conducting audits of a few entities. He also plans to coach CA students online and advertises his classes on various social media platforms. Which is correct?",o:["Not guilty — coaching is a separate activity from practice and can be advertised freely.","Not guilty — Regulation 190A permits tutorship, so advertising it is also permitted.","Guilty — advertising coaching on social media amounts to indirect solicitation and solicitation by other means.","Guilty — a practising CA cannot coach students at all."],a:2,e:"Tutorship itself is covered by general permission under Regulation 190A, capped at 25 hours a week. But advertising those classes on social media is indirect solicitation, because it publicises the member himself. The activity is fine; the advertisement is not."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"A special notice was issued at the 2nd AGM of Fiddle Ltd. that CA Smart shall not be re-appointed. CA Smart submitted a written representation under section 140(4)(iii) setting out, in dignified terms, how he had acted independently and conscientiously through his term, and indicating his willingness to continue if reappointed. Which is correct?",o:["Not guilty — the content is dignified and indicating willingness to continue is expressly allowed.","Guilty — any representation mentioning his own conduct is solicitation.","Guilty — he cannot indicate willingness to continue as auditor.","Not guilty — but only if the representation is not circulated to members."],a:0,e:"This is the counterpart to the LED Ltd case. The representation may set out in a dignified manner that he acted independently, and may indicate willingness to continue. What is barred is trumpeting his contributions or canvassing for reappointment."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"GeM is a public procurement portal operated by a government-owned Section 8 company for government buyers. Can a firm of CAs register on the GeM portal for rendering professional services to government departments?",o:["No — registration amounts to listing on an aggregator.","No — it amounts to empanelment obtained by solicitation.","Yes — registration is a pre-requirement for rendering services to government departments and is ancillary to providing them.","Yes — but only if the firm does not display its client list on the portal."],a:2,e:"Registering on GeM is neither empanelment nor listing on an aggregator, because in an aggregator a third party operates the platform, whereas GeM is run by the client itself. It is a pre-condition to serving government departments and so is permitted."},
+{s:"Clause (7), Part I, First Schedule",n:1,q:"CA B is a practising CA and also a qualified lawyer permitted by the Bar Council to practise as an advocate. He printed a visiting card mentioning his designation as \"Chartered Accountant and Advocate\". Which is correct?",o:["Not guilty — both are recognised professional qualifications.","Guilty — he may practise as both but must not use the two designations simultaneously.","Guilty — he cannot practise as an advocate at all while holding a COP.","Not guilty — provided he obtains specific permission from the Council."],a:1,e:"He may practise as an advocate with the Bar Council's permission. But he must not use the CA designation in matters where he acts as an advocate, and he must never use \"CA\" and \"Advocate\" together."},
+{s:"Clause (7), Part I, First Schedule",n:1,q:"Mr. M, a CA in practice, printed visiting cards which, besides the usual details, carry a Quick Response (QR) code. The card and the code both contain his name, office and residential address, contact details, email id and the firm's website name. Is this misconduct?",o:["Yes — a QR code is a form of advertisement.","Yes — the residential address cannot appear on a visiting card.","No — a QR code is allowed provided it contains nothing that could not otherwise be printed on the card.","No — QR codes are outside the scope of the Code of Ethics."],a:2,e:"The Ethical Standards Board has clarified that a QR code on a visiting card is permitted, so long as the code does not carry information that would itself be impermissible in print. The code is just another way of carrying the same data."},
+{s:"Section 7 read with Clause (7), Part I, First Schedule",n:1,q:"A practising CA uses a visiting card designating himself, besides as a CA, as (i) Tax Consultant and (ii) Cost Accountant. Which is correct?",o:["Both are improper.","Both are permissible.","Only \"Tax Consultant\" is improper; \"Cost Accountant\" may be used.","Only \"Cost Accountant\" is improper; \"Tax Consultant\" may be used."],a:0,e:"\"Tax Consultant\" is neither a university degree nor a recognised professional membership, so it cannot be used. For a cost accountant, the member may use the letters of the qualification but not the designation \"Cost Accountant\"."},
+{s:"Clause (8), Part I, First Schedule",n:1,q:"CA W sent a letter under certificate of posting to the previous auditor informing him of his appointment, before commencing the audit. Is this sufficient communication?",o:["Yes — a certificate of posting is documentary proof of despatch.","Yes — the requirement is only to attempt communication, not to complete it.","No — mere posting under certificate of posting is not enough unless there is evidence the letter actually reached the previous auditor.","No — communication is valid only by email with a read receipt."],a:2,e:"The mode must give positive evidence of delivery. A certificate of posting proves only that a letter was posted, not that it arrived. Registered post with acknowledgement due, or hand delivery against acknowledgement, is what satisfies Clause (8)."},
+{s:"Clause (8), Part I, First Schedule",n:1,q:"CA T was appointed to carry out the internal audit of a stock broker listed with BSE. He did not intimate his appointment to the statutory auditors of the company, who feel this violates professional ethics. Which is correct?",o:["Guilty — every incoming auditor must communicate with the existing auditor.","Guilty — listed entities require intimation in all cases.","Not guilty — Clause (8) applies where one auditor replaces another; internal and statutory audit are parallel, not replacement, positions.","Not guilty — but only because the statutory auditor did not object in writing."],a:2,e:"Clause (8) is triggered by *replacement*. An internal auditor does not step into the statutory auditor's shoes; the two run in parallel. No communication is required."},
+{s:"Clause (8), Part I, First Schedule",n:1,q:"PN & Associates were appointed statutory auditors of The Iron Company Ltd, in which the Central Government holds 65% of paid-up share capital. The appointment letter gave very limited time to accept. CA N communicated with the previous auditor but, short of time, accepted before receiving a reply, giving a conditional acceptance, and commenced the audit. Which is correct?",o:["Guilty — acceptance before receiving a reply always breaches Clause (8).","Not guilty — where there is no time to wait, a conditional acceptance making clear that final acceptance depends on the previous auditor's reply is permitted.","Guilty — conditional acceptance is not recognised under the Code of Ethics.","Not guilty — government companies are outside Clause (8)."],a:1,e:"Where there is genuinely no time to await a reply, the incoming auditor may accept conditionally and begin work, provided his acceptance letter tells the client that acceptance is subject to any professional objections from the previous auditor and that final acceptance follows their reply."},
+{s:"Clause (9), Part I, First Schedule",n:1,q:"CA Raja was appointed auditor of Castle Ltd for 2022-23 but declined to accept. The Board then appointed CA Rani in his place, which she accepted. Which is correct?",o:["CA Rani is not guilty — the Board can fill a vacancy caused by a refusal.","CA Rani is guilty — Raja's refusal does not create a casual vacancy the Board can fill, and she accepted without verifying the statutory requirements.","CA Raja is guilty for declining without professional reasons.","Neither is guilty — the appointment stands once accepted."],a:1,e:"A refusal to accept is not a casual vacancy. Where no auditor is appointed or re-appointed at an AGM, the existing auditor continues. Rani accepted without verifying compliance with sections 139 and 140, which is exactly what Clause (9) requires her to do."},
+{s:"Clause (9), Part I, First Schedule",n:1,q:"CA Mehta was appointed auditor of CS Ltd for 2020-21 in place of the retiring auditor CA Gupta. Mehta accepted after obtaining a certificate from management that sections 139 and 140 of the Companies Act, 2013 had been complied with. Is he guilty?",o:["Not guilty — a management certificate discharges his responsibility.","Not guilty — verification of statutory compliance is the company's duty, not the auditor's.","Guilty — a management certificate is not enough; he must verify the relevant records himself.","Guilty — he should have obtained the certificate from the retiring auditor instead."],a:2,e:"Clause (9) puts an independent duty on the incoming auditor. He must examine the company's own records to satisfy himself that sections 139 and 140 were complied with. Taking management's word for it is not verification."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"A CA holding a COP, with four articled clerks registered under him, accepts appointment as a full-time lecturer in a college and also becomes a partner with his brother in a business. Which is correct?",o:["Not guilty — teaching and family business are both covered by general permission.","Not guilty — as long as the total time spent is under 25 hours a week.","Guilty — specific and prior approval of the Council was required in each case and was not obtained.","Guilty only for the business partnership; full-time lecturing is generally permitted."],a:2,e:"Full-time employment as a lecturer and an interest in a business concern both need specific and prior permission of the Council. General permission covers only part-time tutorship within limits and a passive interest, not these."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"Mr. A, a practising CA, took over as executive chairman of a software company on 1.4.2023. On 10.4.2023 he applied to the Council for permission. Which is correct?",o:["Not guilty — permission was applied for within a reasonable time.","Not guilty — an executive chairman is not carrying on a separate occupation.","Guilty — he was engaged in another occupation from 01.04.2023 to 10.04.2023 without the Council's permission.","Guilty — permission for such a position can never be granted."],a:2,e:"The permission must be prior. Even a ten-day gap means he held another occupation without approval, and he is guilty for that period, regardless of whether permission is later granted."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"CA Z wants to file the Multipurpose Empanelment Form, which requires uploading his personal ITR. During the year he transacted in equity F&O derivatives and reflected the income as \"Business Income\". Would the answer differ if the income were from currency derivatives, or from commodity derivatives?",o:["All three — equity, currency and commodity — require Council permission.","Equity and currency derivatives are allowed; commodity derivatives are not permissible without permission.","Only commodity derivatives are allowed; equity and currency are not.","None of the three requires permission, as they are personal transactions."],a:1,e:"A member may deal in derivatives in his personal, not professional, capacity. Equity and currency derivatives need no Council permission. Trading in commodity derivatives is not covered by general permission and is the one that creates a problem."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"CA R, a practising CA specialising in Information Systems Audit, was offered and accepted the position of Managing Director of HKC Limited, a company engaged in rendering management consultancy, without obtaining prior permission from the Institute. His friend says he can no longer retain a full-time COP, do attest functions or train articled assistants. Is the friend right?",o:["Yes — holding an MD position always requires surrender of the COP.","Yes — he can retain the COP but cannot train articled assistants.","No — a member may hold office as MD of a body corporate engaged exclusively in Management Consultancy and Other Services, retain a full-time COP and continue attest functions.","No — but there is a cap on the equity he may hold in such a company."],a:2,e:"Members in practice may be MD, whole-time director or manager of a body corporate engaged exclusively in Management Consultancy and Other Services, subject to the prescribed conditions. The COP and attest functions survive, and there is no restriction on the quantum of equity held."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"CA AB, a practising CA, is a promoter director of ABG Pvt. Ltd. and is also a sleeping partner in his family's garment manufacturing firm. Is he liable for professional misconduct?",o:["Guilty on both counts.","Not guilty on both counts.","Promoter director — not guilty; sleeping partner in the family business — guilty for want of prior Council approval.","Promoter director — guilty; sleeping partner — not guilty as the role is passive."],a:2,e:"There is no bar on a member being a promoter or signatory, or a director simplicitor, and no permission is needed. But an interest in a family business concern, even as a sleeping partner, requires the Council's prior approval."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"CA Sumati, a practising CA in Mumbai, owned the domain \"cap.net\" and sold it to XYZ Limited earning royalty of ₹2,25,000. She argued there is no violation because selling a domain name has nothing to do with any professional assignment requiring the Institute's approval. Which is correct?",o:["She is right — the transaction is unconnected to her practice.","She is right — royalty is passive income, not an occupation.","She is wrong — under Regulation 190A, selling a domain name to earn royalty amounts to another business or occupation and is prohibited without approval.","She is wrong — but only because the amount exceeded ₹2,00,000."],a:2,e:"Regulation 190A treats this as engaging in another business or occupation. Being unrelated to professional work does not take it outside Clause (11); that is precisely what Clause (11) covers."},
+{s:"Clause (11), Part I, First Schedule",n:1,q:"CA Sonu, practising since 2008 and specialising in corporate audits and company law, accepted the editorship of a 'Company Audit' journal without taking any permission from the Council. Is he guilty?",o:["Guilty — editorship of any journal requires specific permission.","Not guilty — a 'Company Audit' journal is a professional journal, and editorship of professional journals falls under general permission.","Guilty — editorship is a full-time occupation.","Not guilty — editorship is never treated as an occupation."],a:1,e:"The distinction turns on the type of journal. Editorship of *professional* journals is covered by general permission. It is editorship of journals *other than* professional journals that needs specific permission from the Council."},
+{s:"Clause (12), Part I, First Schedule",n:1,q:"S, a practising CA, gives a power of attorney to an employee CA to sign reports and financial statements on his behalf. Which is correct?",o:["Not guilty — the employee is himself a member of the Institute.","Not guilty — a power of attorney is a valid legal authorisation.","Guilty — under Clause (12) the person is a member but not a partner, and it also contravenes section 26.","Guilty — but only if the employee is not a member of the Institute."],a:2,e:"Clause (12) permits delegation of signing only to a partner or an employee who is a member. Here the employee is a member but not a partner, and section 26 separately bars anyone other than a member of the Institute signing on his behalf. Both are attracted."},
+{s:"Clause (12), Part I, First Schedule",n:1,q:"Mr. K, a practising CA, went abroad and delegated authority to his employee CA, Mr. Y. In his absence Y (i) issued a Net Worth Certificate to a client for a bank and (ii) attended GST proceedings for a client as authorised representative. Which is correct?",o:["Both acts are misconduct by Mr. K.","Neither act is misconduct.","Issuing the Net Worth Certificate makes K guilty; attending the GST proceedings is permitted delegation.","Attending the GST proceedings makes K guilty; issuing the certificate is routine and may be delegated."],a:2,e:"Routine matters on which no professional opinion or authentication is expressed may be delegated, and attending tax proceedings is routine tax practice. A Net Worth Certificate is an authentication, not routine work, and is outside Y's authority."},
+{s:"Clause (2), Part II, First Schedule",n:1,q:"CA D is Vice-President (Finance) of TM Industries. A claim of ₹20 crore lodged by the firm was settled at ₹2 crore, and management decided to go for arbitration. Management asked CA D to find a suitable lawyer. He arranged one, on the understanding that he would receive 25% of the lawyer's agreed fees by way of commission. Is he guilty?",o:["Not guilty — he is in employment, so the First Schedule does not apply to him.","Guilty — a member in employment who accepts any part of the fees or gains of a lawyer engaged by his employer is guilty.","Not guilty — the commission came from the lawyer, not from his employer.","Guilty — but only if he holds a Certificate of Practice."],a:1,e:"Clause (2) of Part II applies to members in service. Accepting any part of the fees, profits or gains of a lawyer, CA, broker, agent or customer engaged by the employer, by way of commission or gratification, is misconduct. Whether he holds a COP makes no difference."},
+{s:"Clause (2), Part III, First Schedule",n:1,q:"Mr. G, while applying for a Certificate of Practice, did not fill in the columns seeking information about his engagement in any other occupation or business, although he was in fact engaged in a business. Which is correct?",o:["Not guilty — the omission was not a positive false statement.","Not guilty — engagement in business need only be disclosed once the COP is issued.","Guilty — details of engagement in business had to be disclosed because the Institute had called for that information in the application.","Guilty under Clause (11) of Part I for carrying on a business."],a:2,e:"Part III covers a member who does not supply information called for by the Institute. The columns were there and were deliberately left blank, so the omission itself is the misconduct."},
+{s:"Clause (2), Part III, First Schedule",n:1,q:"Mr. X, a CA employed as a paid assistant with a CA firm, left its services on 31 December 2023. Despite several reminders from ICAI he failed to reply confirming the date on which he left. Which is correct?",o:["Not guilty — the firm, not the employee, must report the date.","Not guilty — no time limit is prescribed for replying.","Guilty — failing to respond to the Institute's letters seeking information is misconduct.","Guilty under the Second Schedule for gross negligence."],a:2,e:"Not replying to the Institute's letters calling for information is itself misconduct under Part III. The same applies to a member who fails to confirm her appointment date or submit her membership certificate despite reminders."},
+{s:"Clause (2), Part IV, First Schedule",n:1,q:"YKS & Co., a proprietary CA firm, was appointed concurrent auditor of a bank. YKS, the proprietor, used his influence to get a loan from the bank and thereafter failed to repay it. Which is correct?",o:["Not guilty — taking a loan from a bank is a personal financial matter.","Guilty of other misconduct — he used his position as concurrent auditor to obtain funds and failed to repay, bringing disrepute to the profession.","Guilty under Clause (4), Part I of the Second Schedule for substantial interest.","Not guilty — provided he resigns as concurrent auditor."],a:1,e:"Part IV covers acts that bring disrepute to the profession, whether or not connected with professional work. Leveraging an audit position to obtain funds and then defaulting squarely fits. The same reasoning applies where he gets cheques purchased and fails to repay the overdraft."},
+{s:"Clause (2), Part IV, First Schedule",n:1,q:"CA X, a practising CA, failed to return the books of account and other documents of ABC Ltd despite many reminders from the company. The company had already settled his entire fee dues. Which is correct?",o:["Not guilty — a CA has a lien over client records.","Not guilty — the documents are working papers belonging to the auditor.","Guilty of other misconduct — retaining and failing to return client records on request without reasonable cause brings disrepute to the profession.","Guilty under Clause (10), Part I of the Second Schedule."],a:2,e:"Retaining client books without reasonable cause, especially where the fees have been paid in full, brings disrepute to the profession and falls under other misconduct."},
+{s:"Clause (2), Part IV, First Schedule",n:1,q:"Ms. Preeto, a CA, had a bank account whose normal balance stayed below ₹5,000. The bank inadvertently credited it with a cheque of ₹2,70,000 belonging to another account holder. On learning of it, Preeto withdrew ₹2,75,000 and closed the account. A year later the bank discovered the error and claimed the money with interest, which she contested. Can the bank approach ICAI?",o:["No — this is a civil dispute between a bank and its customer.","No — ICAI has no jurisdiction over a member's personal banking.","Yes — withdrawing money that does not belong to her brings disrepute to the profession, and the bank may file a complaint under this clause.","Yes — but only after a civil court decrees the claim."],a:2,e:"Other misconduct is not confined to professional work. Knowingly withdrawing and keeping money that is not hers brings disrepute to the profession, and the bank can complain to the Institute."},
+{s:"Clause (1), Part I, Second Schedule",n:1,q:"Mr. Johny, a CA, was invited to a seminar on bank audits. During his presentation he drew on examples from his clients' experiences and shared significant information about those clients, intending to help the audience understand the topic. Which is correct?",o:["Not guilty — the purpose was educational, not commercial.","Not guilty — no client was identified by name.","Guilty — he disclosed information acquired in the course of professional engagement without the clients' consent.","Guilty under Clause (6), Part I of the First Schedule for solicitation at a seminar."],a:2,e:"Clause (1) is absolute unless the client consents or the law requires disclosure. A good motive, including educating an audience or serving the national interest, is no defence."},
+{s:"Clause (3), Part I, Second Schedule",n:1,q:"CA E was asked by a client to prepare a five-year projection and a report on it. In his report he set out the sources of information, the basis of the forecasts and the major assumptions made, and stated that he does not vouch for the accuracy of the forecasts. Is he guilty?",o:["Guilty — a CA cannot associate himself with forecasts of future earnings at all.","Guilty — a disclaimer does not cure association with a forecast.","Not guilty — he may prepare and review forecasts provided he indicates the sources, basis and assumptions and does not vouch for accuracy.","Not guilty — but only if the client does not give the report to a bank."],a:2,e:"Clause (3) bars a member from permitting his name to be used with any estimate of future earnings *in a manner which may lead to the belief that he vouches for its accuracy*. Disclosing sources, basis and assumptions, and expressly not vouching, keeps him inside the line."},
+{s:"Clause (4), Part I, Second Schedule",n:1,q:"A firm of CAs was appointed by a company to evaluate the costs of the various products it manufactures for its operating system. One of the firm's partners was a non-executive director of that company. Which is correct?",o:["Guilty — the partner's directorship gives the firm a substantial interest.","Guilty — a firm can never accept any assignment from a company where a partner is a director.","Not guilty — the assignment is management consultancy and does not involve expressing an opinion on financial statements.","Not guilty — only executive directorships create a conflict."],a:2,e:"Clause (4) bites where the member expresses an opinion on financial statements of a concern in which he has a substantial interest. A cost evaluation exercise is management consultancy, not an opinion on financial statements, so the clause is not attracted."},
+{s:"Clause (4), Part I, Second Schedule",n:1,q:"CA Dev issued a 'Turnover Certificate' for M/s ASAUS Traders, to be given to a bank for a cash credit facility and a machinery term loan. The proprietor of ASAUS Traders was CA Dev's brother. Which is correct?",o:["Not guilty — a turnover certificate is not an opinion on financial statements.","Not guilty — a brother is not a relative for this purpose.","Guilty — a member may not undertake a certification assignment where the client is a relative as defined in AS 18.","Guilty — but only if he charged a fee for the certificate."],a:2,e:"Certification work for a client who is a relative within the meaning of AS 18 is not permissible. A brother is squarely within that definition."},
+{s:"Clause (4), Part I, Second Schedule",n:1,q:"Mr. A has been appointed statutory auditor of a private limited company in which his spouse's sister's husband holds 75% ownership. Which is correct?",o:["Guilty — 75% ownership by a family member is a substantial interest.","Guilty — the relationship falls within the definition of relative.","Not guilty — \"relative\" carries the meaning given in AS 18, and a spouse's sister's husband does not fall within it.","Not guilty — the shareholding threshold for disqualification is 90%."],a:2,e:"The test is the AS 18 definition of relative, which is narrower than everyday usage. A spouse's sister's husband is outside it, so no substantial interest is attributed and the appointment stands."},
+{s:"Clause (5), Part I, Second Schedule",n:1,q:"CA Dice signed the balance sheet of QR Ltd for the year ended 31 March 2019, which failed to disclose a charge of ₹4.35 crore created against a corporate guarantee given in favour of a group company. The balance sheet size filed with the Registrar was ₹26.12 crore. Which is correct?",o:["Not guilty — a contingent item need not be disclosed.","Not guilty — ₹4.35 crore is below the usual materiality benchmark.","Guilty — the undisclosed charge is material against a balance sheet size of ₹26.12 crore and is a material fact he failed to disclose.","Guilty under Clause (7) for gross negligence rather than Clause (5)."],a:2,e:"Clause (5) covers failure to disclose a material fact known to him which is not disclosed in the financial statements, where such disclosure is necessary to make them not misleading. Applying SA 320 principles, ₹4.35 crore against a ₹26.12 crore balance sheet is plainly material."},
+{s:"Clause (5), Part I, Second Schedule",n:1,q:"NIS Limited created a separate \"NIS Employees Gratuity Fund Trust\", both under the same management, and Mr. Anuj audits both. He observed that part of the trust's expenditure was not applied towards the objects of the trust. He reported this to the Board of Trustees in a separate report but issued an unqualified audit report on the Trust. Which is correct?",o:["Not guilty — he brought the matter to the Board's notice in a separate report.","Not guilty — the trust's objects are a management matter, not an audit matter.","Guilty — he knew of the contraventions and still issued an unqualified report, which is not in order.","Guilty under Clause (7) for failing to obtain sufficient information."],a:2,e:"A separate communication to those charged with governance does not substitute for a qualification in the audit report. Knowing of irregularities and reporting clean is a failure to disclose a material fact."},
+{s:"Clauses (5) & (6), Part I, Second Schedule",n:1,q:"A practising CA was appointed to represent a company before the tax authorities under a duly executed power of representation. He submitted information and explanations on behalf of his client which were later found to be false and misleading. Which is correct?",o:["Guilty — he is responsible for everything he files with the authorities.","Guilty — he ought to have independently verified every statement before submission.","Not guilty — the statements were based on data provided by management, and he submitted them acting on his client's instructions as authorised representative.","Not guilty — but only if he later withdrew the statements."],a:2,e:"Acting as an authorised representative is different from expressing a professional opinion. Where he merely transmits management's data on instructions, the falsity of that data does not make him guilty. The same reasoning applies to representation before GST authorities."},
+{s:"Clause (7), Part I, Second Schedule",n:1,q:"CA C conducted the statutory audit of a Haryana daily 'New Era' and certified its circulation figures based on an M.I.S. report, without examining the books of account. Which is correct?",o:["Not guilty — an M.I.S. report is a reliable internal source.","Not guilty — circulation figures are statistical, not financial, information.","Guilty — certifying circulation figures from statistical information without cross-verification against financial records is gross negligence and failure to exercise due diligence.","Guilty under Clause (2) for allowing his name to be used."],a:2,e:"He had to ascertain the number of paid copies, verify remittances from agents, check credits allowed for unsold copies returned, and examine the books. Certifying on statistics alone, with no cross-verification against financial records, is gross negligence."},
+{s:"Clause (7), Part I, Second Schedule",n:1,q:"Nam & Co. conducted the stock audit of DEF Ltd for HEG Bank. Instead of visiting the site where the stock lay, the firm relied on the MIS report, inspection reports and date-and-time stamped photographs of the stock taken by DEF Ltd's own employees. Which is correct?",o:["Not guilty — date-stamped photographs are adequate audit evidence.","Not guilty — the bank's instructions did not expressly require a site visit.","Guilty — submitting a stock audit report without physically verifying the stock is gross negligence.","Guilty under Clause (8) for failure to obtain sufficient information only."],a:2,e:"Ascertaining existence, physical condition and correct classification of stock is the whole point of a stock audit. Photographs and reports prepared by the client's own staff are no substitute for physical verification."},
+{s:"Clause (7), Part I, Second Schedule; Clause (2), Part IV, First Schedule",n:1,q:"CA Yuvi, auditor of Prime Ltd, advised the Managing Director to include 'orders under negotiation' in sales so as to reflect higher profit and a better financial position for obtaining bank loans in future. He then gave clean reports on the balance sheet prepared accordingly, without examining the accounts. Which is correct?",o:["Guilty only of gross negligence under Clause (7).","Guilty only of other misconduct for the advice given.","Guilty on both counts — gross negligence in issuing clean reports without examining the accounts, and other misconduct for advising an unethical practice.","Not guilty — the advice was commercial, and orders under negotiation may be disclosed separately."],a:2,e:"Two distinct failures. Reporting clean without examining the accounts is gross negligence under Clause (7). Advising management to inflate sales to mislead lenders brings disrepute to the profession, which is other misconduct under Part IV of the First Schedule."},
+{s:"Clause (7), Part I, Second Schedule read with SA 240",n:1,q:"A company's cashier committed a fraud and absconded with the proceeds. The auditor failed to discover it during the audit, and the Chief Accountant found it afterwards. Investigation indicated that the auditor did not exercise proper skill and care and performed his work in a desultory and haphazard manner. Which is correct?",o:["Not guilty — detection of fraud is not the primary objective of an audit.","Not guilty — the Chief Accountant himself did not know when the fraud occurred.","Guilty — the investigation established that he failed to exercise reasonable skill and care and worked in a casual, unmethodical manner.","Guilty — an auditor is strictly liable for any fraud not detected."],a:2,e:"Failure to detect fraud is not by itself misconduct. What condemns him here is the established finding that he did not exercise reasonable skill and care, and did not plan and perform the audit with professional scepticism as SA 240 requires."},
+{s:"Clause (8), Part I, Second Schedule",n:1,q:"Mr. A was auditor of 'A Limited'. Investments appeared in the balance sheet at ₹12 lakh, the same figure as the previous year. It later emerged that the company's investments were only ₹25,000, the value having been inflated to obtain a larger loan. The auditor had simply relied on management's representation. Which clauses are attracted?",o:["Clause (8) alone, for failure to obtain sufficient information.","Clauses (2), (7) and (8) — reporting without examination, gross negligence, and failure to obtain sufficient information.","Clause (5) alone, for failure to disclose a material fact.","No clause — the auditor is entitled to rely on management representations."],a:1,e:"He should have verified documentary evidence of value and the physical existence of the investments at the year end. Relying only on management's representation attracts all three: reporting without examination, negligence, and failure to obtain sufficient information to form an opinion."},
+{s:"Clause (9), Part I, Second Schedule",n:1,q:"CA K started practice as proprietor of M/s K & Asso. in 2015-16. LST Ltd, a listed entity, appointed the firm as statutory auditor for the year ended 31 March 2022, and CA K signed its balance sheet on 14 May 2022. The firm had never subjected itself to the Peer Review process. Which is correct?",o:["Not guilty — peer review is voluntary for small firms.","Not guilty — the requirement applies only from the following financial year.","Guilty — statutory audit of a listed company may be undertaken only by an auditor who has undergone peer review and holds a valid certificate from the Peer Review Board.","Guilty under Clause (7) for gross negligence."],a:2,e:"Signing the audit report of a listed entity without a valid Peer Review certificate is a failure to comply with a requirement governing the conduct of the audit, and falls under Clause (9)."},
+{s:"Clause (10), Part I, Second Schedule",n:1,q:"A film artist going abroad for a long shoot deposited ₹20 lakh with his tax consultant Mr. G, a practising CA, for paying GST monthly as it fell due. Mr. G remitted all but one instalment, using that amount instead to pay his own advance income tax. While filing the artist's GST return he later remitted the tax with interest for the late payment out of the money lying with him, and bore the shortfall interest himself. Which is correct?",o:["Not guilty — the client suffered no loss and the interest was borne by Mr. G.","Not guilty — the money was held as a tax consultant, not as an auditor.","Guilty — he failed to keep the client's money in a separate bank account and used it for his own advance tax.","Guilty under Clause (2), Part IV of the First Schedule for other misconduct only."],a:2,e:"Client money other than fees or advances for services must be kept in a separate bank account and used only for the purpose intended. Making good the loss afterwards does not undo the breach."},
+{s:"Clause (1), Part II, Second Schedule",n:1,q:"M/s XYZ, a firm of CAs, took a loan to acquire a home from a company whose Managing Director's son is an Articled Assistant with A, a partner of M/s XYZ. The Articled Assistant had no direct interest in the company and the loan was unrelated to his engagement. Which is correct?",o:["Not guilty — the loan came from the company, not from the articled assistant.","Not guilty — the articled assistant had no interest in the company.","Guilty — Regulation 47 prohibits accepting any loan or deposit from an articled clerk, directly or indirectly.","Guilty under Clause (4), Part I of the Second Schedule."],a:2,e:"Regulation 47 is drafted to catch indirect routes as well. Borrowing from a company controlled by the articled assistant's father is an indirect loan from the articled clerk, and contravening a regulation is misconduct under Clause (1) of Part II."},
+{s:"Clause (1), Part II, Second Schedule",n:1,q:"A CA in practice certified in the requisite Form that an articled assistant was undergoing training with him. In fact the assistant was employed in a company between 9:30 a.m. and 5:30 p.m. on a monthly salary of ₹18,000 and attended the CA's office only afterwards until 7 p.m. The CA pleaded that the assistant was on audit of that company. Which is correct?",o:["Not guilty — the assistant did attend the office daily.","Not guilty — being on audit of a company explains his presence there.","Guilty — the assistant was not attending office on a timely basis, and the audit explanation cannot be accepted when he was drawing a monthly salary from that company.","Guilty — but only because the stipend was less than the prescribed rate."],a:2,e:"A salary from the company gives the game away: he was an employee there, not an articled assistant on audit. Certifying otherwise contravenes the training regulations."},
+{s:"Clause (1), Part II, Second Schedule",n:1,q:"CA Raman, contesting Regional Council elections of the Institute, engaged his Articled Assistant for his election campaigning, promising that the assistant would meet influential people which would help his career after training. Which is correct?",o:["Not guilty — the assistant consented and stood to benefit.","Not guilty — election work for the Institute is professional work.","Guilty of other misconduct — he used the services of his Articled Assistant for purposes other than professional practice.","Guilty under Clause (2), Part I of the First Schedule."],a:2,e:"An articled assistant is registered for training in professional work. Deploying him on an election campaign is using his services for a purpose outside professional practice."},
+{s:"Clause (1), Part II or Clause (9), Part I, Second Schedule",n:1,q:"Mr. Kushal, a practising CA, signed GST Audit Reports and Tax Audit Reports under section 44AB for FY 2019-20, filed online using a digital signature, without generating a UDIN, on the ground that there is no field for mentioning UDIN on digitally signed online reports. Is his contention valid?",o:["Valid — UDIN cannot be reported where the portal provides no field for it.","Valid — UDIN is required only for manually signed certificates.","Not valid — UDIN is mandatory for all certificates, GST and tax audit reports and other attest functions.","Not valid — but the omission is a procedural lapse, not misconduct."],a:2,e:"UDIN must be generated for every certificate, GST and tax audit report and other attest function. The absence of a field on the filing portal is not an exemption; the UDIN is generated on the UDIN portal itself."},
+{s:"Section 6 read with Clause (1), Part II, Second Schedule",n:1,q:"The manager of Miskin (P) Ltd approached CA Rahul for a certificate on a consumption statement of raw material. Without holding a Certificate of Practice, Rahul issued the certificate acting as a CA in practice, and applied for a CoP the very next day to avoid any dispute. Which is correct?",o:["Not guilty — he applied for the CoP immediately afterwards.","Not guilty — a consumption statement is not an attest function.","Guilty — he issued a certificate as a CA in practice when he had not even applied for the CoP, contravening section 6.","Guilty under Clause (12), Part I of the First Schedule."],a:2,e:"Section 6 bars a member from practising without a Certificate of Practice. Applying the next day does not cure an act already done, and issuing a certificate is practice."},
+{s:"Clause (3), Part II, Second Schedule",n:1,q:"A CA who was employed as a manager in a firm of Registered Accountants applied for admission as a Fellow of the Institute, stating that he was a partner, while he was not. Which is correct?",o:["Not guilty — a manager is effectively equivalent to a partner.","Not guilty — the Institute could have verified the position itself.","Guilty — he made a statement he knew to be false in a form submitted to the Institute.","Guilty of other misconduct under Part IV of the First Schedule."],a:2,e:"Clause (3) of Part II of the Second Schedule covers a member who includes in any statement, return or form submitted to the Institute any particular knowing it to be false. The same applies to a wrong statement given on oath before the Disciplinary Committee."},
+{s:"Section 2(2)(iv) — Management Consultancy Services",n:1,q:"Mr. A, a practising CA, agreed to select and recruit personnel and to conduct training programmes for and on behalf of a client to whom he provides no assurance service. Is this professional misconduct?",o:["Yes — recruitment is not a permitted service for a CA in practice.","Yes — unless prior Council permission is obtained.","No — personnel recruitment and selection, HR development, designing and conducting training programmes, job description and job evaluation are all within Management Consultancy and Other Services.","No — but only because no assurance service is being provided to that client."],a:2,e:"The list of Management Consultancy and Other Services under section 2(2)(iv) expressly includes personnel recruitment and selection and the design and conduct of training programmes. No separate permission is needed."},
+{s:"Section 2(2)(iv) — Management Consultancy Services",n:1,q:"CA Natraj accepted an assignment as advisor and consultant to a public issue of shares by his client M/s Super Ltd. Besides advising, he also underwrote the public issue to the extent of 25% at a commission of 1%. He contends both are part of management consultancy work permitted by the Council. Is he right?",o:["Right — underwriting is a financial advisory activity within management consultancy.","Right — provided the commission does not exceed 2%.","Wrong — a CA in practice is not permitted to undertake broking, underwriting or portfolio management services.","Wrong — advising on a public issue is itself impermissible."],a:2,e:"Advising on a public issue is permitted. Broking, underwriting and portfolio management are expressly excluded from Management Consultancy and Other Services, so the underwriting is where he goes wrong."},
+{s:"Section 6 — practice during suspension",n:1,q:"CA Raj was ordered to surrender his COP and was suspended for two years. During the suspension he designated himself a Data Privacy consultant, filed data privacy related returns and appeared as a consultant before related authorities in a capacity other than as a CA. Which is correct?",o:["Guilty — a suspended member cannot take up any work during the period of suspension.","Not guilty — he was not appearing in the capacity of a CA in practice, so he did not violate the suspension order.","Guilty — any appearance before an authority during suspension is prohibited.","Not guilty — provided he informs ICAI of the engagement."],a:1,e:"The bar is on appearing before authorities *in a capacity in which he could have appeared as a member of the Institute*. Data privacy work is not such a capacity. Contrast this with work like GST representation, where the position taken by study material differs — confirm the treatment of that fact pattern with your faculty before the exam."},
+{s:"Section 27 — branch offices",n:1,q:"CA Z started practice in February 2018 with an office at the hill station Kodaikanal. Getting few assignments, he rented a temporary office at Marudai, about 100 km away in the plains, for April, May and June. His regular office stayed open throughout and he was in charge of both. Assume he informed the Institute. Which is correct?",o:["Guilty — the second office is more than 50 km from the first.","Guilty — the regular office should have been closed during those months.","Not guilty — the temporary office was in the plains for three months, the regular office stayed open and he was in charge of both, so the exemption applies.","Not guilty — but only if he does not display a name board at the temporary office."],a:2,e:"A member practising in a hill area may open a temporary office in the plains for a maximum of three months a year, provided the regular office is not closed during that period, correspondence continues from the regular office, and the Institute is informed. All conditions are met."},
+{s:"Section 8 — disabilities",n:1,q:"Mr. S, a practising CA, does equity research and advice for persons other than his clients, is a paper setter for Accountancy in a school, and owns agricultural land which he farms. He later became an undischarged insolvent and was subsequently declared a discharged insolvent, obtaining a court certificate that his insolvency was caused by misfortune without any misconduct on his part. Which is correct?",o:["All four give rise to misconduct or disability.","Equity research and paper setting are misconduct; the insolvency is not.","None gives rise to misconduct — equity research without publishing retail reports is allowed, paper setting and agriculture fall under general permission, and a discharged insolvent with such a certificate is not debarred under section 8.","Only the insolvency creates a disability, which is permanent."],a:2,e:"Equity research is fine so long as he does not publish retail reports. Paper setting and agriculture are within the general permissions under Regulation 190A. Under section 8, a discharged insolvent holding a court certificate that the insolvency was caused by misfortune without misconduct is not debarred from having his name in the Register of Members."},
+{s:"Council General Guidelines, 2008 — Chapter V",n:1,q:"CA Evan has practised for two years through his proprietorship \"Evan & Co.\" He maintains notes in his mobile phone recording the fees received from various clients, and uses those records to prepare and file his income tax return. Which is correct?",o:["Not guilty — the records are complete and are actually used for filing returns.","Not guilty — a small proprietorship need not maintain formal books.","Guilty — notes maintained in a mobile phone cannot be treated as books of account, so he does not maintain proper books.","Guilty under Clause (7), Part I of the Second Schedule."],a:2,e:"Chapter V of the Council General Guidelines requires a member in practice to maintain and keep proper books of account, including a cash book and a ledger. Informal notes on a phone do not meet that standard."},
+{s:"Council General Guidelines, 2008 — Chapter V",n:1,q:"CA X filed his income tax return for AY 2018-19 under section 44ADA on a presumptive basis. In disciplinary proceedings for alleged misuse of client funds he was asked to produce his books of account for FY 2017-18. He refused, saying he had maintained no books and had filed presumptively for income tax. Is his defence good?",o:["Good — section 44ADA dispenses with the maintenance of books.","Good — the Institute cannot call for books not required by tax law.","Not good — the Council General Guidelines independently require a CA in practice to maintain proper books including a cash book and ledger.","Not good — but the failure is a technical lapse attracting no penalty."],a:2,e:"The obligation under the Council General Guidelines stands on its own footing. Choosing a presumptive scheme under the Income-tax Act does not relieve a member of the professional duty to maintain proper books."},
+{s:"Council General Guidelines, 2008 — Chapter VII",n:1,q:"Arihant Limited's equity share capital is ₹5 lakh and its reserves and surplus stand at negative ₹10 lakh as at 31.03.2023 (negative ₹8 lakh as at 31.03.2022). Provision for audit fees of ₹1 lakh each for FY 2021-22 and FY 2022-23 is outstanding. CA Nemi accepted the statutory audit for 2022-23 although CA Acharya's audit fees were unpaid. Which is correct?",o:["Guilty — undisputed audit fees of the previous auditor were unpaid on the date of acceptance.","Not guilty — accumulated losses exceed the entire net worth, so it is a sick unit and the prohibition does not apply.","Guilty — the sick unit exemption applies only to companies under formal insolvency proceedings.","Not guilty — the prohibition applies only where fees for three or more years are outstanding."],a:1,e:"The bar on accepting an audit where the previous auditor's undisputed fees are unpaid does not apply to a sick unit — one whose net worth is negative or whose accumulated losses equal or exceed its entire net worth. With capital of ₹5 lakh against accumulated losses of ₹10 lakh, Arihant qualifies."},
+{s:"Council General Guidelines, 2008 — Chapter XV (Networking)",n:1,q:"AJ & Associates and PK & Co. have both joined the network firm \"A to Z & Affiliates\" registered with the Institute. AJ & Associates had been statutory auditor of B Ltd for the last 10 years. On rotation under section 139(2), B Ltd retires AJ & Associates and appoints PK & Co. for 2020-21. Comment.",o:["Valid — PK & Co. is a separate firm with a separate registration number.","Valid — rotation requirements are satisfied because the audit firm has changed.","Disqualified — no member firm of a network can be appointed auditor in place of another member firm of the same network which is retiring.","Disqualified — but only if the two firms share a common partner."],a:2,e:"For rotation purposes, firms within the same network are treated as one. Allowing a sister network firm to step in would defeat the purpose of rotation, so PK & Co. is disqualified."},
+{s:"Recommended self-regulatory measures",n:1,q:"M/s LMN, a firm of Chartered Accountants with 5 partners, accepts the audit of a newly formed private limited company for audit fees of ₹5,000. Which is correct?",o:["Guilty — the fee is below the prescribed minimum audit fee for a five-partner firm.","Guilty — accepting an unusually low fee amounts to undercutting.","Not guilty — the prescribed minimum audit fee is recommendatory, not mandatory.","Not guilty — minimum fee norms do not apply to newly formed companies."],a:2,e:"The scale of minimum audit fees is part of the recommended self-regulatory measures. It is advisory in nature, so charging less does not by itself amount to misconduct."},
+{s:"Council decision",n:1,q:"WCP & Co LLP are the internal auditors of DEF Ltd. They also agreed to undertake the GST Audit of DEF Ltd simultaneously. Comment with reference to the CA Act.",o:["Permissible — the restriction applies only to tax audit under section 44AB.","Permissible — internal audit and GST audit serve different statutes.","Not permissible — the bar on an internal auditor accepting tax audit of the same entity applies equally to GST Audit.","Not permissible — an internal auditor cannot accept any other assignment from the same entity."],a:2,e:"The Council has extended the same logic to GST Audit. An internal auditor reviewing his own work under another statute creates the identical conflict of interest."},
+{s:"Council Guidelines & Section 141(3)(g)",n:1,q:"ABC & Co. is an audit firm with partners A, B and C, who individually hold appointments as auditor in 4, 6 and 10 companies respectively. What is the maximum number of further company audits the firm can take, and what is each partner's individual balance?",o:["Firm 60, and A 20, B 20, C 20.","Firm 40, and A 16, B 14, C 10.","Firm 20, and A 16, B 14, C 10.","Firm 40, and A 20, B 14, C 10."],a:1,e:"The ceiling is 20 company audits per person. Three partners give the firm a capacity of 60. Audits already held total 4+6+10 = 20, leaving 40 for the firm. Individually the balances are 20−4 = 16, 20−6 = 14 and 20−10 = 10."},
+{s:"Council Guidelines & Section 141(3)(g)",n:1,q:"Continuing the above: can ABC & Co. accept appointment in 60 private companies each having paid-up share capital below ₹100 crore with no default under section 137 or 92, plus 2 small companies and 1 dormant company? Would the answer change if 45 of those 60 private companies had paid-up capital of ₹110 crore each?",o:["Yes in both cases — private companies are always excluded from the ceiling.","Yes to the first; in the second, the firm can take 2 small + 1 dormant + only 15 of the remaining private companies.","No to the first; the 60 private companies would exhaust the entire ceiling.","Yes to the first; in the second, the firm can take 2 small + 1 dormant + 40 of the 45 larger companies, plus the 15 smaller ones."],a:3,e:"Small companies, dormant companies, one-person companies and private companies with paid-up capital below ₹100 crore (with no section 137 or 92 default) are excluded from the ceiling entirely. Companies with capital of ₹110 crore are not excluded, so of those 45 the firm can take only 40, being the balance capacity after the 20 audits already held."},
+{s:"Clause (4), Part I, Second Schedule & Clause (11), Part I, First Schedule",n:1,q:"JP & Associates, proprietor Mr. Jayprakash, accepted the audit of a college in which Jayprakash works as a part-time lecturer. He had also not taken ICAI's permission for the lecturing. Which is correct?",o:["Guilty only for accepting the college audit.","Guilty only for lecturing without permission.","Guilty on both counts — he must not accept the audit of a college where he is a part-time lecturer, and he needed the Institute's permission to lecture.","Not guilty — part-time lecturing creates no substantial interest in the college."],a:2,e:"Two separate breaches. A member must not, himself or in his firm's name, accept the audit of a college where he is a part-time lecturer, and part-time lecturing outside the general permission limits requires the Institute's permission."},
+{s:"Clause (6), Part I, First Schedule",n:1,q:"JP & Associates sponsored an event relating to CSR. The sponsorship banner carried the name 'CA Jayprakash, Proprietor, JP & Asso.' Which is correct?",o:["Not guilty — CSR sponsorship is a social activity outside the Code of Ethics.","Not guilty — the member's own name may appear on any sponsorship material.","Guilty — a member sponsoring CSR activities may use his individual name with the prefix \"CA\", but mentioning the firm's name or the CA logo is not permitted.","Guilty — members cannot sponsor CSR activities at all."],a:2,e:"The individual member's name with the \"CA\" prefix is allowed on CSR sponsorship material. Adding the firm's name, or the CA logo, turns it into publicity for the firm and is prohibited."},
+{s:"Fundamental principles — Integrity",n:1,q:"CA X issued a report in Form 29B under the Income-tax Act wrongly computing the \"book profits\" of a company for FY 2021-22, having signed the form hurriedly without ascertaining the required adjustments. The return was later picked up for faceless scrutiny and the error came to light. Which fundamental principle of professional ethics is violated?",o:["Confidentiality","Objectivity","Integrity","Professional behaviour"],a:2,e:"Integrity requires that a member not knowingly be associated with reports, returns or communications that contain a materially false or misleading statement, or statements furnished negligently, or that omit or obscure required information where the omission would be misleading. Signing hurriedly without ascertaining the adjustments is exactly that."}
+];
+const SUM = [
+{t:"First Schedule · Part I — Members in practice",p:[
+"Clause (1): Allowing any person to practise in your name unless that person is your partner or your employee under your control. Guards the public against unqualified persons practising under cover of a CA.",
+"Clause (1) trap: no salary, no profit share, only expense reimbursement, and no documents signed — still guilty if the person practises in your name.",
+"Clause (2): Paying or agreeing to pay any share, commission or brokerage out of professional fees to a non-member. Substance governs, not the label — \"office allowance\" is still a share of fees.",
+"Clause (2) exceptions: a partner, a retired partner, the legal representative of a deceased partner, a member of another prescribed professional body, or persons with qualifications prescribed by the Council.",
+"Clause (2): Sale or transfer of goodwill of a proprietary firm is permitted only if completed within one year of the proprietor's death. After that, the widow cannot sell and the buyer cannot use the firm name.",
+"Clause (3): Receiving a share of the profits or fees of a non-member. Mirror image of Clause (2) — a registered valuer is not within Regulation 53A, so sharing with one is misconduct.",
+"Clause (4): Entering into partnership with anyone other than a CA, a member of a prescribed professional body, or a person with prescribed qualifications. An advocate on the roll of the Bar Council of India is permitted.",
+"Clause (5): Securing professional work through means not open to a member, or by a person not qualified to be his partner or employee.",
+"Clause (6): Soliciting professional work by advertisement, circular, personal communication or interview, directly or indirectly.",
+"Clause (6) — permitted: applying for or requesting work from another Chartered Accountant; a bare announcement of a change in partnership through appropriate channels; contact details in the Institute's journal.",
+"Clause (6) — not permitted: unsolicited letters with credentials and fee norms to prospective clients; roving enquiries to ministries about panels; advertising coaching classes on social media.",
+"Clause (6) — a photograph may appear on the member's website, but nothing on it may amount to direct or indirect solicitation.",
+"Clause (6) — writing a book is allowed, but adding your professional experience to the author details is indirect solicitation.",
+"Clause (6) — designation \"Chartered Accountant\" on personal invitations (weddings, religious ceremonies) is allowed only for the member's own relatives, close friends and clients, not the partners' clients.",
+"Clause (6) — a member must not accept original professional work emanating from a client introduced to him by another member; if it comes directly, he should route the client back.",
+"Clause (6) — a representation under section 140(4)(iii) may state in dignified terms that he acted independently and may indicate willingness to continue. It must not publicise his contributions or canvass for reappointment.",
+"Clause (6) — a firm of CAs may register on the GeM portal; registration is neither empanelment nor listing on an aggregator, and is a pre-requirement for serving government departments.",
+"Clause (7): Using any designation other than \"Chartered Accountant\" on professional documents, visiting cards or letterheads.",
+"Clause (7) — not permitted: Tax Consultant, Cost Accountant (the letters of the qualification may be used, not the designation), Merchant Banker, Advisor to Issue, Cybersecurity Expert, Management Expert.",
+"Clause (7) — permitted: Insolvency Professional (a title recognised by the Central Government); a recognised foreign qualification such as CPA; names of all firms in which the member is a partner on his personal letterhead; a QR code carrying only otherwise-printable information.",
+"Clause (7) — a member who is also an advocate must not use \"CA\" and \"Advocate\" simultaneously; in advocacy matters he must not use the CA designation at all.",
+"Clause (8): Accepting a position as auditor previously held by another CA without first communicating with him in writing.",
+"Clause (8) — the communication must be before acceptance. Rectifying it later, even before signing the report, does not cure the breach.",
+"Clause (8) — the mode must give positive evidence of delivery: registered post with acknowledgement due, or hand delivery against acknowledgement. A certificate of posting alone is not enough.",
+"Clause (8) — acknowledgement from the outgoing auditor's official email is positive evidence, even if that email is not registered with ICAI.",
+"Clause (8) — where a registered post returns undelivered despite reasonable efforts, the requirement is treated as satisfied.",
+"Clause (8) — where there is no time to await a reply, a conditional acceptance is permitted if the client is told that final acceptance depends on the previous auditor's response.",
+"Clause (8) — applies to replacement situations only. Internal audit and statutory audit are parallel positions, so no communication is needed between them.",
+"Clause (8) — valid professional reasons to decline: non-compliance with sections 139 and 140, undisputed audit fees unpaid (except a sick unit), issues affecting independence. A *disputed* fee is not a valid reason.",
+"Clause (9): Accepting an appointment as auditor of a company without first verifying that sections 139 and 140 have been complied with.",
+"Clause (9) — a certificate from management is not enough; the incoming auditor must examine the company's own records.",
+"Clause (9) — a previous auditor's refusal to accept does not create a casual vacancy the Board can fill; where no auditor is appointed at an AGM, the existing auditor continues.",
+"Clause (10): Charging or accepting fees based on a percentage of profits, or contingent on findings or results, except as permitted by Regulation 192.",
+"Clause (11): Engaging in any business or occupation other than the profession of a Chartered Accountant, unless permitted by the Council or covered by general permission.",
+"Clause (11) — general permission (no approval needed): employment under a CA in practice, private tutorship within 25 hours a week, authorship, editorship of professional journals, agriculture on own land, acting as surveyor and loss assessor, recovery consultant in the banking sector, life insurance agent licence, Special Executive Magistrate, director simplicitor, promoter or signatory.",
+"Clause (11) — specific and prior permission needed: full-time or part-time employment elsewhere, interest in a family or other business, editorship of journals other than professional journals, holding office as MD or whole-time director, and similar.",
+"Clause (11) — commodity derivatives trading is not covered by general permission. Equity and currency derivatives, transacted in a personal capacity, are permitted without Council approval.",
+"Clause (11) — permission must be prior. Applying ten days after taking up an occupation leaves the member guilty for the intervening period.",
+"Clause (11) — selling a domain name for royalty amounts to another business or occupation under Regulation 190A and is prohibited without approval.",
+"Clause (11) — a member may be MD, whole-time director or manager of a body corporate engaged exclusively in Management Consultancy and Other Services, retain a full-time COP, continue attest functions and hold any quantum of equity.",
+"Clause (11) — the auditor of a subsidiary cannot be a director of its holding company; an appropriate cooling-off period applies before auditing a company where he was a director.",
+"Clause (12): Allowing a person other than a partner, a member of the Institute in practice or a person authorised by law to sign on his behalf any balance sheet, profit and loss account, report or financial statement.",
+"Clause (12) — may be delegated: audit queries, memoranda of cash and physical verification, letters forwarding draft observations or financial statements, acknowledgements for records, questionnaires, routine correspondence, attendance at tax proceedings as authorised representative.",
+"Clause (12) — may not be delegated: signing financial statements, net worth certificates, production certificates under GST, or letting an assistant who is a member but not a partner sign a stock certificate."
+]},
+{t:"First Schedule · Part II — Members in service",p:[
+"Clause (1): Paying or agreeing to pay any part of his emoluments to a person other than a member of the Institute.",
+"Clause (2): Accepting any part of the fees, profits or gains of a lawyer, CA, broker, agent or customer engaged by his employer, by way of commission or gratification.",
+"Clause (2) — applies whether or not the member holds a Certificate of Practice. Taking 25% of an arbitration lawyer's fee for a referral is squarely covered.",
+"Delayed or irregular stipend, and similar breaches of the Regulations by a member in service, fall to be considered under Part II."
+]},
+{t:"First Schedule · Part III — Members generally",p:[
+"Clause (1): Not being a Fellow, acting as a Fellow of the Institute.",
+"Clause (2): Not supplying information called for, or failing to comply with a requirement of the Council or any of its Committees, the Director (Discipline), the Board of Discipline, the Disciplinary Committee, the Quality Review Board or the Appellate Authority.",
+"Clause (2) — covers leaving blank the COP application columns about other occupation or business, and failing to reply to ICAI's reminders about the date of leaving service or submission of the membership certificate.",
+"Clause (3): While inviting professional work from another CA, or responding to tenders or enquiries, giving information knowing it to be false."
+]},
+{t:"First Schedule · Part IV — Other misconduct",p:[
+"Clause (1): Being held guilty by any civil or criminal court of an offence punishable with imprisonment up to six months.",
+"Clause (2): Bringing disrepute to the profession or the Institute by any act, whether or not related to professional work.",
+"Clause (2) — examples: cheques returned for insufficient funds; a concurrent auditor using his position to obtain a loan and defaulting; retaining client books after fees are paid; withdrawing money wrongly credited to your account; misappropriation by an office-bearer of a Regional Council."
+]},
+{t:"Second Schedule · Part I — Members in practice",p:[
+"Clause (1): Disclosing information acquired in the course of professional engagement, without the client's consent or without a requirement of law.",
+"Clause (1) — a good motive is no defence. Sharing client examples at a seminar, or writing to the ROC after removal about disputes, is still disclosure.",
+"Clause (2): Certifying or submitting in his name, or his firm's name, a report of an examination of financial statements unless the examination was made by him, a partner, an employee or another CA in practice.",
+"Clause (3): Permitting his name to be used with any estimate of future earnings in a manner that may lead to the belief that he vouches for its accuracy.",
+"Clause (3) — safe harbour: state the sources of information, the basis of forecasts and the major assumptions, and expressly do not vouch for accuracy.",
+"Clause (4): Expressing an opinion on the financial statements of a business in which he, his firm or a partner has a substantial interest.",
+"Clause (4) — a cooling-off of two years applies from the date of completion or resignation of a directorship before accepting the audit of that company.",
+"Clause (4) — bars accepting the audit of an entity to which the member has rendered management or other professional services, including a college where he is a part-time lecturer.",
+"Clause (4) — certification where the client is a relative within the AS 18 definition is not permitted. A brother is a relative; a spouse's sister's husband is not.",
+"Clause (4) — a management consultancy assignment such as cost evaluation is not an opinion on financial statements, so a partner's non-executive directorship does not disqualify the firm.",
+"Clause (5): Failing to disclose a material fact known to him which is not disclosed in the financial statements, where disclosure is necessary to make them not misleading.",
+"Clause (5) — examples: an unrecorded loan from the Employees' Gratuity or Provident Fund; an undisclosed charge against a corporate guarantee that is material to the balance sheet size.",
+"Clause (5) — reporting irregularities separately to those charged with governance is no substitute for qualifying the audit report.",
+"Clause (6): Failing to report a material misstatement known to him appearing in a financial statement with which he is concerned in a professional capacity.",
+"Clauses (5) & (6) — a member acting purely as an authorised representative, transmitting management's data to tax or GST authorities, is not guilty even if that data proves false.",
+"Clause (7): Not exercising due diligence, or being grossly negligent in the conduct of his professional duties.",
+"Clause (7) — examples: certifying circulation figures from an MIS report without cross-verification; a stock audit without physical verification; issuing a clean report without examining the accounts; digitally signing a form without verifying the underlying document; failing to complete the audit in time so the company misses statutory compliance.",
+"Clause (7) with SA 240 — failure to detect fraud is not itself misconduct. It becomes misconduct where the member did not exercise reasonable skill and care or plan and perform the audit with professional scepticism.",
+"Clause (8): Failing to obtain sufficient information to warrant the expression of an opinion, or the exceptions to it being sufficiently material to negate the expression of an opinion.",
+"Clause (9): Failing to invite attention to any material departure from the generally accepted procedure of audit applicable to the circumstances.",
+"Clause (9) — statutory audit of a listed company requires a valid Peer Review certificate from the Peer Review Board of ICAI.",
+"Clause (10): Failing to keep client money, other than fees or advances for expenses, in a separate bank account, or to use it for the purpose intended.",
+"Clause (10) — an advance received against services to be rendered does not attract this clause. Money for onward payment of taxes, or for investment, does.",
+"Clause (10) — making good the amount later, or bearing the interest yourself, does not cure the breach."
+]},
+{t:"Second Schedule · Part II — Members generally",p:[
+"Clause (1): Contravening any provision of the Act or the Regulations, or any guideline issued by the Council.",
+"Clause (1) — examples: stipend not paid monthly (Regulation 48); accepting a loan or deposit from an articled clerk directly or indirectly (Regulation 47); certifying training falsely where the assistant is employed elsewhere; practising or issuing a certificate without a Certificate of Practice (section 6); failure to generate UDIN.",
+"Clause (1) — using an articled assistant's services for purposes other than professional practice, such as election campaigning, is other misconduct.",
+"Clause (2): Being guilty of an act that brings disrepute, in the opinion of the Council, whether or not related to professional duties.",
+"Clause (3): Including in any statement, return or form submitted to the Institute, the Council or its Committees any particular knowing it to be false.",
+"Clause (3) — examples: applying for Fellow membership claiming to be a partner when he is not; naming a person as a partner in an empanelment application before he became one; a false statement on oath before the Disciplinary Committee or in a statement of appeal.",
+"Clause (4): Defalcation or embezzlement of money received in his professional capacity."
+]},
+{t:"Second Schedule · Part III",p:[
+"A member, whether in practice or not, is deemed guilty of other misconduct if, not being a Fellow, he acts as a Fellow of the Institute, or in such other circumstances as may be prescribed."
+]},
+{t:"Key sections of the Chartered Accountants Act, 1949",p:[
+"Section 2(2)(iv): A member is deemed to be in practice when he renders Management Consultancy and Other Services — which include personnel recruitment and selection, HR development, design and conduct of training programmes, job description and job evaluation.",
+"Section 2(2)(iv) — excluded: broking, underwriting and portfolio management services. Advising on a public issue is permitted; underwriting it for commission is not.",
+"Section 2(2)(iv) — a registered valuer under management consultancy services may value securities and financial assets only, not plant and machinery.",
+"Section 6: No member shall be entitled to practise without obtaining a Certificate of Practice.",
+"Section 6 — during suspension, a member must not appear before authorities in a capacity in which he could have appeared as a member of the Institute. Work genuinely outside that capacity is permitted.",
+"Section 7: Restrictions on designations a member may use. Reinforces Clause (7) of Part I of the First Schedule.",
+"Section 8: Disabilities for the purpose of entry of name in the Register. A discharged insolvent holding a court certificate that his insolvency arose from misfortune without misconduct is not debarred.",
+"Section 21: Establishes the disciplinary directorate and the machinery for handling complaints.",
+"Section 21A: Board of Discipline — hears matters falling under the First Schedule. It may reprimand, remove the name for up to three months, or impose a fine up to ₹1,00,000.",
+"Section 21B: Disciplinary Committee — hears matters under the Second Schedule, or under both Schedules. It may reprimand, remove the name permanently or for any duration, or impose a fine up to ₹5,00,000.",
+"Section 26: No person other than a member of the Institute shall sign any document on behalf of a Chartered Accountant in practice.",
+"Section 27: A member with more than one office must have each office in the separate charge of a member. Intimation to ICAI is required within one month of opening or closing a branch.",
+"Section 27 — a second office within 50 km of the municipal limits of the first may be managed by the same member, but intimation is still required.",
+"Section 27 — a member practising in a hill area may set up a temporary office in the plains for up to three months a year, keeping the regular office open, with intimation to the Institute. The name board must not be displayed outside the permitted period and the temporary address must not appear on stationery.",
+"Name boards: a member may display his own name board with the designation CA at his residence. The firm's name board at a residence is not permitted."
+]},
+{t:"Key Regulations",p:[
+"Regulation 47: A member must not accept any premium, loan or deposit, in any form, from an articled clerk, directly or indirectly.",
+"Regulation 48: Stipend to an articled assistant must be paid every month at the prescribed rate. Paying it half-yearly or annually, even with interest, is a contravention.",
+"Regulation 53A: Prescribes the professional bodies and qualifications with whom fees or profits may be shared — includes members of the Bar Council of India, and MBAs from universities established by law or institutions recognised by AICTE.",
+"Regulation 189: Intimation to ICAI within one month of opening or closing a branch office.",
+"Regulation 190A: General and specific permissions for engaging in other business or occupation. Private or part-time tutorship is permitted up to 25 hours a week of direct teaching.",
+"Regulation 191: A member in practice may accept appointments made by the Central or State Government, courts or other legal authorities, and may act as a secretary in his professional capacity, provided the employment is not on a salary-cum-full-time basis.",
+"Regulation 192: Exceptions to the ban on percentage or contingent fees — receiver or liquidator (percentage of realisation), auditor of a co-operative society (percentage of paid-up capital, working capital or net profits), valuer for direct taxes (percentage of property valued), debt recovery services (percentage of debt recovered), certain fund-raising services, cost optimisation services, and non-assurance services to non-audit clients."
+]},
+{t:"Council General Guidelines, 2008",p:[
+"Chapter V — Maintenance of books of account: a member in practice must keep proper books, including a cash book and a ledger. Notes on a phone are not books, and filing under section 44ADA is no excuse.",
+"Chapter VII — Unjustified removal of auditors and unpaid fees: a member must not accept appointment where the previous auditor's undisputed audit fees are unpaid. The bar does not apply to a sick unit — one with negative net worth or accumulated losses equal to or exceeding its entire net worth.",
+"Chapter VII — undisputed audit fees means the provision for audit fees in accounts signed by both the auditee and the auditor, along with other expenses.",
+"Chapter IX — Other services by the statutory auditor: for a PSU, government, listed or public company with turnover of ₹50 crore or more, fees for other services must not exceed the statutory audit fee. Excluded from this cap: audit under other statutes, certification work required to be done by the statutory auditor, and representation before any authority.",
+"Chapter X — Indebtedness: an auditor recovering fees progressively as work is completed, rather than waiting for the whole job, is not indebted to the company. A delayed instalment under a bona fide fee arrangement is not misconduct.",
+"Chapter XV — Networking: no member firm of a network can be appointed auditor in place of another member firm of the same network which is retiring. Prohibited assignments such as internal audit and book-keeping apply network-wide, and fees for other services are capped at the statutory audit fee for the auditing firm and three times that for other network firms.",
+"Network names may use the words \"& Affiliates\". A network must be registered with the Institute.",
+"Recommended self-regulatory measures, including the scale of minimum audit fees, are advisory and not mandatory."
+]},
+{t:"Ceilings and numbers worth memorising",p:[
+"Company audits: 20 per person. A firm's capacity is 20 × number of partners eligible to sign.",
+"Excluded from the company audit ceiling: one-person companies, small companies, dormant companies, and private companies with paid-up share capital below ₹100 crore which have no default under section 137 or 92.",
+"Tax audits under section 44AB: 60 per partner, not per firm. A ten-partner LLP can sign 600.",
+"Private or part-time tutorship: 25 hours a week of direct teaching under general permission.",
+"Branch office: 50 km from municipal limits for the same-member-in-charge relaxation; intimation to ICAI within one month either way.",
+"Sale of goodwill on death of a proprietor: must be completed within one year.",
+"Cooling-off before auditing a company where the member was a director: two years.",
+"Board of Discipline: fine up to ₹1,00,000, removal up to three months. Disciplinary Committee: fine up to ₹5,00,000, removal permanently or for any duration.",
+"Minimum punishment available in any case: a reprimand."
+]},
+{t:"Website, advertisement and tender rules",p:[
+"A member or firm may have a website. There is no restriction on design or colour.",
+"The site must run on \"pull\" technology — information is given on a specific request, never pushed out by email, social media or any other mode.",
+"Names of clients and fees charged must not be displayed unless a regulator requires it.",
+"The website address must be intimated to the Institute annually.",
+"Bio-data of partners and passport size photographs on the firm's website are permitted.",
+"Tenders: a member may respond where the area is open to other professionals as well, and may pay an earnest money deposit.",
+"Tenders: where the area is exclusively reserved for Chartered Accountants, a member may respond only if a minimum fee is prescribed. A maximum fee ceiling does not qualify.",
+"Quoting fees in a tender based on the size and nature of the business, in line with professional norms, is not solicitation.",
+"CSR sponsorship: the member's individual name with the prefix \"CA\" may appear. The firm's name and the CA logo may not.",
+"The CA India logo must not be altered in size, colour, background, wording or design."
+]},
+{t:"Recent and frequently tested points",p:[
+"UDIN is mandatory for all certificates, GST and tax audit reports and every attest function. The absence of a field on a filing portal is not an exemption.",
+"BRSR: preparing the BRSR study for an audit client is not permissible; providing assurance on BRSR Core is permissible.",
+"A member may act as a Trademark or Patent advisor but not as a Trademark Attorney representing the client.",
+"Joint training sessions for clients conducted by two or more CAs, with fees shared between them, are permitted.",
+"A practising CA may serve on the Board of Management of a Primary (Urban) Co-operative Bank.",
+"A practising CA may act as an equity research adviser but must not publish retail research reports.",
+"A practising CA may act as a Registration Authority for issuing digital signatures.",
+"A statutory auditor may accept a system audit only if it does not involve scrutiny or review of financial data.",
+"An internal auditor of an entity cannot accept its tax audit, and by Council decision the same bar extends to GST Audit.",
+"A statutory auditor of a bank cannot simultaneously conduct the stock audit of its branch.",
+"Using messaging applications to promote firm services to business groups amounts to solicitation.",
+"A CA cannot exercise a lien over client documents for non-payment of fees.",
+"SA 250 applies to statutory audits and to laws affecting the financial statements. NOCLAR applies to all professional accountants, in practice and in service, covers serious harm to the public interest whether financial or not, and permits disclosure to authorities in exceptional cases.",
+"Fundamental principles: integrity, objectivity, professional competence and due care, confidentiality, and professional behaviour. Integrity is breached by being associated with reports containing materially false, misleading or negligently furnished information, or that omit required information."
+]}
+];
+/* ===================== BUILD THE BANK ===================== */
+const Q = [];
+QA.forEach((q,i)=>{ q.id="a"+i; q.n=0; Q.push(q); });
+QB.forEach((q,i)=>{ q.id="b"+i; q.n=1; Q.push(q); });
+
+/* ===================== STATE ===================== */
+const KEY = "cafinal_ethics_ch19_v2";
+const DEF = {res:{}, flags:[], sessions:[], hl:[], set:{timer:120, shuffle:1}, daily:null, days:[]};
+let S = load();
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(!raw) return JSON.parse(JSON.stringify(DEF));
+    const p = JSON.parse(raw);
+    const base = JSON.parse(JSON.stringify(DEF));
+    return Object.assign(base, p, {set: Object.assign(base.set, p.set||{})});
+  }catch(e){ return JSON.parse(JSON.stringify(DEF)); }
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ===================== HELPERS ===================== */
+const $ = id => document.getElementById(id);
+const VIEWS = ["home","quiz","result","browse","summary","highlights","stats","settings"];
+function show(v){ VIEWS.forEach(x => $(x).classList.toggle("hide", x!==v)); window.scrollTo(0,0); }
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function mmss(t){ const m=Math.floor(t/60), s=t%60; return m+":"+String(s).padStart(2,"0"); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function seeded(a, seed){
+  a=a.slice(); let s=0; for(const c of seed) s=(s*31+c.charCodeAt(0))>>>0;
+  for(let i=a.length-1;i>0;i--){ s=(s*1103515245+12345)>>>0; const j=s%(i+1); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+const byId = id => Q.find(q=>q.id===id);
+const allIds   = () => Q.map(q=>q.id);
+const wrongIds = () => Q.filter(q=>S.res[q.id] && S.res[q.id].last==="wrong").map(q=>q.id);
+const unseenIds= () => Q.filter(q=>!S.res[q.id]).map(q=>q.id);
+const examIds  = () => Q.filter(q=>!q.n).map(q=>q.id);
+const drillIds = () => Q.filter(q=>q.n).map(q=>q.id);
+
+/* ===================== HIGHLIGHT ENGINE ===================== */
+let pending = null;
+const hlBtn = $("hlBtn");
+
+function findOutsideTag(html, needle){
+  let from = 0;
+  for(;;){
+    const i = html.indexOf(needle, from);
+    if(i < 0) return -1;
+    const before = html.slice(0, i);
+    if(before.lastIndexOf("<") > before.lastIndexOf(">")){ from = i+1; continue; }
+    const opens = (before.match(/<mark/g)||[]).length;
+    const closes = (before.match(/<\/mark>/g)||[]).length;
+    if(opens > closes){ from = i+1; continue; }
+    return i;
+  }
+}
+function renderHL(key, text){
+  let out = esc(text);
+  const hs = S.hl.filter(h=>h.k===key).slice().sort((a,b)=>b.t.length-a.t.length);
+  hs.forEach(h=>{
+    const et = esc(h.t);
+    if(!et) return;
+    const i = findOutsideTag(out, et);
+    if(i < 0) return;
+    out = out.slice(0,i)
+        + '<mark class="mk" data-hk="'+encodeURIComponent(key)+'" data-ht="'+encodeURIComponent(h.t)+'">'+et+'</mark>'
+        + out.slice(i+et.length);
+  });
+  return out;
+}
+function setBlock(el, key, text, label){
+  if(!el) return;
+  el.dataset.hk = key;
+  el.dataset.htext = encodeURIComponent(text);
+  el.dataset.hlabel = label || "";
+  el.innerHTML = renderHL(key, text);
+}
+function repaint(key){
+  document.querySelectorAll('[data-hk]').forEach(el=>{
+    if(el.tagName === "MARK") return;
+    if(el.dataset.hk === key) el.innerHTML = renderHL(key, decodeURIComponent(el.dataset.htext));
+  });
+}
+function hideHl(){ hlBtn.classList.add("hide"); pending = null; }
+
+function checkSel(){
+  const sel = window.getSelection();
+  if(!sel || sel.isCollapsed || sel.rangeCount === 0) return hideHl();
+  const txt = sel.toString().replace(/\s+/g," ").trim();
+  if(txt.length < 4) return hideHl();
+  const host = n => { if(!n) return null; const e = n.nodeType===1?n:n.parentElement; return e ? e.closest("[data-hk]") : null; };
+  const a = host(sel.anchorNode), b = host(sel.focusNode);
+  if(!a || a !== b || a.tagName === "MARK") return hideHl();
+  const full = decodeURIComponent(a.dataset.htext).replace(/\s+/g," ");
+  if(full.indexOf(txt) < 0) return hideHl();
+  pending = {k:a.dataset.hk, t:txt, l:a.dataset.hlabel};
+  const r = sel.getRangeAt(0).getBoundingClientRect();
+  hlBtn.style.left = (r.left + r.width/2 + window.scrollX) + "px";
+  hlBtn.style.top  = (r.top + window.scrollY - 6) + "px";
+  hlBtn.classList.remove("hide");
+}
+document.addEventListener("mouseup", ()=>setTimeout(checkSel, 10));
+document.addEventListener("touchend", ()=>setTimeout(checkSel, 60));
+document.addEventListener("scroll", ()=>{ if(!hlBtn.classList.contains("hide")) hideHl(); }, {passive:true});
+
+hlBtn.addEventListener("mousedown", e=>e.preventDefault());
+hlBtn.addEventListener("click", ()=>{
+  if(!pending) return;
+  const dup = S.hl.some(h=>h.k===pending.k && h.t===pending.t);
+  if(!dup){ S.hl.push({k:pending.k, t:pending.t, l:pending.l, d:today()}); save(); }
+  const k = pending.k;
+  window.getSelection().removeAllRanges();
+  hideHl();
+  repaint(k);
+  renderHomeCounts();
+});
+document.addEventListener("click", e=>{
+  const m = e.target.closest("mark.mk");
+  if(!m) return;
+  const k = decodeURIComponent(m.dataset.hk), t = decodeURIComponent(m.dataset.ht);
+  S.hl = S.hl.filter(h=>!(h.k===k && h.t===t));
+  save(); repaint(k); renderHomeCounts();
+});
+
+/* ===================== HOME ===================== */
+function renderHomeCounts(){
+  $("hlN").textContent = S.hl.length || "0";
+  let pts = 0; SUM.forEach(s=>pts += s.p.length);
+  $("sumN").textContent = pts;
+}
+function renderHome(){
+  const seen = Object.keys(S.res).length;
+  let att=0, cor=0;
+  for(const k in S.res){ att += S.res[k].att; cor += S.res[k].cor; }
+  const acc = att ? Math.round(cor/att*100) : 0;
+  $("heroMeta").textContent = `${Q.length} questions · ${seen} attempted` + (att ? ` · ${acc}% accuracy` : "");
+  $("strip").innerHTML = Q.map(q=>{
+    let c = "tick";
+    if(S.flags.includes(q.id)) c += " f";
+    else if(S.res[q.id]) c += S.res[q.id].last==="correct" ? " r" : " w";
+    return `<span class="${c}" title="${q.id}"></span>`;
+  }).join("");
+  $("fullSub").textContent = `All ${Q.length} questions in one go`;
+  const d = dailySet();
+  $("dailyN").textContent = d.length || "";
+  $("dailySub").textContent = (S.daily && S.daily.date===today() && S.daily.done)
+    ? "Done for today — run it again if you like"
+    : "A short set, weighted to what you keep missing";
+  const w = wrongIds(), u = unseenIds();
+  $("wrongN").textContent = w.length || "0";
+  $("flagN").textContent = S.flags.length || "0";
+  $("unseenN").textContent = u.length || "0";
+  $("examN").textContent = examIds().length;
+  $("drillN").textContent = drillIds().length;
+  $("btnWrong").disabled = !w.length;
+  $("btnFlag").disabled = !S.flags.length;
+  $("btnUnseen").disabled = !u.length;
+  $("footNote").textContent = `${examIds().length} questions from ICAI case scenarios, RTPs and MTPs, plus ${drillIds().length} concept drills built from the illustration pointers. Answers, flags, highlights and scores are saved in this browser only.`;
+  renderHomeCounts();
+}
+function dailySet(){
+  if(S.daily && S.daily.date === today()) return S.daily.ids;
+  const pool = seeded([...wrongIds(), ...unseenIds(), ...allIds()], today());
+  const ids = [];
+  for(const i of pool){ if(!ids.includes(i)) ids.push(i); if(ids.length===10) break; }
+  S.daily = {date: today(), ids, done:false};
+  save();
+  return ids;
+}
+
+/* ===================== QUIZ ===================== */
+let run = null, tick = null;
+
+function start(ids, label, shuffleOk=true){
+  if(!ids.length) return;
+  let list = ids.slice();
+  if(shuffleOk && S.set.shuffle) list = shuffle(list);
+  run = {ids:list, label, i:0, picks:{}, t0:Date.now(), left:0};
+  show("quiz");
+  renderQ();
+}
+function renderQ(){
+  clearInterval(tick);
+  const pos = run.i, q = byId(run.ids[pos]), done = run.picks[pos];
+  $("qCount").textContent = `${pos+1} / ${run.ids.length}`;
+  $("progBar").style.width = (Object.keys(run.picks).length / run.ids.length * 100) + "%";
+  $("qSrc").textContent = q.s;
+  const bd = $("qBadge");
+  if(q.n){ bd.textContent = "Concept drill"; bd.className = "badge drill"; }
+  else { bd.textContent = "Exam booklet"; bd.className = "badge"; }
+  bd.classList.remove("hide");
+  $("qText").textContent = q.q;
+  $("prevBtn").disabled = pos === 0;
+
+  $("opts").innerHTML = q.o.map((t,k)=>
+    `<button class="opt" data-k="${k}"><span class="k">${"ABCD"[k]}</span><span class="v">${esc(t)}</span></button>`
+  ).join("");
+
+  const fl = S.flags.includes(q.id);
+  $("flagBtn").classList.toggle("on", fl);
+  $("flagBtn").textContent = fl ? "Flagged" : "Flag";
+
+  if(done){
+    paintAnswered(q, done.k);
+    $("clock").classList.add("hide");
+    $("nextBtn").textContent = pos === run.ids.length-1 ? "See your score" : "Next question";
+  } else {
+    $("feedback").classList.add("hide");
+    [...$("opts").children].forEach(b => b.onclick = () => answer(+b.dataset.k));
+    $("nextBtn").textContent = "Skip";
+    if(S.set.timer > 0){
+      run.left = S.set.timer;
+      $("clock").classList.remove("hide");
+      paintClock();
+      tick = setInterval(()=>{
+        run.left--; paintClock();
+        if(run.left <= 0){ clearInterval(tick); if(!run.picks[run.i]) answer(-1); }
+      },1000);
+    } else $("clock").classList.add("hide");
+  }
+}
+function paintClock(){
+  $("clock").textContent = mmss(Math.max(0, run.left));
+  $("clock").classList.toggle("low", run.left <= 20);
+}
+function paintAnswered(q, k){
+  [...$("opts").children].forEach(b=>{
+    const bk = +b.dataset.k;
+    b.disabled = true; b.onclick = null;
+    b.classList.remove("correct","picked-wrong","dim");
+    if(bk === q.a) b.classList.add("correct");
+    else if(bk === k) b.classList.add("picked-wrong");
+    else b.classList.add("dim");
+  });
+  const ok = k === q.a, v = $("verdict");
+  v.className = "verdict " + (ok ? "ok" : "no");
+  v.textContent = ok ? "Correct"
+    : k === -1 ? `Time up — the answer is ${"ABCD"[q.a]}`
+    : k === -2 ? `Skipped — the answer is ${"ABCD"[q.a]}`
+    : `Not quite — the answer is ${"ABCD"[q.a]}`;
+  setBlock($("explText"), "exp:"+q.id, q.e, "Explanation");
+  $("feedback").classList.remove("hide");
+  $("feedback").classList.add("reveal");
+}
+function answer(k){
+  const pos = run.i;
+  if(run.picks[pos]) return;
+  clearInterval(tick);
+  const q = byId(run.ids[pos]), ok = k === q.a;
+  run.picks[pos] = {k, ok, id:q.id};
+  const r = S.res[q.id] || {att:0, cor:0, last:null};
+  r.att++; if(ok) r.cor++;
+  r.last = ok ? "correct" : "wrong";
+  S.res[q.id] = r; save();
+  paintAnswered(q, k);
+  $("clock").classList.add("hide");
+  $("progBar").style.width = (Object.keys(run.picks).length / run.ids.length * 100) + "%";
+  $("nextBtn").textContent = pos === run.ids.length-1 ? "See your score" : "Next question";
+}
+$("prevBtn").onclick = () => { if(run.i > 0){ run.i--; renderQ(); } };
+$("nextBtn").onclick = () => {
+  if(!run.picks[run.i]){ answer(-2); return; }
+  if(run.i === run.ids.length-1) finish();
+  else { run.i++; renderQ(); }
+};
+$("flagBtn").onclick = () => {
+  const id = run.ids[run.i], at = S.flags.indexOf(id);
+  if(at >= 0) S.flags.splice(at,1); else S.flags.push(id);
+  save();
+  const fl = at < 0;
+  $("flagBtn").classList.toggle("on", fl);
+  $("flagBtn").textContent = fl ? "Flagged" : "Flag";
+};
+$("quitBtn").onclick = () => {
+  clearInterval(tick);
+  if(Object.keys(run.picks).length) finish();
+  else { renderHome(); show("home"); }
+};
+
+function finish(){
+  clearInterval(tick);
+  const picks = Object.keys(run.picks).sort((a,b)=>a-b).map(k=>run.picks[k]);
+  const secs = Math.round((Date.now()-run.t0)/1000);
+  const cor = picks.filter(p=>p.ok).length, tot = picks.length;
+  S.sessions.unshift({d:today(), label:run.label, cor, tot, secs});
+  S.sessions = S.sessions.slice(0,25);
+  if(!S.days.includes(today())) S.days.push(today());
+  if(S.daily && S.daily.date===today() && run.label==="Today's 10") S.daily.done = true;
+  save();
+
+  $("scoreVal").innerHTML = `${cor}<small> / ${tot}</small>`;
+  const pct = tot ? Math.round(cor/tot*100) : 0, perQ = tot ? Math.round(secs/tot) : 0;
+  $("scoreMeta").textContent = `${pct}% · ${run.label} · ${mmss(secs)} total, about ${perQ}s a question`;
+  $("resStrip").innerHTML = picks.map(p=>`<span class="tick ${p.ok?"r":"w"}"></span>`).join("");
+
+  const missed = picks.filter(p=>!p.ok);
+  if(missed.length){
+    $("wrongWrap").innerHTML = `<h3 class="sec">WHAT WENT WRONG</h3><div class="rlist">` +
+      missed.map(p=>{
+        const q = byId(p.id);
+        return `<div class="ritem"><div class="rq">${esc(q.q.length>160?q.q.slice(0,160)+"…":q.q)}</div>
+        <div class="ra">Correct answer: <b>${"ABCD"[q.a]}</b> — ${esc(q.o[q.a])}</div></div>`;
+      }).join("") + `</div>`;
+    $("retryWrong").classList.remove("hide");
+    $("retrySub").textContent = `${missed.length} question${missed.length>1?"s":""} from this set`;
+    $("retryWrong").onclick = () => start(missed.map(p=>p.id), "Mistake practice");
+  } else {
+    $("wrongWrap").innerHTML = `<div class="empty">Clean sweep. Nothing to review from this set.</div>`;
+    $("retryWrong").classList.add("hide");
+  }
+  const same = run.ids.slice(), lbl = run.label;
+  $("againBtn").onclick = () => start(same, lbl);
+  show("result");
+}
+
+/* ===================== BROWSE ===================== */
+function browse(ids, title){
+  $("browseTitle").textContent = title.toUpperCase();
+  if(!ids.length){
+    $("browseBody").innerHTML = `<div class="empty">Nothing here yet.</div>`;
+  } else {
+    $("browseBody").innerHTML = ids.map(id=>{
+      const q = byId(id), fl = S.flags.includes(id);
+      return `<div class="card">
+        <div class="cq">${esc(q.q)}</div>
+        <div class="cans">${"ABCD"[q.a]} — ${esc(q.o[q.a])}</div>
+        <div class="cex" data-exp="${id}"></div>
+        <div class="cbar"><span>${esc(q.s)}</span>
+        ${fl?`<button data-unflag="${id}">Remove flag</button>`:""}</div>
+      </div>`;
+    }).join("") + `<button class="primary" id="drillBtn" style="margin-top:14px">Practise these ${ids.length}<span>Timed, same as a normal set</span></button>`;
+    $("browseBody").querySelectorAll("[data-exp]").forEach(el=>{
+      const q = byId(el.dataset.exp);
+      setBlock(el, "exp:"+q.id, q.e, "Explanation");
+    });
+    const db = $("drillBtn");
+    if(db) db.onclick = () => start(ids, title);
+    $("browseBody").querySelectorAll("[data-unflag]").forEach(b=>{
+      b.onclick = () => {
+        const id = b.dataset.unflag, at = S.flags.indexOf(id);
+        if(at>=0){ S.flags.splice(at,1); save(); browse(S.flags.slice(), title); }
+      };
+    });
+  }
+  show("browse");
+}
+
+/* ===================== SUMMARY ===================== */
+function tocLabel(t){
+  let x = t.split("—")[0].trim();
+  if(x.length > 26) x = x.slice(0,24).trim() + "…";
+  return x;
+}
+function renderSummary(){
+  $("toc").innerHTML = SUM.map((s,i)=>`<button data-go="s${i}">${esc(tocLabel(s.t))}</button>`).join("");
+  $("toc").querySelectorAll("[data-go]").forEach(b=>{
+    b.onclick = () => { const t = document.getElementById(b.dataset.go); if(t) t.scrollIntoView({behavior:"smooth", block:"start"}); };
+  });
+  $("sumBody").innerHTML = SUM.map((s,i)=>
+    `<div class="sumsec" id="s${i}"><h4>${esc(s.t)}</h4><ul class="pts">` +
+    s.p.map((p,j)=>`<li class="pt" data-sum="${i}.${j}"></li>`).join("") +
+    `</ul></div>`
+  ).join("");
+  $("sumBody").querySelectorAll("[data-sum]").forEach(el=>{
+    const [i,j] = el.dataset.sum.split(".").map(Number);
+    setBlock(el, `sum:${i}:${j}`, SUM[i].p[j], SUM[i].t);
+  });
+  show("summary");
+}
+
+/* ===================== HIGHLIGHTS ===================== */
+function renderHighlights(){
+  $("hlTitle").textContent = `MY HIGHLIGHTS · ${S.hl.length}`;
+  if(!S.hl.length){
+    $("hlBody").innerHTML = `<div class="empty">Nothing highlighted yet. Open the clause-wise summary or any explanation, select a line, and tap Highlight.</div>`;
+    return show("highlights");
+  }
+  const order = {};
+  SUM.forEach((s,i)=> s.p.forEach((p,j)=> order[`sum:${i}:${j}`] = i*1000+j));
+  const sorted = S.hl.slice().sort((a,b)=>{
+    const oa = order[a.k], ob = order[b.k];
+    if(oa !== undefined && ob !== undefined) return oa-ob;
+    if(oa !== undefined) return -1;
+    if(ob !== undefined) return 1;
+    return 0;
+  });
+  const groups = {};
+  sorted.forEach(h=>{ (groups[h.l||"Explanation"] = groups[h.l||"Explanation"] || []).push(h); });
+  $("hlBody").innerHTML = Object.keys(groups).map(g=>
+    `<h3 class="sec">${esc(g.toUpperCase())}</h3>` +
+    groups[g].map(h=>`<div class="hcard"><div class="ht">${esc(h.t)}</div>
+      <div class="hb"><span>${esc(h.d||"")}</span><button data-del="${encodeURIComponent(h.k)}|${encodeURIComponent(h.t)}">Remove</button></div></div>`).join("")
+  ).join("");
+  $("hlBody").querySelectorAll("[data-del]").forEach(b=>{
+    b.onclick = () => {
+      const [k,t] = b.dataset.del.split("|").map(decodeURIComponent);
+      S.hl = S.hl.filter(h=>!(h.k===k && h.t===t));
+      save(); renderHighlights(); renderHomeCounts();
+    };
+  });
+  show("highlights");
+}
+
+/* ===================== STATS ===================== */
+function renderStats(){
+  let att=0, cor=0;
+  for(const k in S.res){ att+=S.res[k].att; cor+=S.res[k].cor; }
+  $("stAcc").textContent = att ? Math.round(cor/att*100)+"%" : "—";
+  $("stSeen").textContent = Object.keys(S.res).length + " / " + Q.length;
+  $("stMastered").textContent = Object.keys(S.res).filter(k=>S.res[k].last==="correct").length;
+  $("stStreak").textContent = S.days.length;
+  if(!S.sessions.length){
+    $("histWrap").innerHTML = `<div class="empty">No sessions yet. Your scores will build up here.</div>`;
+  } else {
+    $("histWrap").innerHTML = `<table class="hist"><tr><th>Date</th><th>Set</th><th>Score</th><th>Time</th></tr>` +
+      S.sessions.map(s=>`<tr><td>${s.d.slice(8)}/${s.d.slice(5,7)}</td><td>${esc(s.label)}</td><td>${s.cor}/${s.tot}</td><td>${mmss(s.secs)}</td></tr>`).join("") +
+      `</table>`;
+  }
+  show("stats");
+}
+
+/* ===================== SETTINGS ===================== */
+function renderSettings(){
+  [...$("timerSeg").children].forEach(b=>b.classList.toggle("on", +b.dataset.t === S.set.timer));
+  [...$("shufSeg").children].forEach(b=>b.classList.toggle("on", +b.dataset.s === S.set.shuffle));
+  show("settings");
+}
+$("timerSeg").onclick = e => { if(e.target.dataset.t!==undefined){ S.set.timer=+e.target.dataset.t; save(); renderSettings(); } };
+$("shufSeg").onclick  = e => { if(e.target.dataset.s!==undefined){ S.set.shuffle=+e.target.dataset.s; save(); renderSettings(); } };
+$("resetHl").onclick = () => {
+  if(confirm("Remove every highlight?")){ S.hl = []; save(); renderHomeCounts(); alert("Highlights cleared."); }
+};
+$("resetBtn").onclick = () => {
+  if(confirm("Clear all scores, flags, highlights and history on this device?")){
+    S = JSON.parse(JSON.stringify(DEF)); save(); renderHome(); show("home");
+  }
+};
+
+/* ===================== WIRING ===================== */
+$("btnFull").onclick    = () => start(allIds(), "Full chapter");
+$("btnDaily").onclick   = () => start(dailySet(), "Today's 10");
+$("btnWrong").onclick   = () => browse(wrongIds(), "Questions you got wrong");
+$("btnFlag").onclick    = () => browse(S.flags.slice(), "Flagged for revision");
+$("btnUnseen").onclick  = () => start(unseenIds(), "Fresh questions");
+$("btnExam").onclick    = () => start(examIds(), "Exam booklet");
+$("btnDrill").onclick   = () => start(drillIds(), "Concept drills");
+$("btnSummary").onclick = renderSummary;
+$("btnHl").onclick      = renderHighlights;
+$("btnStats").onclick   = renderStats;
+$("btnSettings").onclick= renderSettings;
+["resHome","homeBtn","browseHome","sumHome","hlHome","statsHome","setHome"].forEach(id=>{
+  $(id).onclick = () => { renderHome(); show("home"); };
+});
+$("themeBtn").onclick = () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "" : "dark";
+  if(next) document.documentElement.setAttribute("data-theme", next);
+  else document.documentElement.removeAttribute("data-theme");
+  try{ localStorage.setItem(KEY+"_theme", next); }catch(e){}
+};
+try{ const t = localStorage.getItem(KEY+"_theme"); if(t) document.documentElement.setAttribute("data-theme", t); }catch(e){}
+
+renderHome();
+show("home");
+
+</script>
+</body>
+</html>

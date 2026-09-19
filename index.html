@@ -12,7 +12,7 @@
   --paper:#E9EDF1;--surface:#FFFFFF;--surface-2:#F4F6F9;
   --ink:#141A22;--ink-2:#3D4B5C;--muted:#6B7B8C;--line:#D2DAE2;
   --accent:#1F4B73;--accent-ink:#FFFFFF;
-  --afm:#2E6B57;--audit:#1F4B73;
+  --fr:#8A3A5E;--afm:#2E6B57;--audit:#1F4B73;--dt:#B0632E;--idt:#5B4A8A;
   --flag:#B56B12;--flag-bg:#FBEEDC;
   --right:#1B6E52;--right-bg:#E1F2EB;
   --wrong:#A83535;--wrong-bg:#F8E6E6;
@@ -26,7 +26,7 @@
   :root:not([data-theme="light"]){
     --paper:#0F141A;--surface:#1A212A;--surface-2:#212A34;--ink:#E7ECF2;--ink-2:#B9C4D0;
     --muted:#8494A4;--line:#2E3946;--accent:#6FA3CE;--accent-ink:#0F141A;
-    --afm:#63B394;--audit:#6FA3CE;
+    --fr:#D48AA8;--afm:#63B394;--audit:#6FA3CE;--dt:#E0A15E;--idt:#A99BD6;
     --flag:#E0A65A;--flag-bg:#33281A;--right:#5FC49C;--right-bg:#12291F;
     --wrong:#E08585;--wrong-bg:#2E1A1A;--mark:#6A5520;--mark-ink:#FFF3CF;
     --note:#A79BD6;--note-bg:#241F35;
@@ -35,7 +35,7 @@
 :root[data-theme="dark"]{
   --paper:#0F141A;--surface:#1A212A;--surface-2:#212A34;--ink:#E7ECF2;--ink-2:#B9C4D0;
   --muted:#8494A4;--line:#2E3946;--accent:#6FA3CE;--accent-ink:#0F141A;
-  --afm:#63B394;--audit:#6FA3CE;
+  --fr:#D48AA8;--afm:#63B394;--audit:#6FA3CE;--dt:#E0A15E;--idt:#A99BD6;
   --flag:#E0A65A;--flag-bg:#33281A;--right:#5FC49C;--right-bg:#12291F;
   --wrong:#E08585;--wrong-bg:#2E1A1A;--mark:#6A5520;--mark-ink:#FFF3CF;
   --note:#A79BD6;--note-bg:#241F35;
@@ -234,6 +234,41 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
   color:var(--ink-2);background:var(--surface)}
 .soon{opacity:.5}
 .soon .d{font-style:italic}
+/* trend + qwise */
+.ana-note{font-size:12.5px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.ana-h{font-family:var(--serif);font-size:15px;font-weight:700;margin:20px 0 8px}
+.ana-list{margin:0 0 12px;padding-left:20px}
+.ana-list li{font-family:var(--serif);font-size:14px;line-height:1.55;color:var(--ink-2);margin-bottom:6px}
+.ana-cred{font-size:11.5px;color:var(--muted);margin-top:20px}
+.ana-cred a{color:var(--accent)}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--surface);margin-bottom:8px}
+.tbl{border-collapse:collapse;font-size:11.5px;width:auto;min-width:100%}
+.tbl th,.tbl td{padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:center;
+  font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.tbl th{font-weight:600;color:var(--muted);font-size:10.5px;background:var(--surface-2);letter-spacing:.03em}
+.tbl th.stk,.tbl td.stk{text-align:left;position:sticky;left:0;background:var(--surface);
+  border-right:1px solid var(--line);font-size:12px;color:var(--ink);font-weight:500;
+  min-width:180px;white-space:normal;line-height:1.35}
+.tbl th.stk{background:var(--surface-2);font-weight:600;color:var(--muted)}
+.tbl td.c{color:var(--muted);font-weight:500;min-width:36px}
+.tbl td.c.h1{background:rgba(31,75,115,.08);color:var(--ink-2)}
+.tbl td.c.h2{background:rgba(31,75,115,.18);color:var(--ink);font-weight:600}
+.tbl td.c.h3{background:rgba(31,75,115,.32);color:var(--ink);font-weight:600}
+.tbl td.c.h4{background:rgba(31,75,115,.50);color:#fff;font-weight:700}
+.tbl td.tot{background:var(--surface-2);font-weight:600;color:var(--ink)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .tbl td.c.h1{background:rgba(111,163,206,.10)}
+  :root:not([data-theme="light"]) .tbl td.c.h2{background:rgba(111,163,206,.22)}
+  :root:not([data-theme="light"]) .tbl td.c.h3{background:rgba(111,163,206,.38)}
+  :root:not([data-theme="light"]) .tbl td.c.h4{background:rgba(111,163,206,.55);color:#fff}
+}
+:root[data-theme="dark"] .tbl td.c.h1{background:rgba(111,163,206,.10)}
+:root[data-theme="dark"] .tbl td.c.h2{background:rgba(111,163,206,.22)}
+:root[data-theme="dark"] .tbl td.c.h3{background:rgba(111,163,206,.38)}
+:root[data-theme="dark"] .tbl td.c.h4{background:rgba(111,163,206,.55);color:#fff}
+.tbl.qw td.qc{text-align:left;white-space:normal;font-size:11.5px;line-height:1.4;
+  min-width:110px;max-width:150px;color:var(--ink-2)}
 </style>
 </head>
 <body>
@@ -377,6 +412,18 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
     </div>
     <h3 class="sec">RECENT SESSIONS</h3>
     <div id="histWrap"></div>
+  </section>
+
+  <section id="trend" class="hide">
+    <button class="back" id="trendBack">← Subject</button>
+    <h3 class="sec" id="trendTitle">TREND ANALYSIS</h3>
+    <div id="trendBody"></div>
+  </section>
+
+  <section id="qwise" class="hide">
+    <button class="back" id="qwiseBack">← Subject</button>
+    <h3 class="sec" id="qwiseTitle">QUESTION-WISE PATTERN</h3>
+    <div id="qwiseBody"></div>
   </section>
 
   <section id="settings" class="hide">
@@ -1320,6 +1367,423 @@ sum:[
 "VC financing is staged (Seed, Series A, B) to reduce information asymmetry and moral hazard, link funding to milestones and limit downside exposure. DCF is unreliable for early-stage startups lacking stable historical earnings."
 ]}
 ];
+/* ===================== TREND + QWISE DATA =====================
+   Source: OpenMock (openmock.in) — trend PDFs shared by the user.
+   at = attempts, most recent first. Cell "-" or 0 = not asked / small.
+   "X+Y" means the chapter was asked twice in that attempt for X and Y marks. */
+
+const TREND = {
+
+fr: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24","N'23","M'23","N'22","M'22","N'21","Jul'21","J'21","N'20","N'19"],
+  cats:[
+    {n:"Big Chapters (43–55 Marks)", r:[
+      ["Ind AS 110 — Consolidation",[0,14,16,"-",14,12,20,5,15,"-",5,16,15,"-","-"]],
+      ["Ind AS 28 — Associates/JVs",[4,6,"-",4,2,6,"-","-",5,"-","-","-",5,6,"-"]],
+      ["Ind AS 111 — Joint Arrangements",[0,"-","-",2,"-","-","-","-","-","-","-","-","-",4,"-"]],
+      ["Ind AS 103 — Business Combinations",["2+14","-",2,16,6,2,"-",15,"-",20,14,5,4,8,28]],
+      ["Ind AS 109 — Financial Instruments",["4+10",16,16,12,14,20,19,19,19,19,29,19,14,20,14]],
+      ["Ind AS 116 — Leases",[10,"-","-","-",2,8,8,"-",8,"-",10,4,6,8,"-"]],
+      ["Ind AS 102 — Share-based Payment",[0,"-",2,10,8,"-",8,"-",6,"-",6,5,12,5,8]],
+      ["Ind AS 115 — Revenue",["2+5",7,7,7,10,7,12,12,20,14,10,12,12,18,12]],
+    ]},
+    {n:"Assets (10–25 Marks)", r:[
+      ["Ind AS 2 — Inventories",[0,"-",2,7,"-",2,"-",5,"-","-",5,"-","-",2,"-"]],
+      ["Ind AS 16 — PPE",[0,8,"-",9,9,2,5,8,"-","-","-",5,5,"-",8]],
+      ["Ind AS 36 — Impairment",[2,2,5,8,2,"-","-","-",8,"-","-",6,"-",8,"-"]],
+      ["Ind AS 38 — Intangibles",[0,2,2,"-","-","-",4,"-","-","-","-","-",10,"-","-"]],
+      ["Ind AS 40 — Investment Property",[0,"-",2,4,8,2,"-","-","-",5,"-",3,"-","-","-"]],
+      ["Ind AS 105 — NCA Held for Sale",[4,6,"-","-","-",3,8,8,"-",8,"-","-","-","-",10]],
+    ]},
+    {n:"Medium (22–47 Marks)", r:[
+      ["Ind AS 7 — Cash Flows",[0,2,4,2,"-",2,"-","-","-","-",6,"-",5,8,"-"]],
+      ["Ind AS 8 — Accounting Policies",[2,"-",4,"-",4,"-",5,"-",5,"-",5,"-","-","-","-"]],
+      ["Ind AS 10 — Events after Reporting",[0,"-","-","-","-","-","-",5,"-","-","-","-",8,"-",8]],
+      ["Ind AS 12 — Income Taxes",[0,6,"-","-",8,"-","-","-",6,"-",5,"-","-",6,"-"]],
+      ["Ind AS 19 — Employee Benefits",[6,5,8,"-","-",8,"-","-","-",7,"-","-",5,6,"-"]],
+      ["Ind AS 20 — Government Grants",[8,8,"-","-",2,8,"-","-","-",8,"-","-","-","-","-"]],
+      ["Ind AS 21 — Forex",[2,2,8,2,"-",4,4,"-","-",6,5,5,"-","-",4]],
+      ["Ind AS 23 — Borrowing Costs",[5,"-",6,"-","-","-","-","-","-",7,"-","-","-","-",8]],
+      ["Ind AS 33 — EPS",[2,2,6,8,"-","-","-","-",6,4,8,8,"-",8,"-"]],
+      ["Ind AS 34 — Interim Reporting",[4,2,"-",4,2,4,"-","-","-","-",4,5,"-",6,"-"]],
+      ["Ind AS 37 — Provisions",[0,2,2,"-",6,2,"-",4,"-","-","-","-","-","-","-"]],
+      ["Ind AS 41 — Agriculture",[0,"-",2,"-","-","-","-",8,6,"-","-",9,4,"-",4]],
+      ["Ind AS 101 — First-time Adoption",["2+5",5,7,2,7,5,5,"-","-","-",8,6,"-","-","-"]],
+      ["Ind AS 108 — Operating Segments",[4,"-","-","-",2,"-",8,16,5,"-","-",8,4,6,"-"]],
+      ["Ind AS 113 — Fair Value",["2+4",4,"-",6,"-",2,"-","-",5,5,4,"-","-","-",8]],
+      ["Intro to Ind AS",[0,4,"-","-","-",4,"-","-","-","-","-","-","-","-","-"]],
+    ]},
+    {n:"Theory (13–19 Marks)", r:[
+      ["Conceptual Framework",[4,"-",4,4,4,6,6,6,6,6,"-","-","-","-","-"]],
+      ["Ind AS 1 — Presentation",[0,4,6,4,4,4,"-",5,"-",5,"-",4,5,"-",12]],
+      ["Ethics",[2,7,2,"-",2,"-","-","-","-","-","-","-","-","-","-"]],
+    ]},
+    {n:"Others", r:[
+      ["Technology",[5,"-",5,7,2,5,"-","-","-","-","-","-","-","-","-"]],
+      ["Analysis of Financial Statements",[0,"-","-","-","-","-","-","-","-","-","-","-","-","-","-"]],
+    ]},
+  ],
+  total:[114,114,118,118,118,118,112,116,120,114,124,120,114,119,124],
+  obs:["11 of 15 MCQs are pulled straight from illustrations and examples in the ICAI SM.",
+       "Descriptive questions (barring Q1 on CFS or BC) are usually word-for-word from ICAI sources, but May'26's Ind AS 109 Q2(a) was new and challenging — you couldn't solve it without knowing the exact SM paragraphs.",
+       "Ind AS 116 (leases) 3(a) added extra information to make the question harder to solve under exam pressure.",
+       "Q4(a) and 6(b) were similar but padded with more data to lengthen the paper."],
+  tips:["Refer ICAI SM illustrations and examples and mark them.",
+        "Build more conceptual knowledge in the big chapters.",
+        "A lot of writing practice."]
+},
+
+afm: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24","N'23","M'23","N'22","M'22","N'21","Jul'21","J'21","N'20","N'19","M'19"],
+  cats:[
+    {n:"Practical", r:[
+      ["Security Analysis",[4,4,4,4,0,6,4,0,0,8,4,0,8,4,8,0]],
+      ["Security Valuation",["6+4",6,12,10,"18+6",12,8,17,16,8,16,16,4,23,8,16]],
+      ["Business Valuation",[6,4,13,11,4,6,8,0,8,8,8,8,0,16,8,8]],
+      ["Derivatives",[11,18,"6+4","6+7","6+14","6+6",18,12,8,8,16,16,12,8,14,16]],
+      ["Portfolio Management",["6+12","6+8",6,"10+6",8,"6+8",16,16,24,16,12,8,10,8,16,8]],
+      ["Forex",["6+4","6+10","6+11","8+4",14,6,16,6,12,8,16,8,16,12,8,16]],
+      ["International Financial Management",[12,6,7,6,6,8,0,7,8,12,16,8,16,16,12,8]],
+      ["Advanced Capital Budgeting",[6,6,6,6,8,8,0,0,0,0,0,0,0,0,0,0]],
+      ["Mergers & Acquisitions",["6+7","6+4",6,4,"6+4",10,10,18,8,8,8,16,18,0,8,16]],
+      ["Mutual Funds",[8,12,"6+11","6+7",6,8,8,12,8,16,8,12,8,14,10,8]],
+      ["Interest Rate Risk Management",[4,6,4,7,10,10,16,12,8,12,4,12,0,8,8,0]],
+    ]},
+    {n:"Theory", r:[
+      ["Financial Policy",[4,4,4,4,4,4,4,4,8,4,0,4,12,0,4,0]],
+      ["Risk Management",[4,4,4,4,0,6,4,8,4,4,4,4,4,4,4,4]],
+      ["Securitization",[4,4,4,4,0,4,4,4,4,4,4,4,8,4,8,4]],
+      ["Startup Finance",[4,4,4,4,4,4,8,8,8,4,8,8,8,7,8,4]],
+    ]},
+  ],
+  total:[118,118,118,118,118,118,124,124,124,120,124,124,124,124,124,108],
+  obs:["Paper is just impossible to solve in 3 hours."],
+  tips:["Refer ICAI SM and mark all concepts not covered in your concept notes.",
+        "Understand formulas and concepts — don't just memorise them.",
+        "Order of preparation: Concept notes (with ICAI SM) + your QB first. Only after that, try May'26-level questions.",
+        "Focus on the entire 100% ICAI syllabus even though May'26 was out-of-syllabus. It's not possible to cover all the practicality of Valuation, M&A and Derivatives; do NOT leave anything for choice (including theory of practical chapters)."]
+},
+
+audit: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  cats:[
+    {n:"Professional Ethics (20 Marks)", r:[
+      ["Prof Ethics & Liab of Auditor",[22,23,24,20,22,19]],
+    ]},
+    {n:"SQC 1 (7–10 Marks)", r:[
+      ["SQC 1 + SA 220",[2,6,5,7,5,10]],
+    ]},
+    {n:"SA 200 Series (5–7 Marks)", r:[
+      ["SA 240 — Fraud",[0,9,"-",5,2,"-"]],
+      ["SA 250 — Laws & Regulations",[2,"-",5,"-","-","-"]],
+      ["SA 260 — Communication with TCWG",[5,"-","-","-",2,"-"]],
+      ["SA 265 — Comm of Significant Deficiencies",[0,2,5,"-","-",2]],
+      ["SA 299 — Joint Audit",[0,"-",2,"-","-","-"]],
+    ]},
+    {n:"SA 300 Series (2–4 Marks)", r:[
+      ["SA 300 — Planning",[0,"-","-","-","-","-"]],
+      ["SA 315 — Risk of Material Misstatement",[0,"-",2,"-","-",4]],
+      ["SA 320 — Materiality",[0,"-","-","-","-","-"]],
+    ]},
+    {n:"SA 402 / SA 450", r:[
+      ["SA 402 — Service Organisation",[2,"-","-",5,"-",5]],
+      ["SA 450 — Misstatements",[0,7,"-",4,"-","-"]],
+    ]},
+    {n:"SA 500 Series (8–12 Marks)", r:[
+      ["SA 500 — Audit Evidence",[5,"-","-","-","-","-"]],
+      ["SA 501 — Specific Considerations",[5,2,"-","-","-","-"]],
+      ["SA 505 — External Confirmation",[0,"-",5,2,"-","-"]],
+      ["SA 510 — Opening Balances",[0,"-","-",2,"-","-"]],
+      ["SA 520 — Analytical Procedures",[0,"-","-","-","-","-"]],
+      ["SA 530 — Audit Sampling",[0,"-","-",2,"-","-"]],
+      ["SA 540 — Accounting Estimates",[0,"-",5,"-","-","-"]],
+      ["SA 550 — Related Party",[0,"-","-","-",5,"-"]],
+      ["SA 560 — Subsequent Events",[2,"-","-","-",2,"-"]],
+      ["SA 570 — Going Concern",[4,"-","-",2,"-","-"]],
+      ["SA 580 — Written Representations",[0,"-","-","-",2,5]],
+    ]},
+    {n:"SA 600 Series (5–7 Marks)", r:[
+      ["SA 600 — Work of Another Auditor",[0,"-","-","-",5,2]],
+      ["SA 610 — Internal Auditor Work",[2,"-","-","-",7,"-"]],
+      ["SA 620 — Auditor's Expert Work",[2,"-",2,7,"-","-"]],
+    ]},
+    {n:"Reporting — SA 700s + CARO (10–12 Marks)", r:[
+      ["SA 701 — Key Audit Matters",[0,"-",5,"-",5,2]],
+      ["SA 705 — Modification of Opinion",[0,7,1,"-","-","-"]],
+      ["SA 706 — EOM & OM Para",[5,2,"-","-","-",5]],
+      ["SA 710 — Comparative Info",[0,"-","-","-",2,"-"]],
+      ["SA 720 — Other Info",[0,"-","-",5,"-","-"]],
+      ["CARO 2020",[7,5,8,5,7,7]],
+    ]},
+    {n:"SA 800 (5 Marks)", r:[
+      ["SA 800 — Special Purpose FS",[0,"-","-","-","-",2]],
+      ["SA 805 — Single Element of FS",[0,"-","-","-",5,"-"]],
+      ["SA 810 — Summary FS",[0,5,5,"-","-",4]],
+    ]},
+    {n:"Group / Internal / PSU (5 Marks each)", r:[
+      ["Group Audits",[2,2,7,2,"-",5]],
+      ["Internal Audit",[5,2,"-",5,"-",4]],
+      ["Overview of Audit of PSU",[6,5,4,4,8,"-"]],
+    ]},
+    {n:"Banks & NBFC (10–15 Marks)", r:[
+      ["Audit of NBFCs",[5,6,2,5,7,6]],
+      ["Audit of Banks",[2,5,7,9,4,10]],
+    ]},
+    {n:"Due Diligence, Forensic, Investigation (4 Marks)", r:[
+      ["Due Diligence",[0,5,"-","-","-","-"]],
+      ["Forensic Accounting",[2,"-","-",4,"-","-"]],
+      ["Investigation",[5,"-",4,"-",4,5]],
+    ]},
+    {n:"Review Engagements (5–9 Marks)", r:[
+      ["SRE 2400 — Review by Practitioner",[5,4,"-",4,4,"-"]],
+      ["SRE 2410 — Review by Auditor",[0,"-",9,"-","-",5]],
+    ]},
+    {n:"SAE 3000 Series / Related Services (5 Marks)", r:[
+      ["SAE 3400 — Prospective FS",[5,4,"-","-",5,"-"]],
+      ["SAE 3402 — Service Org",[0,"-","-","-","-","-"]],
+      ["SAE 3420 — Proforma Fin Info",[0,"-","-",4,"-","-"]],
+      ["SRS 4400 — Agreed Procedures",[0,"-","-","-",5,"-"]],
+      ["SRS 4410 — Compilation Engagement",[4,"-","-",4,"-",5]],
+    ]},
+    {n:"Emerging / Digital / Internal Controls", r:[
+      ["Emerging Areas — SDG & ESG",[6,6,6,5,6,6]],
+      ["Digital Auditing and Assurance",[6,6,5,6,4,5]],
+      ["Internal Controls (Ch 3)",[0,5,"-","-","-","-"]],
+    ]},
+  ],
+  total:[118,118,118,118,118,118],
+  obs:["Some unexpected areas were asked, otherwise the paper is fine."],
+  tips:["Read every chapter, every topic.",
+        "Do not leave any chapter based on trend or ABC analysis.",
+        "Don't neglect this subject. You will not score in the descriptive part unless you know exactly what to write — write some tests and take professional evaluation."]
+},
+
+dt: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  cats:[
+    {n:"Total Income (20–28 Marks)", r:[
+      ["PGBP",[10,"2+11",7,6,"2+5",12]],
+      ["Firm Taxation",["-","-","-",8,"-","-"]],
+      ["Capital Gains",[7,6,"2+5",3,12,8]],
+      ["Income from Other Sources",[1,"1+5",4,"4+3","2+2",6]],
+      ["VI-A Deductions",[2,"-",2,2,3,2]],
+    ]},
+    {n:"Trusts & Other Entities (12–20 Marks)", r:[
+      ["AOP Taxation",["-","-",4,"-","-","-"]],
+      ["Business Trust",["-","-",6,"-",8,4]],
+      ["Charitable Trust",["8+6","8+8",8,"2+8","2+4",8]],
+      ["Electoral Trust",[2,"-","-","-",4,"-"]],
+      ["Investment Fund",["-","-","-",2,"-",2]],
+    ]},
+    {n:"TDS & TCS (12–14 Marks)", r:[
+      ["TDS",["2+8","4+8","2+12","2+12",9,8]],
+      ["TCS",[6,"-","-","-",3,2]],
+      ["Advance Tax",["-","-","-","-","-","-"]],
+    ]},
+    {n:"Clubbing & Set-off", r:[
+      ["Set-off & Carry Forward",[4,"-","-",2,"-","-"]],
+      ["Clubbing",["-",1,2,"-","-","-"]],
+    ]},
+    {n:"Assessment, Appeals & Penalties (10–16 Marks)", r:[
+      ["Assessment Procedure",[2,4,"2+4","4+4",4,12]],
+      ["Appeals and Revision",[8,"-",4,2,4,2]],
+      ["Penalties",["-","-",0,"-","-","-"]],
+      ["Dispute Resolution",[4,"2+4","-","-","-","-"]],
+      ["Unethical Tax Practice",["-",4,4,"-",4,"-"]],
+      ["Miscellaneous Provisions",["-","-","-","2+4",4,"-"]],
+      ["Black Money Act",["-",4,"-","-","-",2]],
+      ["Equalisation Levy",["-","-","-",2,"-",2]],
+      ["Virtual Digital Asset",["-",2,"-",2,"-","-"]],
+    ]},
+    {n:"International Taxation (26 Marks)", r:[
+      ["Transfer Pricing",[6,"4+6","4+6","6+6",6,8]],
+      ["Non-resident Taxation",["8+6","2+6","6+6",6,"8+6",12]],
+      ["Double Taxation Relief",[6,6,6,6,6,6]],
+    ]},
+    {n:"Others (20–22 Marks)", r:[
+      ["Tax Audit & Ethics",[6,6,6,6,6,8]],
+      ["Tax Treaties",[0,3,3,3,"-","-"]],
+      ["Fundamentals of BEPS",[0,3,3,3,3,"-"]],
+      ["Model Tax Conventions",[6,"-","-","-",3,4]],
+      ["Advance Rulings",[4,4,4,4,4,4]],
+      ["Latest Developments in Int Tax",["-","-","-","-","-",2]],
+      ["Tax Planning & GAAR",["2+4",4,"2+4",4,4,4]],
+    ]},
+  ],
+  total:[118,118,118,118,118,118],
+  obs:["All questions in May'26 were newly framed.",
+       "Amendments-heavy paper.",
+       "The same concept on cruise ships has been asked for three consecutive attempts (Sep'25, Jan'26, May'26).",
+       "Amendments on Transfer Pricing safe-harbour rules were not touched till now, though released for the May'25 attempt."],
+  tips:["Avoid ABC analysis.",
+        "Analyse previous exam papers (not MTPs or RTPs) from May'24 to May'26 and note how ICAI twists provisions — Nov'24 NRI case study, May'25 TP case study, importance of case laws in Assessment & TDS.",
+        "Ignore all grossing-up rules altogether.",
+        "Prepare amendments thoroughly and solve every question you can find on them.",
+        "Do sufficient writing practice."]
+},
+
+idt: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  cats:[
+    {n:"GST", r:[
+      ["Supply under GST",[9,0,"6+3",2,9,0]],
+      ["Charge of GST (incl. RCM)",["6+4","2+5",2,"4+1","4+4",2]],
+      ["Exemptions from GST",["2+1","2+10","2+6","3+6",5,0]],
+      ["Place of Supply",["4+1",8,7,5,"2+2","4+7"]],
+      ["Time of Supply",[6,2,7,"3+5",2,2]],
+      ["Value of Supply",["2+4",0,"2+1",2,"2+5","4+12"]],
+      ["Input Tax Credit",["6+6","2+2","6+6","7+9","2+9","2+13"]],
+      ["Job Work",[5,5,0,5,0,0]],
+      ["Payment of Tax",[0,2,"2+4","1+5","4+5",2]],
+      ["ECO",[3,10,0,0,0,5]],
+      ["Tax Invoice, Credit & Debit Notes",[0,2,2,"2+2",5,0]],
+      ["Accounts, Records & E-way Bill",["2+5",0,0,0,0,2]],
+      ["Returns",[0,4,2,3,0,2]],
+      ["Refunds",[5,9,0,1,0,"2+5"]],
+      ["Import & Export under GST",[0,4,0,0,0,0]],
+      ["Liability to Pay in Certain Cases",[2,0,0,0,0,0]],
+      ["Registration",[0,0,6,2,6,0]],
+      ["Appeals & Revision",["2+5",5,6,5,"2+5","2+11"]],
+      ["Demands & Recovery",[6,0,"2+5",2,"2+6",4]],
+      ["Inspection, Search, Seizure & Arrest",[0,0,0,0,8,8]],
+      ["Assessment & Audit",[4,0,4,8,0,0]],
+      ["Advance Ruling",[0,6,0,6,0,0]],
+      ["Offences & Penalties",[5,9,"2+5",5,5,5]],
+      ["Miscellaneous Provisions",[0,4,4,0,0,0]],
+    ]},
+    {n:"Customs", r:[
+      ["Levy & Types of Duty",[4,0,0,2,2,0]],
+      ["Exemptions",[0,5,0,2,"2+4",0]],
+      ["Import & Export Procedures",["2+4","2+4","2+4",8,4,0]],
+      ["Classification",[0,0,0,0,0,4]],
+      ["Baggage Rules",[2,4,4,4,0,4]],
+      ["Valuation",[4,4,"2+6",4,4,"2+4"]],
+      ["Warehousing",[0,0,0,4,0,4]],
+      ["Refund",[0,0,4,0,4,0]],
+      ["Foreign Trade Policy (FTP)",[8,"2+4",4,0,4,"2+4"]],
+    ]},
+  ],
+  total:[119,118,118,118,118,118],
+  obs:["Compulsory Q1 was too good — ICAI is no longer asking easy Q1s across papers.",
+       "You need excellent conceptual knowledge to get 60+ in this paper.",
+       "Provisional assessment topics have been asked for 10 marks throughout the paper."],
+  tips:["Avoid ABC analysis.",
+        "Do sufficient writing practice."]
+}
+};
+
+const QWISE = {
+
+fr: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  r:[
+    ["Q1",           ["Ind AS 103","Ind AS 110","Ind AS 110","Ind AS 103","Ind AS 110","Ind AS 110"]],
+    ["Q2(a)",        ["Ind AS 109","Ind AS 109","Ind AS 109","Ind AS 109","Ind AS 109","Ind AS 109"]],
+    ["Q2(b)",        ["Ind AS 34","Ind AS 1","Ind AS 7","Ind AS 34","Ind AS 34","Ind AS 1"]],
+    ["Q3(a)",        ["Ind AS 116","Ind AS 16","Ind AS 19","Ind AS 36","Ind AS 40","Ind AS 116"]],
+    ["Q3(b)",        ["Ind AS 108","Ind AS 12","Ind AS 33","Ind AS 33","Ind AS 12","Ind AS 109"]],
+    ["Q4(a)",        ["Ind AS 19","Ind AS 105","Ind AS 23","Ind AS 16","Ind AS 16 & 37","Ind AS 19"]],
+    ["Q4(b)",        ["Ind AS 20","Ind AS 20","Ind AS 21","Ind AS 102","Ind AS 102","Ind AS 20"]],
+    ["Q5(a)",        ["Ind AS 115","Ind AS 115","Ind AS 115","Ind AS 115","Ind AS 115","Ind AS 115"]],
+    ["Q5(b)",        ["Ind AS 101","Ind AS 101","Ind AS 101","Ind AS 111 & 16","Ind AS 101","Ind AS 101"]],
+    ["Q5(c)",        ["Framework / Framework","Intro to Ind AS / NA","Ind AS 1 / Framework","Ind AS 1 / Framework","Ind AS 1 / Framework","Intro to Ind AS / Framework"]],
+    ["Q6(a)",        ["Technology","Ethics","Technology","Technology","Technology","Technology"]],
+    ["Q6(b)",        ["Ind AS 23","Ind AS 19","Ind AS 36","Ind AS 2","Ind AS 16","Ind AS 105"]],
+    ["Q6(c)",        ["Ind AS 113","Ind AS 113","Ind AS 8","Ind AS 113","Ind AS 8","Ind AS 34"]],
+  ]
+},
+
+afm: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  r:[
+    ["Q1(a)",        ["IFM","Mutual Funds","Business Valuation","Security Valuation","Security Valuation","Security Valuation"]],
+    ["Q1(b)",        ["Security Valuation","M&A","Forex","Business Valuation","Derivatives","Mutual Funds"]],
+    ["Q1(c)",        ["Financial Policy","Derivatives","Startup Finance","Risk Management","Financial Policy","Financial Policy"]],
+    ["Q2(a)",        ["Portfolio Management","Forex","Security Valuation","Portfolio Management","Mutual Funds","Security Analysis"]],
+    ["Q2(b)",        ["Derivatives","Financial Policy","IRRM","Forex","Adv Capital Budgeting","IFM"]],
+    ["Q2(c)",        ["Startup Finance","Derivatives","Financial Policy","Financial Policy","—","Mutual Funds"]],
+    ["Q3(a)",        ["IFM","Derivatives","Security Valuation","Adv Capital Budgeting","IRRM","IRRM"]],
+    ["Q3(b)",        ["Mutual Funds","Forex","Mutual Funds","Security Valuation","Forex","Startup Finance / Securitization"]],
+    ["Q3(c)",        ["Securitization","Risk Management","Securitization","Security Analysis","—","—"]],
+    ["Q4(a)",        ["Portfolio Management","IRRM","Portfolio Management","IFM","Derivatives","Derivatives"]],
+    ["Q4(b)",        ["Mutual Funds","Business Valuation","Derivatives","M&A","Business Valuation","M&A"]],
+    ["Q4(c)",        ["Security Analysis / IRRM","Security Analysis","Security Analysis / Risk Management","Securitization / Startup Finance","Startup Finance / IRRM","IFM"]],
+    ["Q5(a)",        ["Business Valuation","Portfolio Management","IFM","Mutual Funds","IFM","Portfolio Management"]],
+    ["Q5(b)",        ["Business Valuation","IFM","Mutual Funds","Business Valuation","M&A","Security Valuation"]],
+    ["Q5(c)",        ["Risk Management","—","—","—","Derivatives","—"]],
+    ["Q6(a)",        ["Forex","Mutual Funds","Business Valuation","Derivatives","Portfolio Management","Adv Capital Budgeting"]],
+    ["Q6(b)",        ["M&A","Derivatives","Forex","IRRM","Forex","M&A"]],
+    ["Q6(c)",        ["—","Startup Finance / Securitization","—","—","—","—"]],
+  ]
+},
+
+audit: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  r:[
+    ["Q1(a) · 5",    ["SA 501","SA 705","SQC 1","SA 720","SQC 1","SQC 1"]],
+    ["Q1(b) · 5",    ["SA 706","SA 450","Professional Ethics","SA 240","CARO 2020","SA 706"]],
+    ["Q1(c) · 4",    ["SRS 4410","SQC 1","CARO 2020","SAE 3420","SRE 2400","SA 810"]],
+    ["Q2(a) · 5",    ["SA 260","Professional Ethics","SA 250","SQC 1","Professional Ethics","SA 402"]],
+    ["Q2(b) · 5",    ["Professional Ethics","Internal Controls (Ch 3)","Professional Ethics","SA 620","SA 610","Professional Ethics"]],
+    ["Q2(c) · 4",    ["Digital Audit","SRE 2400","PSU Audit","Digital Audit","Digital Audit","Internal Audit"]],
+    ["Q3(a) · 5",    ["Audit of NBFCs","PSU Audit","Group Audits","CARO 2020","Professional Ethics","Investigation"]],
+    ["Q3(b) · 5",    ["Professional Ethics","Professional Ethics","SA 540","Professional Ethics","SA 600","SA 580"]],
+    ["Q3(c) · 4",    ["SA 570","Digital Audit","SRE 2410","SRS 4410","Investigation","Professional Ethics"]],
+    ["Q4(a) · 5",    ["SA 500","SA 810","Audit of Banks","Audit of NBFCs","SA 701","SQC 1"]],
+    ["Q4(b) · 5",    ["SRE 2400","Professional Ethics","Digital Audit","Professional Ethics","SA 805","SRS 4410"]],
+    ["Q4(c) · 4",    ["SDG & ESG","SDG & ESG","SDG & ESG","SRE 2400","SDG & ESG","SDG & ESG"]],
+    ["Q5(a) · 5",    ["CARO 2020","CARO 2020","SA 810","Internal Audit","SA 550","SRE 2410"]],
+    ["Q5(b) · 5",    ["Internal Audit","SA 240","SA 505","SDG & ESG","SAE 3400","Group Audits"]],
+    ["Q5(c) · 4",    ["Professional Ethics","Professional Ethics","Professional Ethics","Professional Ethics","Professional Ethics","Professional Ethics"]],
+    ["Q6(a) · 5",    ["SAE 3400","Due Diligence","SA 265","SA 402","Audit of NBFCs","CARO 2020"]],
+    ["Q6(b) · 5",    ["Investigation","Audit of Banks","SRE 2410","Audit of Banks","SRS 4400","Digital Audit"]],
+    ["Q6(c) · 4",    ["Prof Ethics / PSU","SAE 3400 / SA 240","Prof Ethics / Investigation","Prof Ethics / Forensic Acc","Prof Ethics / PSU","Prof Ethics / Audit of NBFCs"]],
+  ]
+},
+
+dt: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  r:[
+    ["Q1 · 14",      ["Total Income (PGBP, CG, IFOS)","Total Income (PGBP, IFOS, CG)","Total Income (PGBP, IFOS, CG & VI-A)","Total Income (PGBP, IFOS, CG & Set-off)","Total Income (PGBP, IFOS, CG & VI-A)","Total Income (PGBP, CG & VI-A)"]],
+    ["Q2(a) · 8",    ["CG (4) + Set-off CFD (4)","CG (4) + IFOS (4)","AOP (4) + CG (2) + IFOS (2)","Firm, SEZ & AMT","CG (8)","CG (4) + IFOS (4)"]],
+    ["Q2(b) · 6",    ["NR Taxation","NR Taxation","NR Taxation","NR Taxation","NR Taxation","NR Taxation"]],
+    ["Q3(a) · 8",    ["Charitable Trust (6) + Electoral Trust (2)","Charitable Trust","Charitable Trust","Charitable Trust","Charitable Trust (4) + Electoral Trust (4)","Charitable Trust"]],
+    ["Q3(b) · 6",    ["Double Taxation Relief","DTAA","DTAA","DTAA","DTAA","DTAA"]],
+    ["Q4(a) · 8",    ["TDS","TDS","TDS","TDS","TDS (5) + TCS (3)","TDS"]],
+    ["Q4(b) · 6",    ["Transfer Pricing","Transfer Pricing","Transfer Pricing","Transfer Pricing","Transfer Pricing","Transfer Pricing"]],
+    ["Q5(a)(i) · 4", ["Appeals & Revision (CL)","Assessment Proc","Appeals & Revision","Unethical Tax Practice","Appeals & Revision","TDS (CL)"]],
+    ["Q5(a)(ii) · 4",["Appeals & Revision (CL)","Dispute Resolution","Assessment Proc (CL)","Misc Provisions (CL)","Assessment Proc","Appeals & Revision (CL)"]],
+    ["Q5(a)(iii) · 4",["Dispute Resolution","Unethical Tax Practice (CL)","TDS (CL)","TDS (CL)","TDS (CL)","Unethical Tax Practice (CL)"]],
+    ["Q5(b)(i) · 3", ["Model Tax Conventions","Tax Treaties","Tax Treaties","BEPS","Model Tax Conventions","Model Tax Conventions"]],
+    ["Q5(b)(ii) · 3",["Model Tax Conventions","BEPS","BEPS","Tax Treaties","BEPS","Latest Developments in Int Tax"]],
+    ["Q6(a) · 6",    ["Tax Audit","Tax Audit","Tax Audit","Tax Audit","Tax Audit","Tax Audit"]],
+    ["Q6(b) · 4",    ["Tax Planning & GAAR","Tax Planning & GAAR","Tax Planning & GAAR","Tax Planning & GAAR","Tax Planning & GAAR","Tax Planning & GAAR"]],
+    ["Q6(c) · 4",    ["Advance Rulings","Advance Rulings","Advance Rulings","Advance Rulings","Advance Rulings","Advance Rulings"]],
+  ]
+},
+
+idt: {
+  attempts:["M'26","J'26","S'25","M'25","N'24","M'24"],
+  r:[
+    ["Q1 · 14",      ["GST Liability & ITC","GST Liability & ITC","GST Liability & ITC","GST Liability & ITC","GST Liability & ITC","GST Liability & ITC"]],
+    ["Q2(a) · 8/5",  ["GST Liability","Exemptions u/s GST","GST Liability","Exemptions u/s GST","Exemptions u/s GST","Input Tax Credit"]],
+    ["Q2(b) · 6/5",  ["Supply under GST","RCM","Customs — Valuation","Job Work","Value of Supply","Value of Supply"]],
+    ["Q2(c) · 4",    ["Customs — Valuation","Customs — Valuation","—","Customs — Valuation","Customs — Valuation","Customs — Valuation"]],
+    ["Q3(a) · 5",    ["Time of Supply","Exemptions u/s GST","PoS / Exemptions","PoS","Input Tax Credit","PoS"]],
+    ["Q3(b) · 5",    ["ECO","Import under GST","Time of Supply","Time of Supply","Supply under GST","Value of Supply"]],
+    ["Q3(c) · 4",    ["Customs — Levy","Customs — Exemptions","Customs — Procedures","Customs — Procedures","Customs — Exemptions","Customs — Classification"]],
+    ["Q4(a) · 5",    ["Refunds","Refunds","Payment of Tax (Interest)","Payment of Tax (TDS)","Payment of Tax","Payment of Tax (ECO)"]],
+    ["Q4(b) · 5",    ["E-way Bill / Job Work","Job Work","Registration","Returns / Tax Invoice","Tax Invoice","Refunds"]],
+    ["Q4(c) · 4",    ["Customs — Procedures","Baggage Rules","Baggage Rules","Baggage Rules","Customs — Procedures","Baggage Rules"]],
+    ["Q5(a) · 5",    ["Offences & Penalties","Offences & Penalties","Appeals & Revision","Offences & Penalties","Offences & Penalties","Appeals & Revision"]],
+    ["Q5(b) · 5",    ["Appeals & Revision","Appeals & Revision","Demands & Recovery","Appeals & Revision","Appeals & Revision","Offences & Penalties"]],
+    ["Q5(c) · 4",    ["FTP","Customs — Procedures","Customs — Refund","Customs — Warehousing","Customs — Refund","Customs — Warehousing"]],
+    ["Q6(a) · 6",    ["Demands & Recovery","Advance Ruling","Appeals & Revision","Advance Ruling","Demands & Recovery","Appeals & Revision"]],
+    ["Q6(b) · 4",    ["Assessment & Audit","Misc Provisions","Misc Provisions","Assessment & Audit","Inspection","Inspection"]],
+    ["Q6(c) · 4",    ["FTP","FTP","FTP","Customs — Procedures","FTP","FTP"]],
+  ]
+}
+};
 /* ===================== BANK ===================== */
 QA.forEach((q,i)=>{ q.qid="a"+i; q.n=0; });
 QB.forEach((q,i)=>{ q.qid="b"+i; q.n=1; });
@@ -1329,13 +1793,19 @@ AFM.forEach(ch=>{ ch.q.forEach((q,i)=>{ q.qid="q"+i; q.n=q.n||0; }); });
 function normSum(s){ return (typeof s[0] === "string") ? [{t:"Key points", p:s}] : s; }
 
 const SUBJECTS = [
+  {id:"fr", short:"FR", name:"Financial Reporting",
+   paper:"Paper 1", c:"var(--fr)", split:false, chapters:[]},
+  {id:"afm", short:"AFM", name:"Advanced Financial Management",
+   paper:"Paper 2", c:"var(--afm)", split:true,
+   chapters:AFM.map(ch=>({id:ch.id, n:ch.n, f:ch.f, q:ch.q, sum:normSum(ch.sum)}))},
   {id:"audit", short:"Audit", name:"Advanced Auditing, Assurance & Professional Ethics",
    paper:"Paper 3", c:"var(--audit)", split:false,
    chapters:[{id:"19", n:"Professional Ethics & Liabilities of Auditors", f:"A",
               q:QA.concat(QB), sum:normSum(SUM)}]},
-  {id:"afm", short:"AFM", name:"Advanced Financial Management",
-   paper:"Paper 2", c:"var(--afm)", split:true,
-   chapters:AFM.map(ch=>({id:ch.id, n:ch.n, f:ch.f, q:ch.q, sum:normSum(ch.sum)}))}
+  {id:"dt", short:"DT", name:"Direct Tax Laws & International Taxation",
+   paper:"Paper 4", c:"var(--dt)", split:false, chapters:[]},
+  {id:"idt", short:"IDT", name:"Indirect Tax Laws",
+   paper:"Paper 5", c:"var(--idt)", split:false, chapters:[]}
 ];
 
 let SUBJ = null, CHAP = null;
@@ -1376,7 +1846,7 @@ function today(){ return new Date().toISOString().slice(0,10); }
 
 /* ===================== HELPERS ===================== */
 const $ = id => document.getElementById(id);
-const VIEWS = ["subjects","chapters","modes","hub","quiz","result","browse","summary","highlights","notes","stats","settings"];
+const VIEWS = ["subjects","chapters","modes","hub","quiz","result","browse","summary","highlights","notes","stats","settings","trend","qwise"];
 function show(v){ VIEWS.forEach(x => $(x).classList.toggle("hide", x!==v)); window.scrollTo(0,0); crumb(v); }
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function mmss(t){ const m=Math.floor(t/60), s=t%60; return m+":"+String(s).padStart(2,"0"); }
@@ -1550,27 +2020,52 @@ function openSubjects(){
 function openChapters(s){
   SUBJ = s; CHAP = null;
   $("chapLede").textContent = s.name;
-  let q=0, seen=0; s.chapters.forEach(c=>{ const st=chStats(s,c); q+=st.total; seen+=st.seen; });
-  $("chapSub").textContent = `${s.chapters.length} chapters · ${q} questions · ${seen} attempted`;
-  $("chapRows").innerHTML = s.chapters.map(c=>{
-    const st = chStats(s,c), pct = st.total ? Math.round(st.seen/st.total*100) : 0;
-    const pill = c.f==="A" ? `<span class="pill A">asked often</span>` :
-                 c.f==="B" ? `<span class="pill B">asked sometimes</span>` : ``;
-    return `<button class="row" data-c="${c.id}">
-      <span><span class="t">Ch ${esc(c.id)} · ${esc(c.n)}${pill}</span>
-      <span class="d">${st.total} questions · ${st.seen} attempted${st.att?` · ${st.acc}% accuracy`:""}</span>
-      <span class="mini"><i style="width:${pct}%"></i></span></span>
-      <span class="n">→</span></button>`;
-  }).join("");
+  const t = TREND[s.id], attCount = t ? t.attempts.length : 0;
+  const qw = QWISE[s.id];
+  let body = "";
+  if(s.chapters.length){
+    let q=0, seen=0; s.chapters.forEach(c=>{ const st=chStats(s,c); q+=st.total; seen+=st.seen; });
+    $("chapSub").textContent = `${s.chapters.length} chapters · ${q} questions · ${seen} attempted`;
+    body += `<h3 class="sec">PRACTICE</h3><div class="rows">` + s.chapters.map(c=>{
+      const st = chStats(s,c), pct = st.total ? Math.round(st.seen/st.total*100) : 0;
+      const pill = c.f==="A" ? `<span class="pill A">asked often</span>` :
+                   c.f==="B" ? `<span class="pill B">asked sometimes</span>` : ``;
+      return `<button class="row" data-c="${c.id}">
+        <span><span class="t">Ch ${esc(c.id)} · ${esc(c.n)}${pill}</span>
+        <span class="d">${st.total} questions · ${st.seen} attempted${st.att?` · ${st.acc}% accuracy`:""}</span>
+        <span class="mini"><i style="width:${pct}%"></i></span></span>
+        <span class="n">→</span></button>`;
+    }).join("") + `</div>`;
+  } else {
+    $("chapSub").textContent = `Trend and question-wise analysis available · MCQ practice coming soon`;
+    body += `<h3 class="sec">PRACTICE</h3><div class="rows"><button class="row soon" disabled>
+      <span><span class="t">Chapter-wise MCQs</span>
+      <span class="d">Coming soon — this subject currently has analysis only</span></span></button></div>`;
+  }
+  if(t || qw){
+    body += `<h3 class="sec">ANALYSIS</h3><div class="rows">`;
+    if(t) body += `<button class="row" id="rowTrend"><span>
+      <span class="t">Trend Analysis</span>
+      <span class="d">Marks each chapter has drawn across the last ${attCount} attempts</span></span><span class="n">→</span></button>`;
+    if(qw) body += `<button class="row" id="rowQwise"><span>
+      <span class="t">Question-Wise Analysis</span>
+      <span class="d">Which chapter turned up as Q1(a), Q2(b) and so on across recent attempts</span></span><span class="n">→</span></button>`;
+    body += `</div>`;
+  }
+  $("chapRows").outerHTML = `<div id="chapRows">${body}</div>`;
   $("chapRows").querySelectorAll("[data-c]").forEach(b=>{
     b.onclick = () => {
       const c = s.chapters.find(x=>x.id===b.dataset.c);
       if(s.split) openModes(c); else openHub(c);
     };
   });
+  const tb = $("rowTrend"); if(tb) tb.onclick = renderTrend;
+  const qb = $("rowQwise"); if(qb) qb.onclick = renderQwise;
   $("chapNote").textContent = s.id==="afm"
     ? "Chapters tagged \"asked often\" have appeared in almost every recent attempt. Theory is worth 16 to 20 marks in AFM."
-    : "Professional Ethics is the single heaviest chapter in Audit. Exam booklet questions carry more weight than concept drills.";
+    : s.id==="audit"
+    ? "Professional Ethics is the single heaviest chapter in Audit. Exam booklet questions carry more weight than concept drills."
+    : `Trend data is compiled by OpenMock and covers the last ${attCount} ICAI attempts. Use it to sequence your revision, not to skip chapters.`;
   show("chapters");
 }
 
@@ -1889,6 +2384,67 @@ function renderNotes(){
   show("notes");
 }
 
+/* ===================== TREND ANALYSIS ===================== */
+function markCell(v){
+  if(v==="-" || v===0 || v==="0") return {n:0, s:"-", cls:""};
+  const s = String(v);
+  let n = 0;
+  s.split("+").forEach(p=>{ const x=parseFloat(p); if(!isNaN(x)) n += x; });
+  const cls = n>=15?"h4" : n>=10?"h3" : n>=5?"h2" : n>=2?"h1" : "";
+  return {n, s, cls};
+}
+function renderTrend(){
+  const t = TREND[SUBJ.id];
+  if(!t){ show("trend"); $("trendBody").innerHTML = `<div class="empty">No trend data yet.</div>`; return; }
+  const at = t.attempts;
+  let body = `<div class="ana-note">Marks each chapter has drawn across the last ${at.length} ICAI attempts. Darker cell = higher marks in that attempt. "+" means the chapter came up twice (e.g. once in MCQs and once in the descriptive part).</div>`;
+  t.cats.forEach(cat=>{
+    body += `<h4 class="ana-h">${esc(cat.n)}</h4>`;
+    body += `<div class="tbl-wrap"><table class="tbl"><thead><tr><th class="stk">Chapter</th>`
+         + at.map(a=>`<th>${esc(a)}</th>`).join("") + `</tr></thead><tbody>`;
+    cat.r.forEach(row=>{
+      body += `<tr><td class="stk">${esc(row[0])}</td>`
+           + row[1].map(v=>{ const m=markCell(v); return `<td class="c ${m.cls}">${m.s}</td>`; }).join("")
+           + `</tr>`;
+    });
+    body += `</tbody></table></div>`;
+  });
+  if(t.total){
+    body += `<h4 class="ana-h">Total marks</h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th class="stk">&nbsp;</th>`
+         + at.map(a=>`<th>${esc(a)}</th>`).join("") + `</tr></thead><tbody><tr><td class="stk">Total</td>`
+         + t.total.map(v=>`<td class="c tot">${v}</td>`).join("") + `</tr></tbody></table></div>`;
+  }
+  if(t.obs && t.obs.length){
+    body += `<h4 class="ana-h">${esc(at[0])} observations</h4><ul class="ana-list">`
+         + t.obs.map(o=>`<li>${esc(o)}</li>`).join("") + `</ul>`;
+  }
+  if(t.tips && t.tips.length){
+    body += `<h4 class="ana-h">Tips for the Nov'26 attempt</h4><ul class="ana-list">`
+         + t.tips.map(o=>`<li>${esc(o)}</li>`).join("") + `</ul>`;
+  }
+  body += `<p class="ana-cred">Data compiled by <a href="https://openmock.in" target="_blank" rel="noopener">OpenMock</a>.</p>`;
+  $("trendTitle").textContent = `${SUBJ.short.toUpperCase()} · TREND ANALYSIS`;
+  $("trendBody").innerHTML = body;
+  show("trend");
+}
+function renderQwise(){
+  const q = QWISE[SUBJ.id];
+  if(!q){ show("qwise"); $("qwiseBody").innerHTML = `<div class="empty">No question-wise data yet.</div>`; return; }
+  const at = q.attempts;
+  let body = `<div class="ana-note">Which chapter or standard appeared as which question, across the last ${at.length} attempts. Read a row to see how consistent a Q-slot is.</div>`;
+  body += `<div class="tbl-wrap"><table class="tbl qw"><thead><tr><th class="stk">Q</th>`
+       + at.map(a=>`<th>${esc(a)}</th>`).join("") + `</tr></thead><tbody>`;
+  q.r.forEach(row=>{
+    body += `<tr><td class="stk">${esc(row[0])}</td>`
+         + row[1].map(v=>`<td class="qc">${esc(v)}</td>`).join("") + `</tr>`;
+  });
+  body += `</tbody></table></div>`;
+  body += `<p class="ana-cred">Data compiled by <a href="https://openmock.in" target="_blank" rel="noopener">OpenMock</a>.</p>`;
+  $("qwiseTitle").textContent = `${SUBJ.short.toUpperCase()} · QUESTION-WISE PATTERN`;
+  $("qwiseBody").innerHTML = body;
+  show("qwise");
+}
+
 /* ===================== STATS ===================== */
 function renderStats(){
   const pre = SUBJ.id+"/"+CHAP.id+"/";
@@ -1974,6 +2530,8 @@ $("hubBack").onclick    = () => { if(SUBJ.split) openModes(CHAP); else openChapt
 ["resHome","homeBtn","browseHome","sumHome","hlHome","notesHome","statsHome"].forEach(id=>{
   $(id).onclick = () => openHub(CHAP);
 });
+$("trendBack").onclick = () => openChapters(SUBJ);
+$("qwiseBack").onclick = () => openChapters(SUBJ);
 $("themeBtn").onclick = () => {
   const cur = document.documentElement.getAttribute("data-theme");
   const next = cur === "dark" ? "light" : cur === "light" ? "" : "dark";
@@ -1986,5 +2544,6 @@ try{ const t = localStorage.getItem(KEY+"_theme"); if(t) document.documentElemen
 openSubjects();
 
 </script>
+<script data-goatcounter="https://surajgangwani.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

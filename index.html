@@ -347,7 +347,7 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
   </section>
 
   <section id="caselist" class="hide">
-    <button class="back" id="caseListBack">← Chapters</button>
+    <button class="back" id="caseListBack">← Chapter</button>
     <div class="lede" id="caseListLede"></div>
     <div class="lede-sub" id="caseListSub"></div>
     <div class="rows" id="caseListRows"></div>
@@ -384,7 +384,12 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
         <span><i style="background:var(--note);border-radius:50%"></i>Has a note</span>
       </div>
     </div>
-    <button class="primary" id="btnFull">Practice the full chapter<span id="fullSub"></span></button>
+    <h3 class="sec">PRACTISE</h3>
+    <div class="rows">
+      <button class="row" id="btnFull"><span><span class="t">Theory MCQs</span><span class="d" id="fullSub"></span></span><span class="n">→</span></button>
+      <button class="row" id="btnCases"><span><span class="t">Case Scenarios</span><span class="d" id="casesSub"></span></span><span class="n" id="casesN"></span></button>
+    </div>
+    <h3 class="sec">REVISE</h3>
     <div class="rows">
       <button class="row" id="btnDaily"><span><span class="t">Today's 10</span><span class="d" id="dailySub"></span></span><span class="n" id="dailyN"></span></button>
       <button class="row" id="btnWrong"><span><span class="t">Redo mistakes</span><span class="d">Questions you got wrong last time</span></span><span class="n" id="wrongN"></span></button>
@@ -2362,12 +2367,21 @@ function today(){ return new Date().toISOString().slice(0,10); }
 /* ===================== HELPERS ===================== */
 const $ = id => document.getElementById(id);
 const VIEWS = ["subjects","chapters","modes","hub","quiz","result","browse","summary","highlights","notes","stats","settings","trend","qwise","casechapters","caselist","case"];
-/* group case scenarios by platform chapter id */
-const CASES_BY_CH = {};
-(typeof AFM_CASES !== "undefined" ? AFM_CASES : []).forEach(c=>{
-  (CASES_BY_CH[c.ch] = CASES_BY_CH[c.ch] || []).push(c);
-});
-Object.keys(CASES_BY_CH).forEach(k=> CASES_BY_CH[k].sort((a,b)=>a.cnum-b.cnum));
+/* case scenarios, keyed by subject then chapter, so every subject can carry them.
+   To add cases for another subject later, give each case a `subj` field (e.g. "audit")
+   and concat its array below — the tally, hub row and player all pick it up automatically. */
+const CASE_SETS = [];
+if(typeof AFM_CASES !== "undefined") CASE_SETS.push({subj:"afm", data:AFM_CASES});
+/* if(typeof AUDIT_CASES !== "undefined") CASE_SETS.push({subj:"audit", data:AUDIT_CASES}); */
+const CASES_BY = {};   // CASES_BY[subjId][chId] = [case,...]
+CASE_SETS.forEach(set=> set.data.forEach(c=>{
+  c.subj = set.subj;
+  (CASES_BY[set.subj] = CASES_BY[set.subj] || {});
+  (CASES_BY[set.subj][c.ch] = CASES_BY[set.subj][c.ch] || []).push(c);
+}));
+Object.keys(CASES_BY).forEach(s=> Object.keys(CASES_BY[s]).forEach(ch=> CASES_BY[s][ch].sort((a,b)=>a.cnum-b.cnum)));
+function casesFor(subj, ch){ return (CASES_BY[subj] && CASES_BY[subj][ch]) || []; }
+function subjCases(subj){ const o=CASES_BY[subj]||{}; return Object.keys(o).reduce((a,k)=>a.concat(o[k]),[]); }
 function show(v){ VIEWS.forEach(x => $(x).classList.toggle("hide", x!==v)); window.scrollTo(0,0); crumb(v); }
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function mmss(t){ const m=Math.floor(t/60), s=t%60; return m+":"+String(s).padStart(2,"0"); }
@@ -2476,8 +2490,8 @@ document.addEventListener("click", e=>{
 });
 
 /* ===================== NOTES ===================== */
-function noteEditor(q, host){
-  const key = gid(q), n = S.notes[key] || {t:"", r:""};
+function noteEditor(key, host){
+  const n = S.notes[key] || {t:"", r:""};
   host.innerHTML = `<div class="notebox">
     <div class="nh"><b>MY NOTE</b><span class="saved hide">Saved</span></div>
     <textarea placeholder="Anything extra you want to remember about this question…"></textarea>
@@ -2500,12 +2514,11 @@ function noteEditor(q, host){
   rf.addEventListener("input", ()=>{ clearTimeout(t); t = setTimeout(commit, 600); });
   ta.addEventListener("blur", commit); rf.addEventListener("blur", commit);
 }
-function mountNote(q){
-  const slot = $("noteSlot"), key = gid(q);
-  if(S.notes[key]){ noteEditor(q, slot); return; }
+function mountNote(key, slot){
+  if(S.notes[key]){ noteEditor(key, slot); return; }
   slot.innerHTML = `<button class="addnote">+ Add a note or book page reference</button>`;
   slot.querySelector(".addnote").onclick = () => {
-    noteEditor(q, slot);
+    noteEditor(key, slot);
     const ta = slot.querySelector("textarea"); if(ta) ta.focus();
   };
 }
@@ -2519,6 +2532,8 @@ function openSubjects(){
     let q=0, seen=0, att=0, cor=0;
     s.chapters.forEach(c=>{ const st = chStats(s,c); q+=st.total; seen+=st.seen; att+=st.att; cor+=st.cor; });
     const acc = att ? Math.round(cor/att*100)+"%" : "—";
+    const cl = subjCases(s.id);
+    const caseStat = cl.length ? `<span><b>${cl.length}</b>case scenarios</span>` : "";
     return `<button class="subj" data-s="${s.id}" style="--c:${s.c}">
       <span class="go">→</span>
       <div class="paper">${esc(s.paper.toUpperCase())}</div>
@@ -2526,7 +2541,8 @@ function openSubjects(){
       <div class="full">${esc(s.name)}</div>
       <div class="stats">
         <span><b>${s.chapters.length}</b>chapters</span>
-        <span><b>${q}</b>questions</span>
+        <span><b>${q}</b>MCQs</span>
+        ${caseStat}
         <span><b>${seen}</b>attempted</span>
         <span><b>${acc}</b>accuracy</span>
       </div></button>`;
@@ -2577,7 +2593,7 @@ function openChapters(s){
   $("chapRows").querySelectorAll("[data-c]").forEach(b=>{
     b.onclick = () => {
       const c = s.chapters.find(x=>x.id===b.dataset.c);
-      if(s.split) openModes(c); else openHub(c);
+      openHub(c);
     };
   });
   const tb = $("rowTrend"); if(tb) tb.onclick = renderTrend;
@@ -2596,14 +2612,15 @@ function openModes(c){
   $("modeLede").textContent = `Ch ${c.id} · ${c.n}`;
   $("modeTheoryD").textContent = `${c.q.length} MCQs and a chapter summary`;
   $("modeTheory").onclick = () => openHub(c);
-  let tc=0, tq=0; Object.keys(CASES_BY_CH).forEach(k=>{ tc+=CASES_BY_CH[k].length; CASES_BY_CH[k].forEach(x=>tq+=x.q.length); });
-  $("modePracticalD").textContent = `${tc} ICAI case scenarios · ${tq} MCQs across ${Object.keys(CASES_BY_CH).length} chapters`;
   $("modePractical").onclick = openCaseChapters;
   show("modes");
 }
 
 /* ===================== CASE SCENARIOS ===================== */
-const caseKey = (c,i) => "afm/case/" + c.ch + "-" + c.cnum + "/q" + i;
+const caseKey  = (c,i) => (c.subj||"afm") + "/case/" + c.ch + "-" + c.cnum + "/q" + i;
+const casePre  = () => SUBJ.id + "/case/" + CHAP.id + "-";
+const caseHlKey = (c,i) => caseKey(c,i) + "/e";
+const casePassKey = c => (c.subj||"afm") + "/case/" + c.ch + "-" + c.cnum + "/passage";
 function caseProgress(c){
   let ans=0, cor=0;
   c.q.forEach((q,i)=>{ const r=S.res[caseKey(c,i)]; if(r){ ans++; if(r.last==="correct") cor++; } });
@@ -2611,11 +2628,12 @@ function caseProgress(c){
 }
 function chNameById(id){ const ch=SUBJ.chapters.find(x=>x.id===id); return ch?ch.n:("Chapter "+id); }
 function openCaseChapters(){
-  const ids = Object.keys(CASES_BY_CH).sort((a,b)=>+a-+b);
-  let tc=0,tq=0; ids.forEach(k=>{ tc+=CASES_BY_CH[k].length; CASES_BY_CH[k].forEach(x=>tq+=x.q.length); });
+  const bySub = CASES_BY[SUBJ.id] || {};
+  const ids = Object.keys(bySub).sort((a,b)=>+a-+b);
+  let tc=0,tq=0; ids.forEach(k=>{ tc+=bySub[k].length; bySub[k].forEach(x=>tq+=x.q.length); });
   $("caseChapSub").textContent = `${tc} case scenarios · ${tq} MCQs · pick a chapter`;
   $("caseChapRows").innerHTML = ids.map(id=>{
-    const list=CASES_BY_CH[id];
+    const list=bySub[id];
     let ans=0,tot=0; list.forEach(c=>{ const p=caseProgress(c); ans+=p.ans; tot+=p.total; });
     const pct = tot?Math.round(ans/tot*100):0;
     return `<button class="row" data-ci="${id}"><span>
@@ -2628,16 +2646,20 @@ function openCaseChapters(){
 }
 function openCaseList(id){
   CASE_CHID = id;
-  const list = CASES_BY_CH[id];
+  const list = casesFor(SUBJ.id, id);
   $("caseListLede").textContent = `Ch ${id} · ${chNameById(id)}`;
   $("caseListSub").textContent = `${list.length} case scenario${list.length>1?"s":""}`;
   $("caseListRows").innerHTML = list.map((c,idx)=>{
     const p=caseProgress(c);
     const done = p.ans===p.total;
     const scoreTxt = p.ans ? `<span class="casescore">${p.cor}/${p.total}${done?"":" so far"}</span>` : "";
+    const nflag = c.q.filter((q,i)=>S.flags.includes(caseKey(c,i))).length;
+    const nnote = c.q.filter((q,i)=>S.notes[caseKey(c,i)]).length;
+    const marks = (nflag?`<span class="casetag" style="border-color:var(--flag);color:var(--flag)">${nflag} flagged</span>`:"")
+                + (nnote?`<span class="casetag" style="border-color:var(--note);color:var(--note)">${nnote} noted</span>`:"");
     const preview = c.passage.replace(/\s+/g," ").slice(0,90);
     return `<button class="row caserow" data-cs="${idx}"><span>
-      <span class="t">Case ${c.cnum} <span class="casetag">${c.q.length} MCQs</span> ${scoreTxt}</span>
+      <span class="t">Case ${c.cnum} <span class="casetag">${c.q.length} MCQs</span> ${scoreTxt} ${marks}</span>
       <span class="d">${esc(preview)}…</span></span><span class="n">→</span></button>`;
   }).join("");
   show("caselist");
@@ -2645,8 +2667,8 @@ function openCaseList(id){
 let CUR_CASE=null, CASE_CHID=null;
 function openCase(c){
   CUR_CASE=c;
-  $("caseCh").textContent = `AFM · CH ${c.ch} · ${chNameById(c.ch).toUpperCase()} · CASE ${c.cnum}`;
-  $("passageBody").textContent = c.passage;
+  $("caseCh").textContent = `${SUBJ.short.toUpperCase()} · CH ${c.ch} · ${chNameById(c.ch).toUpperCase()} · CASE ${c.cnum}`;
+  setBlock($("passageBody"), casePassKey(c), c.passage, "Case "+c.cnum+" passage");
   $("passageBox").classList.remove("collapsed");
   $("passToggle").textContent = "Collapse";
   $("caseSrc").textContent = c.src;
@@ -2673,7 +2695,8 @@ function renderSubqs(){
     if(answered){
       const ok=picked===q.a;
       fb=`<div class="verdict ${ok?"ok":"no"}">${ok?"Correct":"Answer: "+"ABCD"[q.a]}</div>
-          <div class="expl"><p>${esc(q.e)}</p></div>`;
+          <div class="expl"><p id="caseExp${i}"></p></div>
+          <div id="caseNote${i}"></div>`;
     }
     return `<div class="subq" id="subq${i}">
       <div class="qn"><span class="num">${i+1}.</span>
@@ -2690,6 +2713,13 @@ function renderSubqs(){
       if(at>=0) S.flags.splice(at,1); else S.flags.push(key);
       save(); renderSubqs(); updateCaseBar();
     };
+  });
+  // highlightable explanations + note editors for answered sub-questions
+  c.q.forEach((q,i)=>{
+    if(S.res[caseKey(c,i)]!==undefined){
+      const ex=$("caseExp"+i); if(ex) setBlock(ex, caseHlKey(c,i), q.e, "Case "+c.cnum+" · Q"+(i+1));
+      const ns=$("caseNote"+i); if(ns) mountNote(caseKey(c,i), ns);
+    }
   });
   updateCaseBar();
 }
@@ -2719,7 +2749,7 @@ function updateCaseBar(){
         <button class="row" id="caseNext"><span><span class="t" id="caseNextT">Next case</span></span><span class="n">→</span></button>
       </div>`;
     $("caseRetry").onclick=()=>{ CUR_CASE.q.forEach((q,i)=>{ delete S.res[caseKey(CUR_CASE,i)]; }); save(); openCase(CUR_CASE); };
-    const list=CASES_BY_CH[CUR_CASE.ch], idx=list.indexOf(CUR_CASE);
+    const list=casesFor(CUR_CASE.subj, CUR_CASE.ch), idx=list.indexOf(CUR_CASE);
     const nxt=list[idx+1];
     if(nxt){ $("caseNextT").textContent=`Next case (Case ${nxt.cnum})`; $("caseNext").onclick=()=>openCase(nxt); }
     else { $("caseNextT").textContent="Back to chapter list"; $("caseNext").onclick=()=>openCaseList(CUR_CASE.ch); }
@@ -2727,11 +2757,19 @@ function updateCaseBar(){
 }
 
 /* ===================== HUB ===================== */
+function inChapter(k){ // key belongs to this chapter: theory (subj/ch/…) or case (subj/case/ch-…)
+  return k.indexOf(SUBJ.id+"/"+CHAP.id+"/")===0 || k.indexOf(casePre())===0;
+}
+function caseFromKey(k){ // subj/case/ch-cnum/rest  ->  {c, subj, ch, cnum, rest}
+  const m = k.match(/^([a-z]+)\/case\/([^/]+)-(\d+)\/(.+)$/);
+  if(!m) return null;
+  const c = casesFor(m[1], m[2]).find(x=>x.cnum===+m[3]);
+  return c ? {c, subj:m[1], ch:m[2], cnum:+m[3], rest:m[4]} : null;
+}
 function hubCounts(){
   if(!CHAP) return;
-  const pre = SUBJ.id+"/"+CHAP.id+"/";
-  $("hlN").textContent = S.hl.filter(h=>h.k.indexOf(pre)===0).length || "0";
-  $("notesN").textContent = Object.keys(S.notes).filter(k=>k.indexOf(pre)===0).length || "0";
+  $("hlN").textContent = S.hl.filter(h=>inChapter(h.k)).length || "0";
+  $("notesN").textContent = Object.keys(S.notes).filter(k=>inChapter(k)).length || "0";
   let pts=0; CHAP.sum.forEach(s=>pts+=s.p.length);
   $("sumN").textContent = pts;
 }
@@ -2748,7 +2786,18 @@ function openHub(c){
     if(S.notes[key]) cl += " nt";
     return `<span class="${cl}"></span>`;
   }).join("");
-  $("fullSub").textContent = `All ${st.total} questions in one go`;
+  $("fullSub").textContent = `Practise all ${st.total} theory MCQs in one go`;
+  const cases = casesFor(SUBJ.id, c.id);
+  const btnCases = $("btnCases");
+  if(cases.length){
+    btnCases.classList.remove("hide");
+    let cans=0, ctot=0; cases.forEach(cs=>{ const p=caseProgress(cs); cans+=p.ans; ctot+=p.total; });
+    $("casesN").textContent = cases.length;
+    $("casesSub").textContent = `${cases.length} ICAI case${cases.length>1?"s":""} · ${ctot} MCQs${cans?` · ${cans} attempted`:""}`;
+    btnCases.onclick = () => openCaseList(c.id);
+  } else {
+    btnCases.classList.add("hide");
+  }
   const d = dailySet();
   $("dailyN").textContent = d.length || "";
   const dk = SUBJ.id+"/"+c.id;
@@ -2756,7 +2805,7 @@ function openHub(c){
     ? "Done for today — run it again if you like"
     : "A short set, weighted to what you keep missing";
   const w = wrongIds(), u = unseenIds();
-  const fl = S.flags.filter(k=>k.indexOf(SUBJ.id+"/"+c.id+"/")===0);
+  const fl = S.flags.filter(k=>inChapter(k));
   $("wrongN").textContent = w.length || "0";
   $("flagN").textContent = fl.length || "0";
   $("unseenN").textContent = u.length || "0";
@@ -2846,7 +2895,7 @@ function paintAnswered(q, k){
     : k === -2 ? `Skipped — the answer is ${"ABCD"[q.a]}`
     : `Not quite — the answer is ${"ABCD"[q.a]}`;
   setBlock($("explText"), gkey("exp:"+q.qid), q.e, "Explanation");
-  mountNote(q);
+  mountNote(gid(q), $("noteSlot"));
   $("feedback").classList.remove("hide");
   $("feedback").classList.add("reveal");
 }
@@ -2919,10 +2968,11 @@ function finish(){
 }
 
 /* ===================== BROWSE ===================== */
-function browse(ids, title){
+function browse(ids, title, caseKeys){
+  caseKeys = caseKeys || [];
   $("browseTitle").textContent = title.toUpperCase();
-  if(!ids.length){ $("browseBody").innerHTML = `<div class="empty">Nothing here yet.</div>`; return show("browse"); }
-  $("browseBody").innerHTML = ids.map(id=>{
+  if(!ids.length && !caseKeys.length){ $("browseBody").innerHTML = `<div class="empty">Nothing here yet.</div>`; return show("browse"); }
+  let html = ids.map(id=>{
     const q = byId(id), key = gid(q), fl = S.flags.includes(key), nt = S.notes[key];
     return `<div class="card">
       <div class="cq">${esc(q.q)}</div>
@@ -2932,7 +2982,24 @@ function browse(ids, title){
       <div class="cbar"><span>${esc(q.s)}</span>
       ${fl?`<button data-unflag="${id}">Remove flag</button>`:""}</div>
     </div>`;
-  }).join("") + `<button class="primary" id="drillBtn" style="margin-top:14px">Practise these ${ids.length}<span>Timed, same as a normal set</span></button>`;
+  }).join("");
+  if(caseKeys.length){
+    html += `<h3 class="sec">CASE SCENARIOS</h3>` + caseKeys.map(k=>{
+      const cf=caseFromKey(k); if(!cf) return "";
+      const qi=+cf.rest.replace(/^q/,""), q=cf.c.q[qi]; if(!q) return "";
+      const nt=S.notes[k];
+      return `<div class="card">
+        <div class="cq">${esc(q.q)}</div>
+        <div class="cans">${"ABCD"[q.a]} — ${esc(q.o[q.a])}</div>
+        <div class="cex"><p style="font-family:var(--serif);font-size:14.5px;line-height:1.55;margin:0;color:var(--ink-2)">${esc(q.e)}</p></div>
+        ${nt ? `<div style="margin-top:10px">${nt.r?`<span class="refchip">${esc(nt.r)}</span>`:""}<span style="font-family:var(--serif);font-size:13.5px;color:var(--note)">${esc(nt.t)}</span></div>` : ""}
+        <div class="cbar"><span>Case ${cf.cnum} · Q${qi+1}</span>
+        <span><button data-opencase="${encodeURIComponent(k)}">Open case</button> <button data-unflagcase="${encodeURIComponent(k)}">Remove flag</button></span></div>
+      </div>`;
+    }).join("");
+  }
+  if(ids.length) html += `<button class="primary" id="drillBtn" style="margin-top:14px">Practise these ${ids.length} theory MCQs<span>Timed, same as a normal set</span></button>`;
+  $("browseBody").innerHTML = html;
   $("browseBody").querySelectorAll("[data-exp]").forEach(el=>{
     const q = byId(el.dataset.exp);
     setBlock(el, gkey("exp:"+q.qid), q.e, "Explanation");
@@ -2941,12 +3008,22 @@ function browse(ids, title){
   $("browseBody").querySelectorAll("[data-unflag]").forEach(b=>{
     b.onclick = () => {
       const key = gid(byId(b.dataset.unflag)), at = S.flags.indexOf(key);
-      if(at>=0){ S.flags.splice(at,1); save(); browse(flagIds(), title); }
+      if(at>=0){ S.flags.splice(at,1); save(); browse(flagIds(), title, caseFlagKeys()); }
+    };
+  });
+  $("browseBody").querySelectorAll("[data-opencase]").forEach(b=>{
+    b.onclick = () => { const cf=caseFromKey(decodeURIComponent(b.dataset.opencase)); if(cf) openCase(cf.c); };
+  });
+  $("browseBody").querySelectorAll("[data-unflagcase]").forEach(b=>{
+    b.onclick = () => {
+      const key=decodeURIComponent(b.dataset.unflagcase), at=S.flags.indexOf(key);
+      if(at>=0){ S.flags.splice(at,1); save(); browse(flagIds(), title, caseFlagKeys()); }
     };
   });
   show("browse");
 }
 const flagIds = () => chQ().filter(q=>S.flags.includes(gid(q))).map(q=>q.qid);
+const caseFlagKeys = () => S.flags.filter(k=>k.indexOf(casePre())===0);
 
 /* ===================== SUMMARY ===================== */
 function tocLabel(t){ let x = t.split("—")[0].trim(); return x.length>26 ? x.slice(0,24).trim()+"…" : x; }
@@ -2971,7 +3048,7 @@ function renderSummary(){
 /* ===================== HIGHLIGHTS ===================== */
 function renderHighlights(){
   const pre = SUBJ.id+"/"+CHAP.id+"/";
-  const mine = S.hl.filter(h=>h.k.indexOf(pre)===0);
+  const mine = S.hl.filter(h=>inChapter(h.k));
   $("hlTitle").textContent = `MY HIGHLIGHTS · ${mine.length}`;
   if(!mine.length){
     $("hlBody").innerHTML = `<div class="empty">Nothing highlighted yet. Open the chapter summary or any explanation, select a line, and tap Highlight.</div>`;
@@ -3006,29 +3083,40 @@ function renderHighlights(){
 /* ===================== NOTES VIEW ===================== */
 function renderNotes(){
   const pre = SUBJ.id+"/"+CHAP.id+"/";
-  const keys = Object.keys(S.notes).filter(k=>k.indexOf(pre)===0);
+  const keys = Object.keys(S.notes).filter(k=>inChapter(k));
   $("notesTitle").textContent = `MY NOTES · ${keys.length}`;
   if(!keys.length){
-    $("notesBody").innerHTML = `<div class="empty">No notes yet. While practising, tap "Add a note" under any explanation to record your own point and the page number in your book.</div>`;
+    $("notesBody").innerHTML = `<div class="empty">No notes yet. While practising a theory MCQ or a case scenario, tap "Add a note" under any explanation to record your own point and the page number in your book.</div>`;
     return show("notes");
   }
   const ord = {}; CHAP.q.forEach((q,i)=> ord[gid(q)] = i);
-  keys.sort((a,b)=>(ord[a]??9999)-(ord[b]??9999));
-  $("notesBody").innerHTML = keys.map(k=>{
-    const qid = k.slice(pre.length), q = byId(qid), n = S.notes[k];
-    if(!q) return "";
+  const meta = k => {
+    if(k.indexOf(pre)===0){ const q=byId(k.slice(pre.length)); return q?{label:q.s, qtext:q.q, o:[0,ord[k]??9999,0]}:null; }
+    const cf=caseFromKey(k); if(!cf) return null;
+    const qi=+cf.rest.replace(/^q/,""), q=cf.c.q[qi];
+    return q?{label:"Case "+cf.cnum+" · Q"+(qi+1), qtext:q.q, o:[1,cf.cnum,qi], caseObj:cf.c}:null;
+  };
+  const rows = keys.map(k=>({k, m:meta(k)})).filter(x=>x.m)
+    .sort((a,b)=>{const A=a.m.o,B=b.m.o; return A[0]-B[0]||A[1]-B[1]||A[2]-B[2];});
+  const theoryIds = rows.filter(r=>r.k.indexOf(pre)===0).map(r=>r.k.slice(pre.length));
+  $("notesBody").innerHTML = rows.map(({k,m})=>{
+    const n=S.notes[k];
+    const openBtn = m.caseObj ? `<button data-open-note="${encodeURIComponent(k)}">Open case</button> ` : "";
     return `<div class="hcard nc">
-      <div class="hq">${esc(q.q.length>150?q.q.slice(0,150)+"…":q.q)}</div>
+      <div class="hq">${esc(m.qtext.length>150?m.qtext.slice(0,150)+"…":m.qtext)}</div>
       ${n.r?`<span class="refchip">${esc(n.r)}</span>`:""}
       <span class="ht">${esc(n.t)}</span>
-      <div class="hb"><span>${esc(q.s)}</span>
-      <button data-dn="${encodeURIComponent(k)}">Delete</button></div></div>`;
-  }).join("") + `<button class="primary" id="noteDrill" style="margin-top:14px">Practise these ${keys.length}<span>The questions you have annotated</span></button>`;
+      <div class="hb"><span>${esc(m.label)}</span>
+      <span>${openBtn}<button data-dn="${encodeURIComponent(k)}">Delete</button></span></div></div>`;
+  }).join("") + (theoryIds.length ? `<button class="primary" id="noteDrill" style="margin-top:14px">Practise these ${theoryIds.length} theory MCQs<span>The theory questions you have annotated</span></button>` : "");
   $("notesBody").querySelectorAll("[data-dn]").forEach(b=>{
     b.onclick = () => { delete S.notes[decodeURIComponent(b.dataset.dn)]; save(); renderNotes(); hubCounts(); };
   });
+  $("notesBody").querySelectorAll("[data-open-note]").forEach(b=>{
+    b.onclick = () => { const cf=caseFromKey(decodeURIComponent(b.dataset.openNote)); if(cf) openCase(cf.c); };
+  });
   const nd = $("noteDrill");
-  if(nd) nd.onclick = () => start(keys.map(k=>k.slice(pre.length)), "Annotated questions");
+  if(nd) nd.onclick = () => start(theoryIds, "Annotated questions");
   show("notes");
 }
 
@@ -3164,7 +3252,7 @@ $("setHome").onclick = () => { if(setReturn==="hub" && CHAP) openHub(CHAP); else
 $("btnFull").onclick    = () => start(allIds(), "Full chapter");
 $("btnDaily").onclick   = () => start(dailySet(), "Today's 10");
 $("btnWrong").onclick   = () => browse(wrongIds(), "Questions you got wrong");
-$("btnFlag").onclick    = () => browse(flagIds(), "Flagged for revision");
+$("btnFlag").onclick    = () => browse(flagIds(), "Flagged for revision", caseFlagKeys());
 $("btnUnseen").onclick  = () => start(unseenIds(), "Fresh questions");
 $("btnSummary").onclick = renderSummary;
 $("btnHl").onclick      = renderHighlights;
@@ -3174,17 +3262,17 @@ $("btnSettings").onclick= () => renderSettings("hub");
 $("btnGlobalSettings").onclick = () => renderSettings("subjects");
 $("chapBack").onclick   = openSubjects;
 $("modeBack").onclick   = () => openChapters(SUBJ);
-$("hubBack").onclick    = () => { if(SUBJ.split) openModes(CHAP); else openChapters(SUBJ); };
+$("hubBack").onclick    = () => openChapters(SUBJ);
 ["resHome","homeBtn","browseHome","sumHome","hlHome","notesHome","statsHome"].forEach(id=>{
   $(id).onclick = () => openHub(CHAP);
 });
 $("trendBack").onclick = () => openChapters(SUBJ);
 $("qwiseBack").onclick = () => openChapters(SUBJ);
 $("caseChapBack").onclick = () => openModes(CHAP || SUBJ.chapters[0]);
-$("caseListBack").onclick = openCaseChapters;
+$("caseListBack").onclick = () => openHub(CHAP);
 $("caseBack").onclick = () => openCaseList(CUR_CASE.ch);
 $("caseChapRows") && ($("caseChapRows").onclick = e => { const b=e.target.closest("[data-ci]"); if(b) openCaseList(b.dataset.ci); });
-$("caseListRows") && ($("caseListRows").onclick = e => { const b=e.target.closest("[data-cs]"); if(b) openCase(CASES_BY_CH[CASE_CHID][+b.dataset.cs]); });
+$("caseListRows") && ($("caseListRows").onclick = e => { const b=e.target.closest("[data-cs]"); if(b) openCase(casesFor(SUBJ.id, CASE_CHID)[+b.dataset.cs]); });
 $("passToggle").onclick = () => {
   const box=$("passageBox"); const col=box.classList.toggle("collapsed");
   $("passToggle").textContent = col ? "Expand" : "Collapse";

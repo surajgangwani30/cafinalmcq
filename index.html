@@ -283,7 +283,10 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
   white-space:pre-wrap;overflow-wrap:break-word}
 .passage.collapsed .body{max-height:132px;overflow:hidden;
   -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent);mask-image:linear-gradient(180deg,#000 60%,transparent)}
-.casesrc{font-size:11.5px;color:var(--muted);margin-bottom:16px}
+.casesrc{font-size:11.5px;color:var(--muted);margin-bottom:12px}
+.flagcasebtn{width:100%;border:1px solid var(--line);border-radius:var(--radius);padding:11px;
+  font-size:13px;color:var(--ink-2);background:var(--surface);margin-bottom:16px;text-align:center}
+.flagcasebtn.on{background:var(--flag-bg);border-color:var(--flag);color:var(--flag);font-weight:600}
 .subq{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   padding:14px 15px;margin-bottom:12px}
 .subq .qn{display:flex;gap:9px;margin-bottom:12px}
@@ -365,6 +368,7 @@ mark.mk{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:1
       <div class="body" id="passageBody"></div>
     </div>
     <div class="casesrc" id="caseSrc"></div>
+    <button class="flagcasebtn" id="flagCaseBtn"></button>
     <div id="subqs"></div>
     <div id="caseDoneWrap"></div>
   </section>
@@ -2655,7 +2659,9 @@ function openCaseList(id){
     const scoreTxt = p.ans ? `<span class="casescore">${p.cor}/${p.total}${done?"":" so far"}</span>` : "";
     const nflag = c.q.filter((q,i)=>S.flags.includes(caseKey(c,i))).length;
     const nnote = c.q.filter((q,i)=>S.notes[caseKey(c,i)]).length;
-    const marks = (nflag?`<span class="casetag" style="border-color:var(--flag);color:var(--flag)">${nflag} flagged</span>`:"")
+    const wholeFl = S.flags.includes(caseWholeKey(c));
+    const marks = (wholeFl?`<span class="casetag" style="border-color:var(--flag);color:var(--flag)">★ flagged</span>`:"")
+                + (nflag?`<span class="casetag" style="border-color:var(--flag);color:var(--flag)">${nflag} Q flagged</span>`:"")
                 + (nnote?`<span class="casetag" style="border-color:var(--note);color:var(--note)">${nnote} noted</span>`:"");
     const preview = c.passage.replace(/\s+/g," ").slice(0,90);
     return `<button class="row caserow" data-cs="${idx}"><span>
@@ -2672,8 +2678,20 @@ function openCase(c){
   $("passageBox").classList.remove("collapsed");
   $("passToggle").textContent = "Collapse";
   $("caseSrc").textContent = c.src;
+  updateFlagCaseBtn();
+  $("flagCaseBtn").onclick = () => {
+    const key = caseWholeKey(CUR_CASE), at = S.flags.indexOf(key);
+    if(at>=0) S.flags.splice(at,1); else S.flags.push(key);
+    save(); updateFlagCaseBtn();
+  };
   renderSubqs();
   show("case");
+}
+function updateFlagCaseBtn(){
+  const on = S.flags.includes(caseWholeKey(CUR_CASE));
+  const btn = $("flagCaseBtn");
+  btn.classList.toggle("on", on);
+  btn.textContent = on ? "★ Whole case flagged for revision — tap to unflag" : "☆ Flag this whole case for revision";
 }
 function renderSubqs(){
   const c=CUR_CASE;
@@ -2765,6 +2783,14 @@ function caseFromKey(k){ // subj/case/ch-cnum/rest  ->  {c, subj, ch, cnum, rest
   if(!m) return null;
   const c = casesFor(m[1], m[2]).find(x=>x.cnum===+m[3]);
   return c ? {c, subj:m[1], ch:m[2], cnum:+m[3], rest:m[4]} : null;
+}
+const caseWholeKey = c => (c.subj||"afm") + "/case/" + c.ch + "-" + c.cnum;   // whole-case flag (no /q)
+const isWholeCaseKey = k => /^[a-z]+\/case\/[^/]+-\d+$/.test(k);
+function caseFromWholeKey(k){
+  const m = k.match(/^([a-z]+)\/case\/([^/]+)-(\d+)$/);
+  if(!m) return null;
+  const c = casesFor(m[1], m[2]).find(x=>x.cnum===+m[3]);
+  return c ? {c, subj:m[1], ch:m[2], cnum:+m[3]} : null;
 }
 function hubCounts(){
   if(!CHAP) return;
@@ -2983,8 +3009,21 @@ function browse(ids, title, caseKeys){
       ${fl?`<button data-unflag="${id}">Remove flag</button>`:""}</div>
     </div>`;
   }).join("");
-  if(caseKeys.length){
-    html += `<h3 class="sec">CASE SCENARIOS</h3>` + caseKeys.map(k=>{
+  const wholeKeys = caseKeys.filter(isWholeCaseKey);
+  const subKeys = caseKeys.filter(k=>!isWholeCaseKey(k));
+  if(wholeKeys.length || subKeys.length){
+    html += `<h3 class="sec">CASE SCENARIOS</h3>`;
+    html += wholeKeys.map(k=>{
+      const cf=caseFromWholeKey(k); if(!cf) return "";
+      const preview=cf.c.passage.replace(/\s+/g," ").slice(0,120);
+      return `<div class="card">
+        <div class="cq">Case ${cf.cnum} <span class="casetag" style="border-color:var(--flag);color:var(--flag)">whole case</span> <span class="casetag">${cf.c.q.length} MCQs</span></div>
+        <div class="cex"><p style="font-family:var(--serif);font-size:13.5px;line-height:1.5;margin:0;color:var(--muted)">${esc(preview)}…</p></div>
+        <div class="cbar"><span>${esc(chNameById(cf.ch))}</span>
+        <span><button data-opencasew="${encodeURIComponent(k)}">Open case</button> <button data-unflagcasew="${encodeURIComponent(k)}">Remove flag</button></span></div>
+      </div>`;
+    }).join("");
+    html += subKeys.map(k=>{
       const cf=caseFromKey(k); if(!cf) return "";
       const qi=+cf.rest.replace(/^q/,""), q=cf.c.q[qi]; if(!q) return "";
       const nt=S.notes[k];
@@ -3017,6 +3056,15 @@ function browse(ids, title, caseKeys){
   $("browseBody").querySelectorAll("[data-unflagcase]").forEach(b=>{
     b.onclick = () => {
       const key=decodeURIComponent(b.dataset.unflagcase), at=S.flags.indexOf(key);
+      if(at>=0){ S.flags.splice(at,1); save(); browse(flagIds(), title, caseFlagKeys()); }
+    };
+  });
+  $("browseBody").querySelectorAll("[data-opencasew]").forEach(b=>{
+    b.onclick = () => { const cf=caseFromWholeKey(decodeURIComponent(b.dataset.opencasew)); if(cf) openCase(cf.c); };
+  });
+  $("browseBody").querySelectorAll("[data-unflagcasew]").forEach(b=>{
+    b.onclick = () => {
+      const key=decodeURIComponent(b.dataset.unflagcasew), at=S.flags.indexOf(key);
       if(at>=0){ S.flags.splice(at,1); save(); browse(flagIds(), title, caseFlagKeys()); }
     };
   });
